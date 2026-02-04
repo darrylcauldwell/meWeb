@@ -1,0 +1,88 @@
+---
+import { getPageUrl, getPrevPage, getNextPage, getPageRange } from '../utils/pagination';
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+  paginatedPath?: string; // Optional: different path for pages 2+
+}
+
+const { currentPage, totalPages, baseUrl, paginatedPath } = Astro.props;
+
+const prevPage = getPrevPage(currentPage);
+const nextPage = getNextPage(currentPage, totalPages);
+const pages = getPageRange(currentPage, totalPages);
+
+function buildPageUrl(page: number) {
+  return getPageUrl(page, baseUrl, paginatedPath);
+}
+---
+
+{totalPages > 1 && (
+  <nav class="flex items-center justify-center gap-2 mt-8" aria-label="Pagination">
+    {prevPage ? (
+      <a
+        href={buildPageUrl(prevPage)}
+        class="px-4 py-2 rounded-lg bg-[var(--color-translucent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors"
+        aria-label={`Go to previous page, page ${prevPage}`}
+      >
+        <span aria-hidden="true">&larr;</span> Previous
+      </a>
+    ) : (
+      <button
+        disabled
+        class="px-4 py-2 rounded-lg bg-[var(--color-translucent)] opacity-50 cursor-not-allowed"
+        aria-label="No previous page available"
+      >
+        <span aria-hidden="true">&larr;</span> Previous
+      </button>
+    )}
+
+    <div class="hidden sm:flex items-center gap-1">
+      {pages.map((page) =>
+        page === 'ellipsis' ? (
+          <span class="px-3 py-2 text-[var(--color-text)]/50" aria-hidden="true">...</span>
+        ) : page === currentPage ? (
+          <span
+            class="px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white font-medium"
+            aria-current="page"
+            aria-label={`Page ${page}, current page`}
+          >
+            {page}
+          </span>
+        ) : (
+          <a
+            href={buildPageUrl(page)}
+            class="px-4 py-2 rounded-lg hover:bg-[var(--color-translucent)] transition-colors"
+            aria-label={`Go to page ${page}`}
+          >
+            {page}
+          </a>
+        )
+      )}
+    </div>
+
+    <span class="sm:hidden text-sm text-[var(--color-text)]">
+      Page {currentPage} of {totalPages}
+    </span>
+
+    {nextPage ? (
+      <a
+        href={buildPageUrl(nextPage)}
+        class="px-4 py-2 rounded-lg bg-[var(--color-translucent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors"
+        aria-label={`Go to next page, page ${nextPage}`}
+      >
+        Next <span aria-hidden="true">&rarr;</span>
+      </a>
+    ) : (
+      <button
+        disabled
+        class="px-4 py-2 rounded-lg bg-[var(--color-translucent)] opacity-50 cursor-not-allowed"
+        aria-label="No next page available"
+      >
+        Next <span aria-hidden="true">&rarr;</span>
+      </button>
+    )}
+  </nav>
+)}

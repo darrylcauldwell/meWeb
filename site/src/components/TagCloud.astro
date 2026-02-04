@@ -1,0 +1,19 @@
+---
+interface Props {
+  tags: [string, number][];
+}
+
+const { tags } = Astro.props;
+---
+
+<nav class="flex flex-wrap gap-2">
+  {tags.map(([tag, count]) => (
+    <a
+      href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`}
+      class="tag"
+    >
+      {tag.toUpperCase()}
+      <span class="tag-count">{count}</span>
+    </a>
+  ))}
+</nav>

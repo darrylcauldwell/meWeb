@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
+  <div class="min-h-[60vh] flex items-center justify-center">
+    <div class="text-center px-4">
+      <h1 class="text-9xl font-bold text-[var(--color-accent)] mb-4">404</h1>
+      <h2 class="text-2xl md:text-3xl font-semibold text-[var(--color-heading)] mb-4">
+        Page Not Found
+      </h2>
+      <p class="text-[var(--color-text)] mb-6 max-w-md mx-auto">
+        We couldn't find that page. It may have been moved or no longer exists.
+      </p>
+      <p class="text-sm text-[var(--color-text-muted)] mb-8 max-w-md mx-auto">
+        Try searching with <kbd class="px-2 py-0.5 bg-[var(--color-translucent)] rounded text-xs">Ctrl</kbd> + <kbd class="px-2 py-0.5 bg-[var(--color-translucent)] rounded text-xs">K</kbd> or browse the options below.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button
+          onclick="history.back()"
+          class="button button-translucent"
+        >
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Go Back
+        </button>
+        <a href="/" class="button button-primary">
+          Go Home
+        </a>
+        <a href="/post/" class="button button-translucent">
+          Browse Posts
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

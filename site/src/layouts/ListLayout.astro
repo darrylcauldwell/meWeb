@@ -1,0 +1,77 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import Pagination from '../components/Pagination.astro';
+
+interface Post {
+  id: string;
+  data: {
+    title: string;
+    description?: string;
+    date: string;
+    category?: string;
+  };
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  posts: Post[];
+  currentPage?: number;
+  totalPages?: number;
+  baseUrl?: string;
+  paginatedPath?: string;
+  showHeader?: boolean;
+}
+
+const {
+  title,
+  description,
+  posts,
+  currentPage = 1,
+  totalPages = 1,
+  baseUrl = '/',
+  paginatedPath,
+  showHeader = true,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-3xl mx-auto">
+      {showHeader && (
+        <header class="mb-8">
+          <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">
+            {title}
+          </h1>
+          {description && (
+            <p class="mt-2 text-[var(--color-text)]">{description}</p>
+          )}
+        </header>
+      )}
+
+      {posts.length > 0 ? (
+        <div class="space-y-6">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-[var(--color-text)]">No posts found.</p>
+      )}
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        baseUrl={baseUrl}
+        paginatedPath={paginatedPath}
+      />
+    </main>
+  </div>
+</BaseLayout>

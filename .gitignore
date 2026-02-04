@@ -1,0 +1,43 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Docker
+docker-compose.override.yml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets and certificates
+*.pem
+*.crt
+acme.json
+secrets/
+
+# Build artifacts
+*.log
+tmp/
+temp/
+site/dist/
+
+# Test coverage
+coverage/
+*.coverage
+htmlcov/
+
+# Test artifacts
+site/test-results/
+site/playwright-report/

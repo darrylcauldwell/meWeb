@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { isValidTag } from '../../content.config';
+
+const allPosts = await getCollection('post', ({ data }) => !data.draft);
+
+// Get tag counts (only for valid tags)
+const tagCounts = new Map<string, number>();
+allPosts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    if (isValidTag(tag)) {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    }
+  });
+});
+
+const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="Technologies" description="Browse posts by technology">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <main class="lg:w-[70%]">
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)] mb-4">
+          Technologies
+        </h1>
+        <p class="text-[var(--color-text)] mb-8">
+          Browse posts by technology. Use the search (Cmd/Ctrl+K) to find specific topics.
+        </p>
+
+        <nav class="flex flex-wrap gap-3">
+          {tags.map(([tag, count]) => (
+            <a
+              href={`/tags/${tag}/`}
+              class="group flex items-center gap-2 px-4 py-2 bg-[var(--color-translucent)] rounded-lg hover:bg-[var(--color-accent)] hover:text-white transition-all"
+            >
+              <span class="font-medium">{tag}</span>
+              <span class="px-2 py-0.5 bg-[var(--color-accent)] group-hover:bg-white group-hover:text-[var(--color-accent)] text-white text-xs rounded-full">
+                {count}
+              </span>
+            </a>
+          ))}
+        </nav>
+      </main>
+
+      <Sidebar showIntro={false} />
+    </div>
+  </div>
+</BaseLayout>

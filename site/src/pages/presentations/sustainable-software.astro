@@ -1,0 +1,1432 @@
+---
+// Standalone reveal.js presentation - no layout wrapper
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Enterprise Software - Darryl Cauldwell</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style is:inline>
+      .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+      .reveal section { text-align: left; }
+      .reveal .title-slide { text-align: center; }
+      .reveal .takeaway { background: #1a472a; border-radius: 8px; padding: 20px; }
+      .reveal ul { font-size: 0.85em; }
+      .reveal .small { font-size: 0.6em; color: #888; }
+      .reveal .two-col { display: flex; gap: 2rem; }
+      .reveal .two-col > div { flex: 1; }
+      .reveal .image-slide { text-align: center; }
+      .reveal .image-slide img { max-height: 500px; }
+      .reveal .icon-grid { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 2rem; }
+      .reveal .icon-row { display: flex; justify-content: center; gap: 1rem; }
+      .reveal .icon-row img { height: 120px; }
+    </style>
+  </head>
+  <body>
+    <div id="back-nav" style="position:fixed;top:0;left:0;width:auto;height:auto;z-index:99999;pointer-events:auto;padding:12px;">
+      <a href="/presentations/" style="display:inline-block;background:rgba(255,255,255,0.25);color:#fff;font:14px/1 Helvetica,sans-serif;padding:8px 14px;border-radius:6px;text-decoration:none;pointer-events:auto;cursor:pointer;">&larr; Back to site</a>
+    </div>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Slide 1: Title -->
+        <section class="title-slide">
+          <h1>Sustainable Enterprise Software</h1>
+          <h3>The what, the why, and the how to design and implement</h3>
+          <p><strong>Darryl Cauldwell</strong></p>
+          <aside class="notes">
+            My name is Darryl Cauldwell and for the last thirty years I have focussed on creating hosting platforms for the development and delivery of enterprise software. Software engineering, the software development lifecycle and hosting platforms are designed and built against constraints. Sustainability has traditionally not been a constraint used in the design of enterprise software…. It should be. In this talk I'll aim to highlight some sustainability constraints and provide actionable advise for approaching these.
+          </aside>
+        </section>
+
+        <!-- Slide 2: The Challenge -->
+        <section>
+          <h2>The Challenge</h2>
+          <ul>
+            <li>Today's enterprise IT systems require significant data centre workload</li>
+            <li>Demand for workload is increasing</li>
+            <li>Governments and enterprises have committed to the <em>2030 Agenda for Sustainable Development</em></li>
+            <li>Renewables are cleaner but less predictable energy supplies</li>
+          </ul>
+          <aside class="notes">
+            Today's enterprise IT systems requires a lot of data centre workload. As enterprises continue with digital transformation programs the demand for data centre workload is increasing. At the same as increasing demand both governments and enterprises have made commitments to transform to meet goals of the '2030 Agenda for Sustainable Development'. As governments modernise their energy grid with increased use of renewable and reduced use of fossil fuels consistent supply forecasting becomes more complex and leads to less reliable energy supply.
+          </aside>
+        </section>
+
+        <!-- Slide 3: SDG Goals -->
+        <section>
+          <h2>2030 Agenda - Sustainable Development Goals</h2>
+          <div style="max-width: 900px; margin: 0 auto;">
+            <p style="font-size: 0.5em; color: #aaa; margin-bottom: 1.2rem; text-align: center;">UN General Assembly resolution (2015) &mdash; <strong style="color: #fff;">17 Goals</strong> &amp; <strong style="color: #fff;">169 Targets</strong></p>
+            <div style="display: flex; justify-content: center; margin-bottom: 0.8rem;">
+              <img src="/presentations/sustainable-software/sdg-goals.png" alt="UN Sustainable Development Goals" style="max-height: 340px; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+            </div>
+            <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem;">
+              <div style="text-align: center; flex: 1;">
+                <p style="font-size: 0.38em; color: #aaa; line-height: 1.4;"><strong style="color: #5AC8FA;">People</strong><br>End poverty &amp; hunger, ensure dignity &amp; equality</p>
+              </div>
+              <div style="text-align: center; flex: 1;">
+                <p style="font-size: 0.38em; color: #aaa; line-height: 1.4;"><strong style="color: #4CAF50;">Planet</strong><br>Protect natural resources &amp; climate for future generations</p>
+              </div>
+              <div style="text-align: center; flex: 1;">
+                <p style="font-size: 0.38em; color: #aaa; line-height: 1.4;"><strong style="color: #F5A623;">Prosperity</strong><br>Ensure fulfilling lives in harmony with nature</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            The 2030 Agenda for Sustainable Development is a resolution adopted by the UN General Assembly in 2015. At its heart are 17 Sustainable Development Goals (SDGs) and 169 targets. They recognise that ending poverty and other deprivations must go hand-in-hand with strategies that improve health and education, reduce inequality, and spur economic growth – all while tackling climate change and working to preserve our oceans and forests.
+          </aside>
+        </section>
+
+        <!-- Slide 4: Enterprise Software SDG Alignment -->
+        <section>
+          <h2>Enterprise Software SDG Alignment</h2>
+          <div style="max-width: 900px; margin: 0 auto;">
+            <div style="display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 1rem;">
+              <div style="text-align: center; width: 150px;">
+                <img src="/presentations/sustainable-software/sdg-icon-6.png" alt="SDG 6: Clean Water" style="height: 100px; border-radius: 6px;">
+                <p style="font-size: 0.38em; color: #aaa; margin-top: 0.4rem; line-height: 1.3;"><strong style="color: #5AC8FA;">Target 6.4</strong><br>Increase freshwater water-use efficiency</p>
+              </div>
+              <div style="text-align: center; width: 150px;">
+                <img src="/presentations/sustainable-software/sdg-icon-7.png" alt="SDG 7: Affordable Energy" style="height: 100px; border-radius: 6px;">
+                <p style="font-size: 0.38em; color: #aaa; margin-top: 0.4rem; line-height: 1.3;"><strong style="color: #F5A623;">Target 7.2</strong><br>Increase share of renewable energy</p>
+              </div>
+              <div style="text-align: center; width: 150px;">
+                <img src="/presentations/sustainable-software/sdg-icon-9.png" alt="SDG 9: Industry Innovation" style="height: 100px; border-radius: 6px;">
+                <p style="font-size: 0.38em; color: #aaa; margin-top: 0.4rem; line-height: 1.3;"><strong style="color: #E74C3C;">Target 9.4</strong><br>Upgrade infrastructure to be sustainable</p>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 1.2rem;">
+              <div style="text-align: center; width: 150px;">
+                <img src="/presentations/sustainable-software/sdg-icon-12.png" alt="SDG 12: Responsible Consumption" style="height: 100px; border-radius: 6px;">
+                <p style="font-size: 0.38em; color: #aaa; margin-top: 0.4rem; line-height: 1.3;"><strong style="color: #C49A2A;">Target 12.2</strong><br>Efficient use of natural resources</p>
+              </div>
+              <div style="text-align: center; width: 150px;">
+                <img src="/presentations/sustainable-software/sdg-icon-12.png" alt="SDG 12: Responsible Consumption" style="height: 100px; border-radius: 6px;">
+                <p style="font-size: 0.38em; color: #aaa; margin-top: 0.4rem; line-height: 1.3;"><strong style="color: #C49A2A;">Target 12.5</strong><br>Reduce waste through prevention</p>
+              </div>
+              <div style="text-align: center; width: 150px;">
+                <img src="/presentations/sustainable-software/sdg-icon-13.png" alt="SDG 13: Climate Action" style="height: 100px; border-radius: 6px;">
+                <p style="font-size: 0.38em; color: #aaa; margin-top: 0.4rem; line-height: 1.3;"><strong style="color: #4CAF50;">Target 13.2</strong><br>Integrate climate change measures into operations</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            Each sustainable development goal has specific measurable targets and indicators. Typically the software development lifecycle and hosting of enterprise software can directly affect targets within these five goals. Specifically targets: 6.4 increase freshwater water-use efficiency, 7.2 increase the share of renewable energy in the global energy mix, 9.4 upgrade and retrofit infrastructure to make them sustainable, 12.2 sustainable management and efficient use of natural resources, 12.5 substantially reduce waste generation through prevention.
+          </aside>
+        </section>
+
+        <!-- Slide 5: GHG Protocol -->
+        <section>
+          <h2>GreenHouse Gas (GHG) Protocol</h2>
+          <div style="position: relative; max-width: 900px; margin: 0 auto; font-size: 0.38em;">
+            <!-- Greenhouse gases row -->
+            <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 12px;">
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">CO&#x2082;</span>
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">CH&#x2084;</span>
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">N&#x2082;O</span>
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">HFCs</span>
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">PFCs</span>
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">SF&#x2086;</span>
+              <span style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 3px 10px; font-size: 1em; color: #aaa;">NF&#x2083;</span>
+            </div>
+            <!-- Main three-column layout with flow arrows -->
+            <div style="display: flex; align-items: stretch; gap: 10px;">
+              <!-- Scope 3 Upstream -->
+              <div style="flex: 1; background: linear-gradient(135deg, rgba(92,122,234,0.12), rgba(92,122,234,0.06)); border: 2px solid #5C7AEA; border-radius: 10px; padding: 10px; display: flex; flex-direction: column;">
+                <div style="text-align: center; margin-bottom: 4px;">
+                  <span style="color: #5C7AEA; font-weight: bold; font-size: 1.2em;">SCOPE 3</span>
+                </div>
+                <div style="text-align: center; margin-bottom: 8px; color: #8899cc; font-size: 0.85em; line-height: 1.3;">Supply chain emissions<br>before your operations</div>
+                <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F4E6;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Purchased goods &amp; services</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F3ED;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Capital goods</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x26FD;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Fuel &amp; energy related</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F69A;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Transportation &amp; distribution</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x267B;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Waste generated</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x2708;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Business travel</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F6B6;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Employee commuting</span>
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 8px; color: #5C7AEA; font-size: 0.9em;">&#x25C0; Upstream activities</div>
+              </div>
+              <!-- Center: Reporting Company (Scope 1 & 2 as peers) -->
+              <div style="flex: 1.3; display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px;">
+                <div style="text-align: center; margin-bottom: 2px;">
+                  <span style="color: #e0e0e0; font-weight: bold; font-size: 1.3em;">REPORTING COMPANY</span>
+                </div>
+                <!-- Scope 1 -->
+                <div style="flex: 1; background: linear-gradient(135deg, rgba(76,175,80,0.15), rgba(76,175,80,0.05)); border: 2px solid #4CAF50; border-radius: 10px; padding: 10px; display: flex; flex-direction: column;">
+                  <div style="text-align: center; margin-bottom: 4px;">
+                    <span style="color: #4CAF50; font-weight: bold; font-size: 1.2em;">SCOPE 1</span>
+                  </div>
+                  <div style="text-align: center; margin-bottom: 8px; color: #81c784; font-size: 0.85em; line-height: 1.3;">Emissions you directly produce</div>
+                  <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <div style="background: rgba(76,175,80,0.12); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                      <span style="font-size: 1.2em;">&#x1F3E2;</span>
+                      <span style="color: #ccc; font-size: 0.95em;">Company facilities</span>
+                    </div>
+                    <div style="background: rgba(76,175,80,0.12); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                      <span style="font-size: 1.2em;">&#x1F697;</span>
+                      <span style="color: #ccc; font-size: 0.95em;">Company vehicles</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Scope 2 -->
+                <div style="flex: 1; background: linear-gradient(135deg, rgba(38,166,154,0.15), rgba(38,166,154,0.05)); border: 2px solid #26A69A; border-radius: 10px; padding: 10px; display: flex; flex-direction: column;">
+                  <div style="text-align: center; margin-bottom: 4px;">
+                    <span style="color: #26A69A; font-weight: bold; font-size: 1.2em;">SCOPE 2</span>
+                  </div>
+                  <div style="text-align: center; margin-bottom: 8px; color: #6db5ad; font-size: 0.85em; line-height: 1.3;">Emissions from energy you purchase</div>
+                  <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <div style="background: rgba(38,166,154,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                      <span style="font-size: 1.2em;">&#x26A1;</span>
+                      <span style="color: #ccc; font-size: 0.95em;">Purchased electricity</span>
+                    </div>
+                    <div style="background: rgba(38,166,154,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                      <span style="font-size: 1.2em;">&#x2668;</span>
+                      <span style="color: #ccc; font-size: 0.95em;">Steam, heating &amp; cooling</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Scope 3 Downstream -->
+              <div style="flex: 1; background: linear-gradient(135deg, rgba(92,122,234,0.12), rgba(92,122,234,0.06)); border: 2px solid #5C7AEA; border-radius: 10px; padding: 10px; display: flex; flex-direction: column;">
+                <div style="text-align: center; margin-bottom: 4px;">
+                  <span style="color: #5C7AEA; font-weight: bold; font-size: 1.2em;">SCOPE 3</span>
+                </div>
+                <div style="text-align: center; margin-bottom: 8px; color: #8899cc; font-size: 0.85em; line-height: 1.3;">Emissions after products<br>leave your operations</div>
+                <div style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F69A;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Transportation &amp; distribution</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x2699;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Processing of sold products</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F4BB;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Use of sold products</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F5D1;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">End-of-life treatment</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F3E0;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Leased assets</span>
+                  </div>
+                  <div style="background: rgba(92,122,234,0.1); border-radius: 6px; padding: 5px 8px; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 1.2em;">&#x1F4CA;</span>
+                    <span style="color: #ccc; font-size: 0.95em;">Franchises &amp; investments</span>
+                  </div>
+                </div>
+                <div style="text-align: center; margin-top: 8px; color: #5C7AEA; font-size: 0.9em;">Downstream activities &#x25B6;</div>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            GHG Protocol establishes comprehensive global standardised frameworks to measure and manage greenhouse gas (GHG) emissions from private and public sector operations, value chains and mitigation actions. Scope 1 covers direct GHG emissions, an example would be burning fuel in company vehicles. Scope 2 covers energy specific indirect GHG emissions, an example would be the consumption of electricity for running business software. Scope 3 covers most indirect GHG emissions, an example, buying, using and disposing of products and services from suppliers.
+          </aside>
+        </section>
+
+        <!-- Slide 6: Server Carbon Footprint -->
+        <section>
+          <h2>Server Carbon Footprint</h2>
+          <div class="two-col">
+            <div>
+              <h3>Scope 3: 80%</h3>
+              <p>Embodied carbon in manufacturing</p>
+            </div>
+            <div>
+              <h3>Scope 2: 20%</h3>
+              <p>Operational energy consumption</p>
+            </div>
+          </div>
+          <p class="small">Sources:
+            <a href="https://www.lowtechmagazine.com/2009/06/embodied-energy-of-digital-technology.html" target="_blank">lowtechmagazine.com</a>,
+            <a href="https://www.apc.org/sites/default/files/PracticalGuideSustainableIT_Section_2.pdf" target="_blank">apc.org</a>,
+            <a href="https://ghgprotocol.org/sites/default/files/standards/18_WP_Comparative-Emissions_final.pdf" target="_blank">ghgprotocol.org</a>
+          </p>
+        </section>
+
+        <!-- Slide 7: Mainframe (Image only) -->
+        <section class="image-slide">
+          <h2>Mainframe: Birth of the Data Center</h2>
+          <img src="/presentations/sustainable-software/mainframe.png" alt="Mainframe computer">
+          <aside class="notes">
+            The widespread use of digital electronic computing for engineering and scientific purpose began with the advent of the mainframe in the 1950s. These early systems had huge, complex hardware challenges and needed a cold, dry and secure operating environment. The multiple interconnecting devices and extensive cabling required elevated floors and many precious square metres of prime real estate to house these rooms. The operation of a single mainframe computer used colossal amounts of power and cooling.
+          </aside>
+        </section>
+
+        <!-- Slide 8: Modern Data Centre (Image focused) -->
+        <section class="image-slide">
+          <h2>What is a Modern Data Centre?</h2>
+          <img src="/presentations/sustainable-software/data-centre.jpeg" alt="Modern data centre" style="max-height: 400px;">
+          <p class="small"><a href="https://www.pexels.com/photo/black-hardwares-on-data-server-room-4597280/" target="_blank" rel="noopener noreferrer">Photo by Brett Sales from Pexels</a></p>
+          <aside class="notes">
+            Starting in the late 1980s an explosion of general purpose computers has enabled digital transformation of businesses. Dedicated mainframe computer facilities evolved and extended their footprint to accommodate racks of general purpose server hardware. New data centres have continued to evolve and optimise efficiency. Due to the enormous cost of building and refurbishing data centres there is a continuum of capability and efficiency. Data centres are energy-hungry buildings: a small one may draw 10MW of power and a large one can draw 100MW or more.
+          </aside>
+        </section>
+
+        <!-- Slide 9: CRAC -->
+        <section>
+          <h2>Computer Room Air Conditioning (CRAC)</h2>
+          <p style="text-align: center; font-size: 0.45em; color: #888; margin-bottom: 0.6rem;">Hot &amp; Cold Aisle Cooling</p>
+          <!-- Diagram container -->
+          <div style="position: relative; max-width: 900px; margin: 0 auto; height: 360px; font-size: 0.38em;">
+            <!-- Ceiling / Hot Air Plenum -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 36px; box-sizing: border-box; background: linear-gradient(180deg, #4a1a1a, #2a0a0a); border: 2px solid #E74C3C; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+              <span style="color: #E74C3C; font-weight: bold; font-size: 1.1em;">Ceiling / Hot Air Plenum</span>
+            </div>
+            <!-- Middle row: 7 evenly sized boxes (each 120px, ~10px gaps) -->
+            <div style="position: absolute; top: 68px; left: 0; right: 0; display: flex; justify-content: space-between; height: 180px;">
+              <!-- CRAC Unit Left -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(135deg, #2D6A7A, #1a4a5a); border: 2px solid #5AC8FA; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;">
+                <div style="color: #E74C3C; font-size: 1.2em;">&#x25BC;</div>
+                <div style="color: #E74C3C; font-size: 1.2em; margin-top: -8px;">&#x25BC;</div>
+                <div style="font-size: 1.6em;">&#x2744;</div>
+                <span style="font-weight: bold; font-size: 1em; color: #5AC8FA;">CRAC Unit</span>
+                <div style="font-size: 0.75em; color: #aaa; text-align: center; padding: 0 4px;">Cools &amp; recirculates air</div>
+                <div style="color: #5AC8FA; font-size: 1.2em;">&#x25BC;</div>
+                <div style="color: #5AC8FA; font-size: 1.2em; margin-top: -8px;">&#x25BC;</div>
+              </div>
+              <!-- Hot Aisle Left -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(180deg, rgba(231,76,60,0.15), rgba(231,76,60,0.05)); border: 2px dashed #E74C3C; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 8px; gap: 4px;">
+                <div style="color: #E74C3C; font-size: 1.2em;">&#x25B2;</div>
+                <div style="color: #E74C3C; font-size: 1.2em; margin-top: -8px;">&#x25B2;</div>
+                <span style="font-weight: bold; color: #E74C3C; font-size: 0.95em;">Hot</span>
+                <span style="font-weight: bold; color: #E74C3C; font-size: 0.95em;">Aisle</span>
+              </div>
+              <!-- Server Rack Left -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(135deg, #333, #222); border: 2px solid #666; border-radius: 6px; display: flex; flex-direction: row; align-items: center; padding: 0 4px;">
+                <!-- Red arrows left (exhaust to hot aisle) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0;">
+                  <div style="color: #E74C3C; font-size: 1.2em;">&#x25C0;</div>
+                  <div style="color: #E74C3C; font-size: 1.2em;">&#x25C0;</div>
+                </div>
+                <!-- Server bars -->
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #F5A623; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <span style="font-weight: bold; margin-top: 2px; color: #ccc; font-size: 0.9em;">Server Rack</span>
+                </div>
+                <!-- Blue arrows right (intake from cold aisle) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0;">
+                  <div style="color: #5AC8FA; font-size: 1.2em;">&#x25C0;</div>
+                  <div style="color: #5AC8FA; font-size: 1.2em;">&#x25C0;</div>
+                </div>
+              </div>
+              <!-- Cold Aisle Center -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(180deg, rgba(90,200,250,0.05), rgba(90,200,250,0.15)); border: 2px dashed #5AC8FA; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 8px; gap: 4px;">
+                <span style="font-weight: bold; color: #5AC8FA; font-size: 1.1em;">Cold</span>
+                <span style="font-weight: bold; color: #5AC8FA; font-size: 1.1em;">Aisle</span>
+                <div style="font-size: 0.8em; color: #aaa; text-align: center;">Cold air rises</div>
+                <div style="color: #5AC8FA; font-size: 1.2em;">&#x25B2;</div>
+                <div style="color: #5AC8FA; font-size: 1.2em; margin-top: -8px;">&#x25B2;</div>
+              </div>
+              <!-- Server Rack Right -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(135deg, #333, #222); border: 2px solid #666; border-radius: 6px; display: flex; flex-direction: row; align-items: center; padding: 0 4px;">
+                <!-- Blue arrows left (intake from cold aisle) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0;">
+                  <div style="color: #5AC8FA; font-size: 1.2em;">&#x25B6;</div>
+                  <div style="color: #5AC8FA; font-size: 1.2em;">&#x25B6;</div>
+                </div>
+                <!-- Server bars -->
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #F5A623; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <div style="width: 68px; height: 10px; background: #444; border-radius: 2px; position: relative;"><div style="position: absolute; right: 3px; top: 2px; width: 5px; height: 5px; background: #7ED321; border-radius: 50%;"></div></div>
+                  <span style="font-weight: bold; margin-top: 2px; color: #ccc; font-size: 0.9em;">Server Rack</span>
+                </div>
+                <!-- Red arrows right (exhaust to hot aisle) -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 2px; flex-shrink: 0;">
+                  <div style="color: #E74C3C; font-size: 1.2em;">&#x25B6;</div>
+                  <div style="color: #E74C3C; font-size: 1.2em;">&#x25B6;</div>
+                </div>
+              </div>
+              <!-- Hot Aisle Right -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(180deg, rgba(231,76,60,0.15), rgba(231,76,60,0.05)); border: 2px dashed #E74C3C; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 8px; gap: 4px;">
+                <div style="color: #E74C3C; font-size: 1.2em;">&#x25B2;</div>
+                <div style="color: #E74C3C; font-size: 1.2em; margin-top: -8px;">&#x25B2;</div>
+                <span style="font-weight: bold; color: #E74C3C; font-size: 0.95em;">Hot</span>
+                <span style="font-weight: bold; color: #E74C3C; font-size: 0.95em;">Aisle</span>
+              </div>
+              <!-- CRAC Unit Right -->
+              <div style="width: 120px; height: 180px; box-sizing: border-box; background: linear-gradient(135deg, #2D6A7A, #1a4a5a); border: 2px solid #5AC8FA; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;">
+                <div style="color: #E74C3C; font-size: 1.2em;">&#x25BC;</div>
+                <div style="color: #E74C3C; font-size: 1.2em; margin-top: -8px;">&#x25BC;</div>
+                <div style="font-size: 1.6em;">&#x2744;</div>
+                <span style="font-weight: bold; font-size: 1em; color: #5AC8FA;">CRAC Unit</span>
+                <div style="font-size: 0.75em; color: #aaa; text-align: center; padding: 0 4px;">Cools &amp; recirculates air</div>
+                <div style="color: #5AC8FA; font-size: 1.2em;">&#x25BC;</div>
+                <div style="color: #5AC8FA; font-size: 1.2em; margin-top: -8px;">&#x25BC;</div>
+              </div>
+            </div>
+            <!-- Raised Floor -->
+            <div style="position: absolute; bottom: 40px; left: 0; right: 0; height: 36px; box-sizing: border-box; background: linear-gradient(0deg, #1a2a3a, #0a1a2a); border: 2px solid #5AC8FA; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+              <span style="color: #5AC8FA; font-weight: bold; font-size: 1.1em;">Raised Floor / Cold Air Plenum</span>
+            </div>
+          </div>
+          <aside class="notes">
+            The operation of server CPU, GPU, disk and PSU all generate heat proportional to the amount of power they draw. Cooling servers can consume vast amounts of energy. Data centre computer halls use air conditioning systems to cool the room. A common computer room design is to control airflow and cooling using a concept of hot and cold aisle cooling. Managing cooling efficiently is complex, to compensate many traditional data centres are overcooled.
+          </aside>
+        </section>
+
+        <!-- Slide 10: Liquid Cooling (Image only) -->
+        <section class="image-slide">
+          <h2>Liquid Cooled Racks</h2>
+          <img src="/presentations/sustainable-software/liquid-cooling.png" alt="Liquid cooled server rack">
+          <aside class="notes">
+            Water has between 50 and 1,000 times the capacity to remove heat. Targeted liquid cooling enables greater server density and significantly reduces in the amount of energy required for cooling. The use of liquid cooled racks increases rack the maximum power draw capability from 15kW to 45kW.
+          </aside>
+        </section>
+
+        <!-- Slide 11: Nature Cooling (Image only - 2 images) -->
+        <section class="image-slide">
+          <h2>Data Centres &amp; Nature for Cooling</h2>
+          <div class="two-col" style="align-items: center;">
+            <div style="display: flex; justify-content: center;">
+              <img src="/presentations/sustainable-software/iceland-dc.png" alt="Iceland data centre" style="height: 300px; width: auto; object-fit: contain;">
+            </div>
+            <div style="display: flex; justify-content: center;">
+              <img src="/presentations/sustainable-software/underwater-dc.png" alt="Microsoft underwater data centre" style="height: 300px; width: auto; object-fit: contain;">
+            </div>
+          </div>
+          <aside class="notes">
+            As computer networking technology has improved this has allowed innovation in data centre location. Hosting servers in a cold country with supplies of sustainable energy such as Iceland. Microsoft has also been experimenting in underwater data centres to reduce burden of cooling.
+          </aside>
+        </section>
+
+        <!-- Slide 12: PUE -->
+        <section>
+          <h2>Power Usage Effectiveness (PUE)</h2>
+          <div style="display: flex; gap: 0.8rem; font-size: 0.55em; margin-bottom: 0.4rem;">
+            <div style="flex: 2; background: #00A1FF; padding: 0.4rem; border-radius: 6px;">
+              <p style="margin: 0 0 0.3rem 0; color: #000;"><strong>Data Centre Total Power</strong></p>
+              <div style="display: flex; gap: 0.3rem;">
+                <div style="flex: 1.2; display: flex; flex-direction: column; gap: 0.3rem;">
+                  <div style="background: #E07020; color: #000; padding: 0.4rem; border-radius: 5px;">
+                    <p style="margin: 0 0 0.2rem 0;"><strong>Power Systems</strong></p>
+                    <ul style="margin: 0; padding-left: 1.1rem;">
+                      <li>Uninterruptible Power Supplies</li>
+                      <li>Power Distribution Units</li>
+                      <li>Battery Backup</li>
+                    </ul>
+                  </div>
+                  <div style="background: #E07020; color: #000; padding: 0.4rem; border-radius: 5px;">
+                    <p style="margin: 0 0 0.2rem 0;"><strong>Cooling</strong></p>
+                    <ul style="margin: 0; padding-left: 1.1rem;">
+                      <li>Computer Room Air Conditioning</li>
+                      <li>Chillers</li>
+                    </ul>
+                  </div>
+                </div>
+                <div style="flex: 0.8; background: #60D937; color: #000; padding: 0.4rem; border-radius: 5px;">
+                  <p style="margin: 0 0 0.2rem 0;"><strong>IT Systems</strong></p>
+                  <ul style="margin: 0; padding-left: 1.1rem;">
+                    <li>Servers</li>
+                    <li>Storage Systems</li>
+                    <li>Network Switches</li>
+                    <li>Network Routers</li>
+                    <li>Firewalls</li>
+                    <li>Telco Equipment</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 1.2; display: flex; flex-direction: column; justify-content: center; font-size: 1.1em; line-height: 1.4;">
+              <p style="margin: 0;"><strong>PUE</strong> = <span style="color: #00A1FF;">Total</span> ÷ <span style="color: #60D937;">IT Systems</span></p>
+              <p style="margin: 0; color: #888; font-size: 0.75em;">Lower is better (1.0 = ideal)</p>
+              <p style="margin: 0.6rem 0 0 0;"><strong>DCiE</strong> = (1 ÷ PUE) × 100</p>
+              <p style="margin: 0; color: #888; font-size: 0.75em;">Higher % is better</p>
+              <p style="margin: 0.8rem 0 0 0; font-size: 0.8em;"><span style="background: #E07020; padding: 0.1rem 0.4rem; border-radius: 3px; color: #000;">Operational Overhead</span></p>
+              <p style="margin: 0.2rem 0 0 0; color: #888; font-size: 0.65em;">Efficient data centres minimise this overhead</p>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <img src="/presentations/sustainable-software/pue-diagram.png" alt="PUE scale" style="max-height: 260px;">
+          </div>
+          <p class="small"><a href="https://www.google.com/about/datacenters/efficiency/" target="_blank">google.com/about/datacenters/efficiency</a></p>
+          <aside class="notes">
+            As we've found there are many factors which effect the energy efficiency of a data centre. Power Usage Effectiveness was introduced in 2007 as a standardised way of measuring and compare date centre power efficiency. It is a calculation of efficiency based on the overhead of cooling and the power systems. DCiE, Data Center Infrastructure Efficiency is another term commonly seen this is just expression of PUE as a percentage.
+          </aside>
+        </section>
+
+        <!-- Slide 13: Key Takeaway 1 -->
+        <section class="takeaway" id="takeaway1">
+          <h2>Key Takeaway 1</h2>
+          <p>Greenhouse gas emissions can be reduced by migrating existing workloads to hosting facilities with <strong>lower PUE</strong>.</p>
+        </section>
+
+        <!-- Slide 14: Grid Carbon Intensity (Image only) -->
+        <section class="image-slide">
+          <h2>Grid Carbon Intensity (gCO₂eq/kWh)</h2>
+          <img src="/presentations/sustainable-software/grid-carbon.png" alt="Grid carbon intensity map">
+          <p class="small"><a href="https://www.nationalgrideso.com/carbon-intensity" target="_blank">nationalgrideso.com/carbon-intensity</a></p>
+          <aside class="notes">
+            The carbon intensity of electricity is the number of grams of carbon dioxide (CO2) it takes to make one unit of electricity at one kilowatt per hour (kW/hour). Electricity that's generated using fossil fuels is more carbon intensive, as the process by which it's generated creates CO2 emissions. Renewable energy sources, such as wind, hydro or solar power, produce next to no CO2 emissions, so their carbon intensity value is much lower and often zero. Most countries are looking to decarbonise their electricity grids. Progress towards these goals varies greatly between countries and regions within countries. The energy grid the data centre draws power from has a large impact on green house gas emissions of the hosted workload.
+          </aside>
+        </section>
+
+        <!-- Slide 15: Grid Carbon Forecasting (Image focused) -->
+        <section class="image-slide">
+          <h2>Grid Carbon Intensity Forecasting</h2>
+          <div class="two-col">
+            <div>
+              <img src="/presentations/sustainable-software/forecasting-1.png" alt="Carbon intensity forecast chart" style="max-height: 350px;">
+            </div>
+            <div>
+              <img src="/presentations/sustainable-software/forecasting-2.png" alt="Carbon intensity data" style="max-height: 350px;">
+            </div>
+          </div>
+          <p class="small"><a href="https://carbonintensity.org.uk" target="_blank">carbonintensity.org.uk</a></p>
+          <aside class="notes">
+            Renewables produce variable amounts of energy so grid carbon intensity values are dynamic. Machine learning can be used by grid operators used to produce carbon intensity forecasts. National Grid, in partnership with with the Environment Defence Fund, University of Oxford Department of Computer Science and the WWF, have developed the worlds first Carbon Intensity forecast with a regional breakdown.
+          </aside>
+        </section>
+
+        <!-- Slide 16: Carbon API (Image focused) -->
+        <section class="image-slide">
+          <h2>National Grid Carbon Intensity API</h2>
+          <img src="/presentations/sustainable-software/carbon-api.png" alt="Carbon Intensity API response" style="max-height: 400px;">
+          <p class="small"><a href="https://api.carbonintensity.org.uk/" target="_blank">api.carbonintensity.org.uk</a></p>
+          <aside class="notes">
+            National Grid make the carbon intensity and carbon intensity data available accessible via their website, programatically via a public API.
+          </aside>
+        </section>
+
+        <!-- Slide 17: Cloud CFE -->
+        <section>
+          <h2>Cloud Regional Carbon Free Energy</h2>
+          <div style="max-height: 440px; overflow-y: auto; font-size: 0.38em; border-radius: 6px;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+              <thead>
+                <tr style="background: #2a2a2a; position: sticky; top: 0;">
+                  <th style="padding: 6px 8px; border-bottom: 2px solid #555;">Region</th>
+                  <th style="padding: 6px 8px; border-bottom: 2px solid #555;">Location</th>
+                  <th style="padding: 6px 8px; border-bottom: 2px solid #555; text-align: right;">CFE%</th>
+                  <th style="padding: 6px 8px; border-bottom: 2px solid #555; text-align: right;">Grid gCO<sub>2</sub>/kWh</th>
+                  <th style="padding: 6px 8px; border-bottom: 2px solid #555; text-align: center;">Low CO<sub>2</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">europe-north1</td><td style="padding: 4px 8px;">Finland</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">94%</td><td style="padding: 4px 8px; text-align: right;">133</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">us-central1</td><td style="padding: 4px 8px;">Iowa</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">93%</td><td style="padding: 4px 8px; text-align: right;">454</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">us-west1</td><td style="padding: 4px 8px;">Oregon</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">90%</td><td style="padding: 4px 8px; text-align: right;">78</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">southamerica-east1</td><td style="padding: 4px 8px;">Sao Paulo</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">88%</td><td style="padding: 4px 8px; text-align: right;">103</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">europe-west1</td><td style="padding: 4px 8px;">Belgium</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">79%</td><td style="padding: 4px 8px; text-align: right;">212</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">europe-west6</td><td style="padding: 4px 8px;">Zurich</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">*</td><td style="padding: 4px 8px; text-align: right;">87</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr style="background: #1a2a1a;"><td style="padding: 4px 8px;">northamerica-northeast1</td><td style="padding: 4px 8px;">Montreal</td><td style="padding: 4px 8px; text-align: right; color: #7ED321; font-weight: bold;">*</td><td style="padding: 4px 8px; text-align: right;">27</td><td style="padding: 4px 8px; text-align: center; color: #7ED321;">&#x2713;</td></tr>
+                <tr><td style="padding: 4px 8px; border-top: 1px solid #333;">europe-west3</td><td style="padding: 4px 8px; border-top: 1px solid #333;">Frankfurt</td><td style="padding: 4px 8px; text-align: right; border-top: 1px solid #333; color: #F5A623;">63%</td><td style="padding: 4px 8px; text-align: right; border-top: 1px solid #333;">293</td><td style="padding: 4px 8px; border-top: 1px solid #333;"></td></tr>
+                <tr><td style="padding: 4px 8px;">europe-west4</td><td style="padding: 4px 8px;">Netherlands</td><td style="padding: 4px 8px; text-align: right; color: #F5A623;">60%</td><td style="padding: 4px 8px; text-align: right;">410</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">europe-west2</td><td style="padding: 4px 8px;">London</td><td style="padding: 4px 8px; text-align: right; color: #F5A623;">59%</td><td style="padding: 4px 8px; text-align: right;">231</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">us-east4</td><td style="padding: 4px 8px;">N. Virginia</td><td style="padding: 4px 8px; text-align: right; color: #F5A623;">58%</td><td style="padding: 4px 8px; text-align: right;">361</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">us-west2</td><td style="padding: 4px 8px;">Los Angeles</td><td style="padding: 4px 8px; text-align: right; color: #F5A623;">54%</td><td style="padding: 4px 8px; text-align: right;">253</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px; border-top: 1px solid #333;">asia-northeast3</td><td style="padding: 4px 8px; border-top: 1px solid #333;">Seoul</td><td style="padding: 4px 8px; text-align: right; border-top: 1px solid #333; color: #E74C3C;">31%</td><td style="padding: 4px 8px; text-align: right; border-top: 1px solid #333;">457</td><td style="padding: 4px 8px; border-top: 1px solid #333;"></td></tr>
+                <tr><td style="padding: 4px 8px;">us-west3</td><td style="padding: 4px 8px;">Salt Lake City</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">28%</td><td style="padding: 4px 8px; text-align: right;">533</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">us-east1</td><td style="padding: 4px 8px;">S. Carolina</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">27%</td><td style="padding: 4px 8px; text-align: right;">480</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">us-west4</td><td style="padding: 4px 8px;">Las Vegas</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">19%</td><td style="padding: 4px 8px; text-align: right;">455</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-east1</td><td style="padding: 4px 8px;">Taiwan</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">18%</td><td style="padding: 4px 8px; text-align: right;">540</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-northeast1</td><td style="padding: 4px 8px;">Tokyo</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">12%</td><td style="padding: 4px 8px; text-align: right;">554</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-south1</td><td style="padding: 4px 8px;">Mumbai</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">12%</td><td style="padding: 4px 8px; text-align: right;">721</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">australia-southeast1</td><td style="padding: 4px 8px;">Sydney</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">11%</td><td style="padding: 4px 8px; text-align: right;">727</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-southeast1</td><td style="padding: 4px 8px;">Singapore</td><td style="padding: 4px 8px; text-align: right; color: #E74C3C;">4%</td><td style="padding: 4px 8px; text-align: right;">493</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px; border-top: 1px solid #333;">australia-southeast2</td><td style="padding: 4px 8px; border-top: 1px solid #333;">Melbourne</td><td style="padding: 4px 8px; text-align: right; border-top: 1px solid #333; color: #888;">*</td><td style="padding: 4px 8px; text-align: right; border-top: 1px solid #333;">691</td><td style="padding: 4px 8px; border-top: 1px solid #333;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-south2</td><td style="padding: 4px 8px;">Delhi</td><td style="padding: 4px 8px; text-align: right; color: #888;">*</td><td style="padding: 4px 8px; text-align: right;">657</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-southeast2</td><td style="padding: 4px 8px;">Jakarta</td><td style="padding: 4px 8px; text-align: right; color: #888;">*</td><td style="padding: 4px 8px; text-align: right;">647</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">europe-central2</td><td style="padding: 4px 8px;">Warsaw</td><td style="padding: 4px 8px; text-align: right; color: #888;">*</td><td style="padding: 4px 8px; text-align: right;">622</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-east2</td><td style="padding: 4px 8px;">Hong Kong</td><td style="padding: 4px 8px; text-align: right; color: #888;">*</td><td style="padding: 4px 8px; text-align: right;">453</td><td style="padding: 4px 8px;"></td></tr>
+                <tr><td style="padding: 4px 8px;">asia-northeast2</td><td style="padding: 4px 8px;">Osaka</td><td style="padding: 4px 8px; text-align: right; color: #888;">*</td><td style="padding: 4px 8px; text-align: right;">442</td><td style="padding: 4px 8px;"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 0.32em; color: #666; margin-top: 0.3rem; text-align: center;">* Data not publicly available &nbsp;|&nbsp; All regions report 0 net operational GHG emissions (carbon offsets applied)</p>
+          <p class="small"><a href="https://cloud.google.com/sustainability/region-carbon" target="_blank">cloud.google.com/sustainability/region-carbon</a></p>
+          <aside class="notes">
+            Public clouds have data centres in multiple regions each draws electricity from the grid where the region is located. The regional grids can generates more or less carbon emissions depending on the type of power plants generating electricity for that grid and when it is being consumed. In 2020, Google set a goal to match their energy consumption with carbon-free energy (CFE), every hour and in every region by 2030. To characterize each region they use a metric: "CFE%". This metric is calculated for every hour in every region and tells us what percentage of the energy we consumed during an hour that is carbon-free. Google Cloud makes this data publicly available as a BigQuery data set.
+          </aside>
+        </section>
+
+        <!-- Slide 18: Computing's Advantage -->
+        <section>
+          <h2>Computing's Unique Advantage</h2>
+          <ul>
+            <li>Significant spatial, temporal, and performance flexibility</li>
+            <li>Software-based fault-tolerance (checkpointing, replication)</li>
+            <li>Global footprint encompassing thousands of clouds and edge sites</li>
+            <li><strong>Computing is well-positioned to adapt to unreliable clean energy</strong></li>
+          </ul>
+          <aside class="notes">
+            The computer software industry has a unique advantage over many other industries. Software engineering can offer significant scope around spacial, temporal and performance characteristics which can allow for flexibility in scheduling. Software can be engineered to be fault-tolerant and accommodate failure domains entire energy grids. The options for modern software workload hosting can also now be globally distributed across multiple clouds, content delivery network points of presence and edge compute.
+          </aside>
+        </section>
+
+        <!-- Slide 19: Key Takeaway 2 -->
+        <section class="takeaway" id="takeaway2">
+          <h2>Key Takeaway 2</h2>
+          <p>Grid carbon intensity forecasting and carbon free energy matching can be used to <strong>schedule workload to run during windows with the lowest carbon impact</strong>.</p>
+        </section>
+
+        <!-- Slide 20: CarbonFirst (Image only) -->
+        <section class="image-slide">
+          <h2>CarbonFirst</h2>
+          <img src="/presentations/sustainable-software/carbonfirst.png" alt="CarbonFirst project">
+          <p class="small"><a href="https://carbonfirst.org" target="_blank">carbonfirst.org</a></p>
+          <aside class="notes">
+            Professors and post doctoral researchers at Masschusetts Amherst and California Institute of Technology are working on a project called CarbonFirst. The project's foundation focuses on developing a software-defined energy virtualization layer that provides applications visibility into, and control of, their own energy and carbon usage. The project is supported by the National Science Foundation and VMware.
+          </aside>
+        </section>
+
+        <!-- Slide 21: Ecovisor (Image focused) -->
+        <section class="image-slide">
+          <h2>Ecovisor</h2>
+          <img src="/presentations/sustainable-software/ecovisor.png" alt="Ecovisor architecture diagram" style="max-height: 450px;">
+          <aside class="notes">
+            The goal is to provide a software-defined control of a virtual energy system which provides an intelligent abstraction. It is akin to a hypervisor but virtualises the energy system instead of server hardware. It takes feed from energy system metrics and exposes these via an API to the virtual clusters. This would allow enablement of workload policies to determine the applications share of grid power, solar and battery capacity.
+          </aside>
+        </section>
+
+        <!-- Slide 22: Carbon Budgeting (Image focused) -->
+        <section class="image-slide">
+          <h2>Application Aware Carbon Budgeting</h2>
+          <img src="/presentations/sustainable-software/carbon-budgeting.png" alt="Carbon budgeting comparison charts" style="max-height: 450px;">
+          <aside class="notes">
+            A realtime feed of the energy metrics via the ecovisor would enable application specific carbon budgeting to be considered in workload scheduling as opposed to system level carbon-rate limiting. Allowing the application to be engineered to be aware and work within a carbon budget offers potentially much more predictable application performance.
+          </aside>
+        </section>
+
+        <!-- Slide 23: Key Takeaway 3 -->
+        <section class="takeaway" id="takeaway3">
+          <h2>Key Takeaway 3</h2>
+          <p>Make forward-looking software engineering designs which can <strong>accommodate upcoming carbon awareness innovations</strong>.</p>
+        </section>
+
+        <!-- Slide 24: Server Evolution -->
+        <section>
+          <h2>Midrange Server Evolution</h2>
+          <table style="font-size: 0.45em; width: 100%;">
+            <tr>
+              <th></th>
+              <th>1998</th>
+              <th>2006</th>
+              <th>2022</th>
+              <th>2025</th>
+            </tr>
+            <tr>
+              <td><strong>Model</strong></td>
+              <td>Compaq Proliant 6500</td>
+              <td>HPE C7000 BL460c G1</td>
+              <td>HPE C7000 BL460c G10+</td>
+              <td>HPE Synergy 480 Gen11</td>
+            </tr>
+            <tr>
+              <td><strong>Config</strong></td>
+              <td>5x 7U servers</td>
+              <td>4x 10U chassis, 64 blades</td>
+              <td>4x 10U chassis, 48 blades</td>
+              <td>4x 10U frames, 48 blades</td>
+            </tr>
+            <tr>
+              <td><strong>CPU/server</strong></td>
+              <td>2GHz (4x 500MHz)</td>
+              <td>13.3GHz (4-core 3.33GHz)</td>
+              <td>124GHz (40-core 3.1GHz)</td>
+              <td>276GHz (2x 60-core 2.3GHz)</td>
+            </tr>
+            <tr>
+              <td><strong>RAM/server</strong></td>
+              <td>4GB</td>
+              <td>48GB</td>
+              <td>4TB</td>
+              <td>8TB DDR5</td>
+            </tr>
+            <tr>
+              <td><strong>CPU/rack</strong></td>
+              <td>10GHz</td>
+              <td>852GHz</td>
+              <td>5,960GHz</td>
+              <td>13,248GHz</td>
+            </tr>
+            <tr>
+              <td><strong>RAM/rack</strong></td>
+              <td>20GB</td>
+              <td>3TB</td>
+              <td>192TB</td>
+              <td>384TB</td>
+            </tr>
+            <tr>
+              <td><strong>Power/rack</strong></td>
+              <td>2.5kW</td>
+              <td>28.8kW</td>
+              <td>28.8kW</td>
+              <td>32kW</td>
+            </tr>
+            <tr style="color: #60D937;">
+              <td><strong>Efficiency</strong></td>
+              <td><strong>4 GHz/kW</strong></td>
+              <td><strong>29.6 GHz/kW</strong></td>
+              <td><strong>207 GHz/kW</strong></td>
+              <td><strong>414 GHz/kW</strong></td>
+            </tr>
+          </table>
+          <p style="text-align: center; margin-top: 0.5rem;"><strong>100x improvement</strong> in compute per watt over 27 years</p>
+          <aside class="notes">
+            Through the 1980s and 90s computer usage within all businesses grew massively. Initially these general purpose computers had tower form-factor and were placed on the floor of the old mainframe computer rooms. With structured data centre facilities came standardised rack hosting of servers. Server hardware has evolved continually since with each generation of hardware bringing improved CPU performance and power efficiency.
+          </aside>
+        </section>
+
+        <!-- Slide 25: Embodied Carbon (Image focused) -->
+        <section class="image-slide">
+          <h2>Operational vs Embodied Carbon</h2>
+          <img src="/presentations/sustainable-software/embodied-carbon.png" alt="Embodied carbon in construction" style="max-height: 400px;">
+          <p class="small"><a href="https://www.istructe.org" target="_blank">istructe.org</a></p>
+          <aside class="notes">
+            Servers are typically build from metals and silicon. The embodied carbon impact of infrastructure lifecycle also needs to be considered.
+          </aside>
+        </section>
+
+        <!-- Slide 27: Hardware Refresh -->
+        <section>
+          <h2>Optimised Hardware Refresh Cycles</h2>
+          <p style="text-align: center; font-size: 0.5em; color: #888; margin-bottom: 0.6rem;">How often does your organization typically refresh servers?</p>
+          <!-- Bar Chart -->
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.42em; max-width: 800px; margin: 0 auto;">
+            <!-- 1 year -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 100px; text-align: right; font-weight: bold;">1 year</div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 20px; height: 18px; background: #A65D3F; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9em;">2%</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 30px; height: 18px; background: #2D6A7A; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9em;">3%</div>
+                </div>
+              </div>
+            </div>
+            <!-- 2 years -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 100px; text-align: right; font-weight: bold;">2 years</div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 70px; height: 18px; background: #A65D3F; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">7%</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 60px; height: 18px; background: #2D6A7A; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">6%</div>
+                </div>
+              </div>
+            </div>
+            <!-- 3 years -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 100px; text-align: right; font-weight: bold;">3 years</div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 260px; height: 18px; background: #A65D3F; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">26%</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 370px; height: 18px; background: #2D6A7A; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">37%</div>
+                </div>
+              </div>
+            </div>
+            <!-- 4 years -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 100px; text-align: right; font-weight: bold;">4 years</div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 150px; height: 18px; background: #A65D3F; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">15%</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 200px; height: 18px; background: #2D6A7A; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">20%</div>
+                </div>
+              </div>
+            </div>
+            <!-- 5 years -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 100px; text-align: right; font-weight: bold;">5 years</div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 310px; height: 18px; background: #A65D3F; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">31%</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 200px; height: 18px; background: #2D6A7A; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">20%</div>
+                </div>
+              </div>
+            </div>
+            <!-- More than 5 years -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="width: 100px; text-align: right; font-weight: bold;">5+ years</div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 190px; height: 18px; background: #A65D3F; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">19%</div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div style="width: 140px; height: 18px; background: #2D6A7A; border-radius: 2px; display: flex; align-items: center; padding-left: 6px; color: white; font-size: 0.9em;">14%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Legend -->
+          <div style="display: flex; justify-content: center; gap: 2rem; font-size: 0.4em; margin-top: 0.8rem;">
+            <span><span style="display: inline-block; width: 14px; height: 14px; background: #A65D3F; margin-right: 6px; vertical-align: middle; border-radius: 2px;"></span>2020</span>
+            <span><span style="display: inline-block; width: 14px; height: 14px; background: #2D6A7A; margin-right: 6px; vertical-align: middle; border-radius: 2px;"></span>2015</span>
+          </div>
+          <!-- Key insight -->
+          <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 0.8rem; font-size: 0.45em;">
+            <div style="text-align: center; padding: 0.5rem 1rem; background: #1a2a1a; border: 1px solid #7ED321; border-radius: 6px;">
+              <span style="color: #7ED321; font-weight: bold;">5 years</span> became most common in 2020
+            </div>
+            <div style="text-align: center; padding: 0.5rem 1rem; background: #2a1a1a; border: 1px solid #E74C3C; border-radius: 6px;">
+              <span style="color: #E74C3C; font-weight: bold;">3 years</span> was most common in 2015
+            </div>
+          </div>
+          <p class="small" style="text-align: center; margin-top: 0.5rem;">Source: <a href="https://uptimeinstitute.com" target="_blank">Uptime Institute</a> Global Survey of IT and Data Center Managers</p>
+          <aside class="notes">
+            With CPU core speed remaining flat, improvements in IT require more multi-core processors and, consequently, more power consumption per operation. The case for frequent hardware refreshes to improve performance has diminished. The most common period for a hardware refresh in 2015 was three years; in 2020, it had extended to five years. Increase hardware refresh cycle interval directly decreases embodied carbon impact.
+          </aside>
+        </section>
+
+        <!-- Slide 28: Key Takeaway 4 -->
+        <section class="takeaway" id="takeaway4">
+          <h2>Key Takeaway 4</h2>
+          <p>Technological advances enable more processing at same or lower power. <strong>Extending hardware refresh cycles increases embodied carbon efficiency</strong>.</p>
+        </section>
+
+        <!-- Slide 29: Performance Power -->
+        <section>
+          <h2>Performance to Power Ratio</h2>
+          <p style="font-size: 0.65em; margin-bottom: 0.3rem;">Most server components have high baseline power; only CPU scales significantly with workload</p>
+          <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+            <div style="flex: 1;">
+              <table style="font-size: 0.45em; width: 100%;">
+                <tr>
+                  <th>Active Workload</th>
+                  <th>Power (W)</th>
+                  <th>Efficiency</th>
+                </tr>
+                <tr style="color: #E05050;"><td>Idle</td><td>2,000</td><td>0% useful work</td></tr>
+                <tr style="color: #E05050;"><td>10%</td><td>2,200</td><td>10% more power</td></tr>
+                <tr style="color: #E05050;"><td>20%</td><td>2,400</td><td>20% more power</td></tr>
+                <tr style="color: #E05050;"><td>30%</td><td>2,600</td><td>30% more power</td></tr>
+                <tr style="color: #E0A020;"><td>40%</td><td>2,800</td><td>40% more power</td></tr>
+                <tr style="color: #E0A020;"><td>50%</td><td>3,000</td><td>50% more power</td></tr>
+                <tr style="color: #E0A020;"><td>60%</td><td>3,200</td><td>60% more power</td></tr>
+                <tr style="color: #E0A020;"><td>70%</td><td>3,400</td><td>70% more power</td></tr>
+                <tr style="color: #60D937;"><td>80%</td><td>3,600</td><td>80% more power</td></tr>
+                <tr style="color: #60D937;"><td>90%</td><td>3,800</td><td>90% more power</td></tr>
+                <tr style="color: #60D937;"><td>100%</td><td>4,000</td><td>100% more power</td></tr>
+              </table>
+              <p style="font-size: 0.35em; font-style: italic; text-align: center; margin-top: 0.3rem; color: #888;">Example: HPE Blade Chassis</p>
+            </div>
+            <div style="flex: 1; font-size: 0.45em;">
+              <div style="border: 2px solid #666; border-radius: 4px; padding: 0.5rem; background: #1a1a1a;">
+                <div style="text-align: center; font-weight: bold; margin-bottom: 0.5rem; border-bottom: 1px solid #666; padding-bottom: 0.3rem;">Server Blade Components</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+                  <div style="background: #4A90D9; color: #000; padding: 0.4rem; border-radius: 3px; text-align: center;">
+                    <strong>CPU</strong><br><span style="font-size: 0.85em;">Most variable</span>
+                  </div>
+                  <div style="background: #888; color: #000; padding: 0.4rem; border-radius: 3px; text-align: center;">
+                    <strong>Memory</strong><br><span style="font-size: 0.85em;">High baseline</span>
+                  </div>
+                  <div style="background: #888; color: #000; padding: 0.4rem; border-radius: 3px; text-align: center;">
+                    <strong>SSD/Storage</strong><br><span style="font-size: 0.85em;">High baseline</span>
+                  </div>
+                  <div style="background: #888; color: #000; padding: 0.4rem; border-radius: 3px; text-align: center;">
+                    <strong>NICs</strong><br><span style="font-size: 0.85em;">High baseline</span>
+                  </div>
+                </div>
+                <div style="margin-top: 0.5rem; border-top: 1px solid #666; padding-top: 0.4rem; text-align: center; font-weight: bold;">Chassis Shared</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.4rem; margin-top: 0.3rem;">
+                  <div style="background: #888; color: #000; padding: 0.3rem; border-radius: 3px; text-align: center;">
+                    <strong>Fans</strong>
+                  </div>
+                  <div style="background: #888; color: #000; padding: 0.3rem; border-radius: 3px; text-align: center;">
+                    <strong>PSU</strong>
+                  </div>
+                  <div style="background: #888; color: #000; padding: 0.3rem; border-radius: 3px; text-align: center;">
+                    <strong>Switch</strong>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: 0.4rem; display: flex; justify-content: center; gap: 1rem; font-size: 0.9em;">
+                <span><span style="color: #4A90D9;">■</span> Most variable</span>
+                <span><span style="color: #888;">■</span> High baseline</span>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            Many server components constantly draw power, disk, network, memory, fans, the effect is with no active workloads the chassis draws ~2,000watts. When the server chassis is powered on with no workload, in Active Idle state it is consuming 2kW. The CPU has a variable power draw, each 10% workload increment draws additional ~200watts. Highly loaded servers are more power efficient.
+          </aside>
+        </section>
+
+        <!-- Slide 30: Virtualisation -->
+        <section>
+          <h2>Increasing Workload Density With Virtualisation</h2>
+          <div style="height: 420px; position: relative;">
+            <canvas id="virtualisationChart"></canvas>
+          </div>
+          <p style="font-size: 0.5em; font-style: italic; text-align: center; color: #888; margin-top: 0.2rem; margin-bottom: 0.3rem;">Facility power assumes PUE of 1.5</p>
+          <p class="small" style="text-align: center;"><a href="https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/company/vmware-idc-whitepaper-2020.pdf" target="_blank">VMware/IDC Whitepaper 2020</a></p>
+          <aside class="notes">
+            Virtualization of workload increases density which increases power efficiency. Since early 2000's VMware ESX has enabled the consolidation of multiple servers onto fewer physical devices.
+          </aside>
+        </section>
+
+        <!-- Slide 31: Key Takeaway 5 -->
+        <section class="takeaway" id="takeaway5">
+          <h2>Key Takeaway 5</h2>
+          <p>Server virtualisation is an easy way to <strong>increase workload density and energy efficiency without refactoring application architecture</strong>.</p>
+        </section>
+
+        <!-- Slide 32: Workload Demand Optimisation -->
+        <section>
+          <h2>Workload Demand Optimisation</h2>
+          <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 1rem;">
+            <!-- CPU -->
+            <div style="width: 280px; height: 280px; border-radius: 50%; background: #5AC8FA; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <span style="font-size: 1.3em; font-weight: bold; color: white; margin-bottom: 0.4rem;">CPU</span>
+              <div style="font-size: 0.4em; color: white; line-height: 1.6;">
+                Oversized VMs<br>
+                Orphaned/idle VMs<br>
+                Over provisioned cluster<br>
+                Standby DR capacity
+              </div>
+            </div>
+            <!-- RAM -->
+            <div style="width: 280px; height: 280px; border-radius: 50%; background: #7ED321; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <span style="font-size: 1.3em; font-weight: bold; color: white; margin-bottom: 0.4rem;">RAM</span>
+              <div style="font-size: 0.4em; color: white; line-height: 1.6;">
+                Oversized VMs<br>
+                Orphaned/idle VMs<br>
+                Over provisioned cluster<br>
+                Standby DR capacity
+              </div>
+            </div>
+            <!-- Storage -->
+            <div style="width: 280px; height: 280px; border-radius: 50%; background: #E74C3C; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <span style="font-size: 1.3em; font-weight: bold; color: white; margin-bottom: 0.4rem;">Storage</span>
+              <div style="font-size: 0.4em; color: white; line-height: 1.6;">
+                Oversized VMs<br>
+                Orphaned/idle VMs<br>
+                Over provisioned storage<br>
+                Standby DR capacity<br>
+                VM snapshots
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            However with the advent of server virtualisation came the dawn of workload sprawl. With the ease of provisioning it is easy for large estates become inefficient. Implement continuous monitoring and continuous improvement day two operations programs. Modern virtual machine monitoring tooling typically has capabilities to continuous monitoring and report on workload inefficiency.
+          </aside>
+        </section>
+
+        <!-- Slide 33: Key Takeaway 6 -->
+        <section class="takeaway" id="takeaway6">
+          <h2>Key Takeaway 6</h2>
+          <p>Implement <strong>continuous monitoring and day-two operations programs</strong> to identify and eliminate waste.</p>
+        </section>
+
+        <!-- Slide 34: Workload Availability -->
+        <section>
+          <h2>Workload Availability Optimisation</h2>
+          <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+            <!-- 2 node cluster -->
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="display: flex; gap: 4px;">
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #E91E8C;"></div>
+              </div>
+              <span style="font-size: 0.8em;">Two node cluster 50% unused overhead</span>
+            </div>
+            <!-- 5 node cluster -->
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="display: flex; gap: 4px;">
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #E91E8C;"></div>
+              </div>
+              <span style="font-size: 0.8em;">Five node cluster 20% unused overhead</span>
+            </div>
+            <!-- 10 node cluster -->
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="display: flex; gap: 4px;">
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #5AC8FA;"></div>
+                <div style="width: 60px; height: 60px; background: #E91E8C;"></div>
+              </div>
+              <span style="font-size: 0.8em;">Ten node cluster 10% unused overhead</span>
+            </div>
+          </div>
+          <aside class="notes">
+            Typically clusters are designed to provide high ability with resources to restart workload in event of host failure. A common security design pattern was to have network security zones with boundary aligned to the cluster boundary. The design pattern of network placement aligned to cluster placement led to a high number of small server clusters. Small clusters designed for workload availability have a higher percentage of resources unused.
+          </aside>
+        </section>
+
+        <!-- Slide 35: Key Takeaway 7 -->
+        <section class="takeaway" id="takeaway7">
+          <h2>Key Takeaway 7</h2>
+          <p><strong>Refactor architecture towards larger, more efficient clusters</strong>.</p>
+        </section>
+
+        <!-- Slide 36: Shared Kernel (Image focused) -->
+        <section>
+          <h2>Workload Isolation Architectures</h2>
+          <p style="font-size: 0.5em; text-align: center; color: #888; margin-bottom: 1rem;">Reducing duplication and complexity →</p>
+          <div style="display: flex; justify-content: space-around; gap: 2rem; align-items: flex-end;">
+            <!-- Virtual Machines -->
+            <div style="text-align: center; flex: 1;">
+              <h3 style="font-size: 0.75em; margin-bottom: 0.5rem;">Virtual Machines</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div style="display: flex; gap: 4px;">
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App</div>
+                    <div style="background: #4A90D9; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">Libs</div>
+                    <div style="background: #E74C3C; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">OS Kernel</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App</div>
+                    <div style="background: #4A90D9; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">Libs</div>
+                    <div style="background: #E74C3C; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">OS Kernel</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App</div>
+                    <div style="background: #4A90D9; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">Libs</div>
+                    <div style="background: #E74C3C; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">OS Kernel</div>
+                  </div>
+                </div>
+              </div>
+              <p style="font-size: 0.4em; color: #E74C3C; margin-top: 0.6rem;">Kernel duplication</p>
+            </div>
+            <!-- Containers -->
+            <div style="text-align: center; flex: 1;">
+              <h3 style="font-size: 0.75em; margin-bottom: 0.5rem;">Containers</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div style="display: flex; gap: 4px;">
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App</div>
+                    <div style="background: #4A90D9; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">Libs</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App</div>
+                    <div style="background: #4A90D9; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">Libs</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 2px;">
+                    <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App</div>
+                    <div style="background: #4A90D9; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">Libs</div>
+                  </div>
+                </div>
+                <div style="background: #7ED321; padding: 14px 0; font-size: 0.35em; color: white; width: 100%; box-sizing: border-box; text-align: center;">Single OS Kernel</div>
+              </div>
+              <p style="font-size: 0.4em; color: #7ED321; margin-top: 0.6rem;">Shared kernel</p>
+            </div>
+            <!-- Unikernels -->
+            <div style="text-align: center; flex: 1;">
+              <h3 style="font-size: 0.75em; margin-bottom: 0.5rem;">Unikernels</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div style="display: flex; gap: 4px;">
+                  <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App Kernel</div>
+                  <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App Kernel</div>
+                  <div style="background: #5AC8FA; padding: 14px 0; font-size: 0.35em; color: white; width: 70px; text-align: center;">App Kernel</div>
+                </div>
+              </div>
+              <p style="font-size: 0.4em; color: #5AC8FA; margin-top: 0.6rem;">Just enough kernel</p>
+            </div>
+          </div>
+          <aside class="notes">
+            To behave consistently applications require isolation from other applications. With virtual servers isolation is achieved by each running an OS and single application service instance. With containers a single guest kernel can service multiple isolated application service instance. Ease of isolation of parts of a system allows applications to be more atomic micro-services. Sharing OS kernel reduces resource requirement for each application.
+          </aside>
+        </section>
+
+        <!-- Slide 37: Knative Serving - Scale to Zero -->
+        <section>
+          <h2>Event Driven Scale to Zero</h2>
+          <p style="text-align: center; margin-bottom: 0.8rem;"><strong>Knative Serving</strong></p>
+          <!-- Four states showing the scaling lifecycle -->
+          <div style="display: flex; justify-content: center; align-items: flex-start; gap: 0.8rem;">
+            <!-- State 1: Idle - Zero Pods -->
+            <div style="text-align: center; width: 180px;">
+              <!-- Requests from top -->
+              <div style="height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+                <span style="font-size: 0.45em; color: #666;">no requests</span>
+              </div>
+              <!-- Box -->
+              <div style="background: #1a1a1a; border: 2px solid #333; border-radius: 8px; padding: 0.8rem; height: 100px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                  <div style="background: #5AC8FA; padding: 6px 10px; font-size: 0.32em; color: white; border-radius: 4px;">Activator</div>
+                </div>
+                <div style="border: 2px dashed #444; border-radius: 4px; height: 36px; width: 110px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                  <span style="font-size: 0.35em; color: #666;">0 pods</span>
+                </div>
+              </div>
+              <!-- Title and description below -->
+              <h3 style="font-size: 0.55em; color: #7ED321; margin: 0.4rem 0 0.2rem 0;">Idle</h3>
+              <p style="font-size: 0.32em; color: #888; margin: 0;">Zero energy</p>
+            </div>
+            <!-- State 2: Cold Start -->
+            <div style="text-align: center; width: 180px;">
+              <!-- Requests from top -->
+              <div style="height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+                <span style="font-size: 0.45em; color: #E89830;">↓ request</span>
+              </div>
+              <!-- Box -->
+              <div style="background: #1a1a1a; border: 2px solid #E89830; border-radius: 8px; padding: 0.8rem; height: 100px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 0.3rem;">
+                  <div style="background: #5AC8FA; padding: 6px 8px; font-size: 0.28em; color: white; border-radius: 4px;">Activator</div>
+                  <span style="font-size: 0.6em; color: #888;">→</span>
+                  <div style="background: #E89830; padding: 6px 8px; font-size: 0.28em; color: white; border-radius: 4px;">Autoscaler</div>
+                </div>
+                <div style="border: 2px solid #E89830; border-radius: 4px; height: 36px; width: 110px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                  <div style="background: #7ED321; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.28em; color: white;">Pod</div>
+                </div>
+              </div>
+              <!-- Title and description below -->
+              <h3 style="font-size: 0.55em; color: #E89830; margin: 0.4rem 0 0.2rem 0;">Cold Start</h3>
+              <p style="font-size: 0.32em; color: #888; margin: 0;">Scale 0 → 1</p>
+            </div>
+            <!-- State 3: Scaled -->
+            <div style="text-align: center; width: 180px;">
+              <!-- Requests from top -->
+              <div style="height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+                <span style="font-size: 0.45em; color: #5AC8FA;">↓↓↓ load</span>
+              </div>
+              <!-- Box -->
+              <div style="background: #1a1a1a; border: 2px solid #5AC8FA; border-radius: 8px; padding: 0.8rem; height: 100px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                  <div style="background: #E89830; padding: 6px 10px; font-size: 0.32em; color: white; border-radius: 4px;">Autoscaler</div>
+                </div>
+                <div style="border: 2px solid #5AC8FA; border-radius: 4px; height: 36px; width: 110px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 3px;">
+                  <div style="background: #7ED321; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.28em; color: white;">Pod</div>
+                  <div style="background: #7ED321; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.28em; color: white;">Pod</div>
+                  <div style="background: #7ED321; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.28em; color: white;">Pod</div>
+                </div>
+              </div>
+              <!-- Title and description below -->
+              <h3 style="font-size: 0.55em; color: #5AC8FA; margin: 0.4rem 0 0.2rem 0;">Under Load</h3>
+              <p style="font-size: 0.32em; color: #888; margin: 0;">Scale 1 → N</p>
+            </div>
+            <!-- State 4: Back to Idle -->
+            <div style="text-align: center; width: 180px;">
+              <!-- Requests from top -->
+              <div style="height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;">
+                <span style="font-size: 0.45em; color: #666;">no requests</span>
+              </div>
+              <!-- Box -->
+              <div style="background: #1a1a1a; border: 2px solid #333; border-radius: 8px; padding: 0.8rem; height: 100px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                  <div style="background: #5AC8FA; padding: 6px 10px; font-size: 0.32em; color: white; border-radius: 4px;">Activator</div>
+                </div>
+                <div style="border: 2px dashed #444; border-radius: 4px; height: 36px; width: 110px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                  <span style="font-size: 0.35em; color: #666;">0 pods</span>
+                </div>
+              </div>
+              <!-- Title and description below -->
+              <h3 style="font-size: 0.55em; color: #7ED321; margin: 0.4rem 0 0.2rem 0;">Idle</h3>
+              <p style="font-size: 0.32em; color: #888; margin: 0;">Zero energy</p>
+            </div>
+          </div>
+          <p style="font-size: 0.45em; text-align: center; color: #888; margin-top: 1rem;">Compute resources consumed only when processing requests</p>
+          <aside class="notes">
+            Kubernetes is designed to keep multiple copies of containers running and can react to auto-scale. In the scale-to-zero model, the containers are only started when required. A piece of software is inserted between inbound requests and the container.
+          </aside>
+        </section>
+
+        <!-- Slide 38: Key Takeaway 8 -->
+        <section class="takeaway" id="takeaway8">
+          <h2>Key Takeaway 8</h2>
+          <p>Refactoring towards <strong>containerised architectures unlocks per-workload energy efficiency</strong>. Scale-to-zero orchestration further eliminates waste.</p>
+        </section>
+
+        <!-- Slide 39: RISC vs CISC Performance per Watt -->
+        <section>
+          <h2>RISC vs CISC: Performance per Watt</h2>
+          <p style="text-align: center; font-size: 0.5em; color: #888; margin-bottom: 0.8rem;">ARM (RISC) delivers significantly better energy efficiency across workloads</p>
+          <!-- Main comparison chart -->
+          <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+            <!-- Left: Horizontal bar chart -->
+            <div style="flex: 2;">
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.42em;">
+                <!-- NGINX -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 90px; text-align: right; font-weight: bold;">NGINX</div>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 100px; height: 16px; background: #4A90D9; border-radius: 2px;"></div>
+                      <span style="color: #888; font-size: 0.9em;">x86 baseline</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 376px; height: 16px; background: linear-gradient(90deg, #7ED321 0%, #7ED321 100%); border-radius: 2px;"></div>
+                      <span style="color: #7ED321; font-weight: bold;">3.8x</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Redis -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 90px; text-align: right; font-weight: bold;">Redis</div>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 100px; height: 16px; background: #4A90D9; border-radius: 2px;"></div>
+                      <span style="color: #888; font-size: 0.9em;">x86 baseline</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 279px; height: 16px; background: linear-gradient(90deg, #7ED321 0%, #7ED321 100%); border-radius: 2px;"></div>
+                      <span style="color: #7ED321; font-weight: bold;">2.8x</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Memcached -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 90px; text-align: right; font-weight: bold;">Memcached</div>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 100px; height: 16px; background: #4A90D9; border-radius: 2px;"></div>
+                      <span style="color: #888; font-size: 0.9em;">x86 baseline</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 266px; height: 16px; background: linear-gradient(90deg, #7ED321 0%, #7ED321 100%); border-radius: 2px;"></div>
+                      <span style="color: #7ED321; font-weight: bold;">2.7x</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- h.264 -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 90px; text-align: right; font-weight: bold;">h.264</div>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 100px; height: 16px; background: #4A90D9; border-radius: 2px;"></div>
+                      <span style="color: #888; font-size: 0.9em;">x86 baseline</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 243px; height: 16px; background: linear-gradient(90deg, #7ED321 0%, #7ED321 100%); border-radius: 2px;"></div>
+                      <span style="color: #7ED321; font-weight: bold;">2.4x</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- MySQL -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 90px; text-align: right; font-weight: bold;">MySQL</div>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 100px; height: 16px; background: #4A90D9; border-radius: 2px;"></div>
+                      <span style="color: #888; font-size: 0.9em;">x86 baseline</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 202px; height: 16px; background: linear-gradient(90deg, #7ED321 0%, #7ED321 100%); border-radius: 2px;"></div>
+                      <span style="color: #7ED321; font-weight: bold;">2.0x</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Cassandra -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 90px; text-align: right; font-weight: bold;">Cassandra</div>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 100px; height: 16px; background: #4A90D9; border-radius: 2px;"></div>
+                      <span style="color: #888; font-size: 0.9em;">x86 baseline</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.3rem;">
+                      <div style="width: 190px; height: 16px; background: linear-gradient(90deg, #7ED321 0%, #7ED321 100%); border-radius: 2px;"></div>
+                      <span style="color: #7ED321; font-weight: bold;">1.9x</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Legend -->
+              <div style="display: flex; justify-content: center; gap: 1.5rem; font-size: 0.38em; margin-top: 0.6rem; color: #888;">
+                <span><span style="display: inline-block; width: 12px; height: 12px; background: #4A90D9; margin-right: 4px; vertical-align: middle; border-radius: 2px;"></span>Intel Xeon (x86 CISC)</span>
+                <span><span style="display: inline-block; width: 12px; height: 12px; background: #7ED321; margin-right: 4px; vertical-align: middle; border-radius: 2px;"></span>Ampere Altra (ARM RISC)</span>
+              </div>
+            </div>
+            <!-- Right: Key insight box -->
+            <div style="flex: 1; background: #1a2a1a; border: 2px solid #7ED321; border-radius: 8px; padding: 1rem;">
+              <div style="text-align: center; margin-bottom: 0.6rem;">
+                <span style="font-size: 2em; font-weight: bold; color: #7ED321;">2-4x</span>
+                <p style="font-size: 0.5em; color: #ccc; margin: 0.2rem 0 0 0;">better perf/watt</p>
+              </div>
+              <div style="font-size: 0.4em; color: #aaa; line-height: 1.5;">
+                <p style="margin: 0 0 0.4rem 0;"><strong style="color: #7ED321;">RISC</strong> (Reduced Instruction Set)</p>
+                <ul style="margin: 0; padding-left: 1rem;">
+                  <li>Simpler instructions</li>
+                  <li>Lower power per operation</li>
+                  <li>More cores per watt</li>
+                </ul>
+                <p style="margin: 0.5rem 0 0.4rem 0;"><strong style="color: #4A90D9;">CISC</strong> (Complex Instruction Set)</p>
+                <ul style="margin: 0; padding-left: 1rem;">
+                  <li>Complex instructions</li>
+                  <li>Higher power draw</li>
+                  <li>Legacy compatibility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p class="small" style="text-align: center; margin-top: 0.5rem;"><a href="https://amperecomputing.com" target="_blank">amperecomputing.com</a></p>
+          <aside class="notes">
+            AArch64 Linux has matured very well it is as easy to adopt as x86_64. Delivers better performance levels while consuming lower power. 2x improved performance per watt across various workloads.
+          </aside>
+        </section>
+
+        <!-- Slide 40: Key Takeaway 9 -->
+        <section class="takeaway" id="takeaway9">
+          <h2>Key Takeaway 9</h2>
+          <p>Refactoring from complex to <strong>reduced instruction set architectures (ARM) can unlock massive per-workload energy efficiency</strong>.</p>
+        </section>
+
+        <!-- Summary -->
+        <section class="takeaway">
+          <h2>Takeaways</h2>
+          <ol style="font-size: 0.65em;">
+            <li><a href="#/takeaway1">Migrate to facilities with lower PUE</a></li>
+            <li><a href="#/takeaway2">Schedule workloads during low-carbon windows</a></li>
+            <li><a href="#/takeaway3">Design for upcoming carbon awareness innovations</a></li>
+            <li><a href="#/takeaway4">Extend hardware refresh cycles</a></li>
+            <li><a href="#/takeaway5">Use virtualisation to increase density</a></li>
+            <li><a href="#/takeaway6">Implement continuous monitoring to eliminate waste</a></li>
+            <li><a href="#/takeaway7">Refactor architecture towards larger, more efficient clusters</a></li>
+            <li><a href="#/takeaway8">Adopt containerised architectures with scale-to-zero</a></li>
+            <li><a href="#/takeaway9">Consider ARM/RISC architectures</a></li>
+          </ol>
+        </section>
+
+        <!-- Thank You -->
+        <section class="title-slide">
+          <h1>Thank You</h1>
+          <h3>Darryl Cauldwell</h3>
+        </section>
+
+      </div>
+    </div>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script is:inline>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        plugins: [ RevealHighlight, RevealNotes ]
+      });
+
+      // Virtualisation benefits chart
+      let virtChart = null;
+      function initVirtChart() {
+        if (virtChart) return;
+        const ctx = document.getElementById('virtualisationChart');
+        if (!ctx) return;
+
+        virtChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['2003', '2005', '2007', '2009', '2011', '2013', '2015', '2017', '2019'],
+            datasets: [
+              {
+                label: 'IT CO₂ avoided',
+                data: [0.01, 0.03, 0.06, 0.12, 0.25, 0.45, 0.65, 0.85, 1.05],
+                backgroundColor: '#9cb071',
+                stack: 'emissions'
+              },
+              {
+                label: 'Facility CO₂ avoided',
+                data: [0.005, 0.02, 0.04, 0.08, 0.15, 0.25, 0.35, 0.45, 0.55],
+                backgroundColor: '#5a5a32',
+                stack: 'emissions'
+              },
+              {
+                label: 'IT power avoided',
+                data: [0.02, 0.05, 0.1, 0.18, 0.35, 0.7, 1.0, 1.5, 2.0],
+                backgroundColor: '#7ecfc0',
+                stack: 'power'
+              },
+              {
+                label: 'Facility power avoided',
+                data: [0.01, 0.03, 0.06, 0.12, 0.2, 0.35, 0.5, 0.7, 0.9],
+                backgroundColor: '#2d6a7a',
+                stack: 'power'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: true,
+                text: 'VMware Virtualisation: Power & Emissions Avoided',
+                color: '#fff',
+                font: { size: 16 }
+              },
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: '#fff',
+                  font: { size: 14 },
+                  boxWidth: 16,
+                  padding: 15
+                }
+              }
+            },
+            scales: {
+              x: {
+                ticks: { color: '#ccc' },
+                grid: { color: '#444' }
+              },
+              y: {
+                ticks: { color: '#ccc' },
+                grid: { color: '#444' },
+                title: { display: true, text: 'Mt CO₂ / TWh', color: '#ccc' }
+              }
+            }
+          }
+        });
+      }
+
+      // Initialize chart when slide becomes visible
+      Reveal.on('slidechanged', event => {
+        if (event.currentSlide.querySelector('#virtualisationChart')) {
+          setTimeout(initVirtChart, 100);
+        }
+      });
+      // Also check on load
+      setTimeout(initVirtChart, 500);
+    </script>
+  </body>
+</html>

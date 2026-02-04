@@ -1,0 +1,62 @@
+# =============================================================================
+# PROMETHEUS CONFIGURATION
+# =============================================================================
+# This file configures Prometheus scrape targets.
+#
+# PORTABLE TARGETS (no changes needed):
+#   - prometheus: Self-monitoring
+#   - cadvisor: Container metrics (CPU, memory, network, disk)
+#
+# APP-SPECIFIC TARGETS (customize for your app):
+#   - Add your application's metrics endpoint below
+#   - Example provided for Caddy web server
+# =============================================================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # ---------------------------------------------------------------------------
+  # PORTABLE: Prometheus self-monitoring
+  # ---------------------------------------------------------------------------
+  - job_name: 'prometheus'
+    metrics_path: /prometheus/metrics
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # ---------------------------------------------------------------------------
+  # PORTABLE: Container metrics via cAdvisor
+  # Works with any Docker application - no changes needed
+  # ---------------------------------------------------------------------------
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+
+  # ---------------------------------------------------------------------------
+  # APP-SPECIFIC: Add your application metrics below
+  # ---------------------------------------------------------------------------
+
+  # Caddy web server metrics
+  # Remove or modify this section for other applications
+  - job_name: 'caddy'
+    static_configs:
+      - targets: ['site:2019']
+
+  # Example: Node.js application with prom-client
+  # - job_name: 'nodejs-app'
+  #   static_configs:
+  #     - targets: ['app:3000']
+  #   metrics_path: /metrics
+
+  # Example: Python Flask with prometheus_flask_exporter
+  # - job_name: 'flask-app'
+  #   static_configs:
+  #     - targets: ['flask:5000']
+  #   metrics_path: /metrics
+
+  # Example: Go application with promhttp
+  # - job_name: 'go-app'
+  #   static_configs:
+  #     - targets: ['goapp:8080']
+  #   metrics_path: /metrics

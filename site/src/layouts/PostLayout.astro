@@ -1,0 +1,169 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { isValidTag } from '../content.config';
+import { categoryLabels, getCategoryColor } from '../config/colors';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: string;
+  category?: string;
+  tags?: string[];
+}
+
+const { title, description, date, category = 'automation', tags = [] } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const categoryColor = getCategoryColor(category);
+
+// Only show valid tags
+const validTags = tags.filter(isValidTag);
+
+// JSON-LD structured data for AI and search engines
+const siteUrl = Astro.site?.toString() || "https://darrylcauldwell.github.io";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": title,
+  "description": description || `Technical article about ${categoryLabels[category] || category}`,
+  "datePublished": date,
+  "dateModified": date,
+  "author": {
+    "@type": "Person",
+    "name": "Darryl Cauldwell",
+    "url": `${siteUrl}/bio/`
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Darryl Cauldwell"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.href
+  },
+  "articleSection": categoryLabels[category] || category,
+  "keywords": validTags.join(", "),
+  "inLanguage": "en"
+};
+
+// Breadcrumb JSON-LD
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 2, "name": categoryLabels[category] || category, "item": `${siteUrl}/${category}/` },
+    { "@type": "ListItem", "position": 3, "name": title }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- JSON-LD Structured Data for AI and Search Engines -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Breadcrumb navigation -->
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+          <li>
+            <a href="/" class="hover:text-[var(--color-accent)] transition-colors">Home</a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <a href={`/${category}/`} class="hover:text-[var(--color-accent)] transition-colors">
+              {categoryLabels[category] || category}
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-[var(--color-text)] truncate max-w-[200px] sm:max-w-none">
+            {title}
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Post header -->
+      <header class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <a
+            href={`/${category}/`}
+            class="px-3 py-1 text-[var(--color-dark)] rounded-full text-xs font-semibold uppercase hover:opacity-90 transition-opacity"
+            style={`background-color: ${categoryColor};`}
+          >
+            {categoryLabels[category] || category}
+          </a>
+          <time datetime={date} class="text-sm text-[var(--color-text)]/70">
+            {formattedDate}
+          </time>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)] mb-4">
+          {title}
+        </h1>
+
+        {validTags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {validTags.map((tag) => (
+              <a
+                href={`/tags/${tag}/`}
+                class="tag"
+              >
+                {tag.toUpperCase()}
+              </a>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Post content -->
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-code:text-[var(--color-text)]
+        prose-pre:bg-[var(--color-code-bg)]
+        prose-blockquote:border-[var(--color-accent)]
+        prose-blockquote:text-[var(--color-text)]
+        prose-img:rounded-lg
+        prose-table:text-[var(--color-text)]
+      ">
+        <slot />
+      </div>
+
+      <!-- Post footer -->
+      <footer class="mt-12 pt-8 border-t border-[var(--color-translucent)]">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <a
+            href={`/${category}/`}
+            class="button button-translucent"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            More {categoryLabels[category] || category}
+          </a>
+
+          {validTags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {validTags.map((tag) => (
+                <a
+                  href={`/tags/${tag}/`}
+                  class="tag"
+                >
+                  {tag.toUpperCase()}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </footer>
+    </article>
+  </div>
+</BaseLayout>

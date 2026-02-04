@@ -1,0 +1,71 @@
+# =============================================================================
+# ROBOTS.TXT - Crawler Access Control
+# =============================================================================
+# This file controls access for web crawlers and AI bots.
+# https://darrylcauldwell.github.io/robots.txt
+# =============================================================================
+
+# Default: Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /grafana/
+Disallow: /prometheus/
+
+# Sitemap location
+Sitemap: https://darrylcauldwell.github.io/sitemap-index.xml
+
+# =============================================================================
+# AI CRAWLERS - Training Data Collection
+# =============================================================================
+# These bots collect data for AI model training.
+# Allowing them helps your content appear in AI responses.
+
+# OpenAI GPTBot (ChatGPT, DALL-E training)
+User-agent: GPTBot
+Allow: /
+
+# Anthropic ClaudeBot (Claude training)
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Google AI (Gemini/Bard training)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: FacebookBot
+Allow: /
+
+# Common Crawl (used by many AI projects)
+User-agent: CCBot
+Allow: /
+
+# =============================================================================
+# AI ASSISTANT CRAWLERS - Live Retrieval
+# =============================================================================
+# These bots retrieve content in real-time for AI responses.
+
+# ChatGPT Plugins/Browse
+User-agent: ChatGPT-User
+Allow: /
+
+# Bing Chat / Copilot
+User-agent: bingbot
+Allow: /
+
+# =============================================================================
+# LLMS.TXT - AI-Friendly Content Summary
+# =============================================================================
+# For AI bots that support llms.txt, see: /llms.txt

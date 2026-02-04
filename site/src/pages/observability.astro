@@ -1,0 +1,404 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Observability" description="System monitoring and metrics">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-6xl mx-auto">
+      <!-- Service Status Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="site-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Site</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="site-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Caddy serving static content</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="prometheus-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Prometheus</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="prometheus-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Metrics collection</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="grafana-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Grafana</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="grafana-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Visualization</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="cadvisor-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">cAdvisor</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="cadvisor-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Container metrics</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="loki-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Loki</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="loki-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Log aggregation</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="promtail-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Promtail</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="promtail-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Log collection</div>
+        </div>
+      </div>
+
+      <!-- HTTP Traffic Dashboard -->
+      <details class="bg-[var(--color-bg-elevated)] rounded-lg border border-[var(--color-translucent)] overflow-hidden mb-4 group" id="caddy-details">
+        <summary class="px-4 py-3 cursor-pointer flex items-center justify-between hover:bg-[var(--color-translucent)] transition-colors">
+          <h2 class="font-semibold text-[var(--color-heading)]">HTTP Traffic</h2>
+          <svg class="w-5 h-5 text-[var(--color-text-muted)] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="border-t border-[var(--color-translucent)]">
+          <iframe
+            class="w-full h-[500px] border-0"
+            id="caddy-dashboard-frame"
+            data-dashboard="caddy-metrics"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </details>
+
+      <!-- Container Metrics Dashboard -->
+      <details class="bg-[var(--color-bg-elevated)] rounded-lg border border-[var(--color-translucent)] overflow-hidden mb-4 group" id="container-details">
+        <summary class="px-4 py-3 cursor-pointer flex items-center justify-between hover:bg-[var(--color-translucent)] transition-colors">
+          <h2 class="font-semibold text-[var(--color-heading)]">Container Resources</h2>
+          <svg class="w-5 h-5 text-[var(--color-text-muted)] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="border-t border-[var(--color-translucent)]">
+          <iframe
+            class="w-full h-[500px] border-0"
+            id="container-dashboard-frame"
+            data-dashboard="container-metrics"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </details>
+
+      <!-- Container Logs Section -->
+      <details class="bg-[var(--color-bg-elevated)] rounded-lg border border-[var(--color-translucent)] overflow-hidden group" id="logs-details">
+        <summary class="px-4 py-3 cursor-pointer flex items-center justify-between hover:bg-[var(--color-translucent)] transition-colors">
+          <h2 class="font-semibold text-[var(--color-heading)]">Logs</h2>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2" onclick="event.stopPropagation()">
+              <label for="log-level-select" class="text-sm text-[var(--color-text-muted)]">Log Level:</label>
+              <select
+                id="log-level-select"
+                class="bg-[var(--color-bg)] border border-[var(--color-translucent)] rounded px-2 py-1 text-sm text-[var(--color-text)]"
+              >
+                <option value="error|fatal|critical|panic" selected>Error</option>
+                <option value="warn|warning|error|fatal|critical|panic">Warning</option>
+                <option value="info|warn|warning|error|fatal|critical|panic">Info</option>
+              </select>
+            </div>
+            <svg class="w-5 h-5 text-[var(--color-text-muted)] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </summary>
+        <div class="border-t border-[var(--color-translucent)]">
+          <iframe
+            class="w-full h-[400px] border-0"
+            id="logs-dashboard-frame"
+            data-dashboard="site-logs"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </details>
+
+    </article>
+  </div>
+</BaseLayout>
+
+<script>
+  // Status update helpers using CSS variables
+  function setHealthy(statusEl: HTMLElement, iconEl: HTMLElement) {
+    statusEl.textContent = 'Healthy';
+    statusEl.className = 'text-xs status-healthy';
+    iconEl.className = 'w-8 h-8 rounded-full status-icon-healthy flex items-center justify-center';
+    iconEl.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+  }
+
+  function setUnhealthy(statusEl: HTMLElement, iconEl: HTMLElement, label = 'Unhealthy') {
+    statusEl.textContent = label;
+    statusEl.className = 'text-xs status-unhealthy';
+    iconEl.className = 'w-8 h-8 rounded-full status-icon-unhealthy flex items-center justify-center';
+    iconEl.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>';
+  }
+
+  function setUnknown(statusEl: HTMLElement) {
+    statusEl.textContent = 'Unknown';
+    statusEl.className = 'text-xs status-unknown';
+  }
+
+  async function checkService(url: string, statusId: string, iconId: string) {
+    const statusEl = document.getElementById(statusId);
+    const iconEl = document.getElementById(iconId);
+    if (!statusEl || !iconEl) return;
+
+    try {
+      const response = await fetch(url, { method: 'HEAD' });
+      if (response.ok) {
+        setHealthy(statusEl, iconEl);
+      } else {
+        setUnhealthy(statusEl, iconEl);
+      }
+    } catch {
+      setUnhealthy(statusEl, iconEl, 'Unavailable');
+    }
+  }
+
+  // Check all services
+  checkService('/healthz', 'site-status', 'site-icon');
+  checkService('/prometheus/-/healthy', 'prometheus-status', 'prometheus-icon');
+  checkService('/grafana/api/health', 'grafana-status', 'grafana-icon');
+  // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
+  fetch('/prometheus/api/v1/targets')
+    .then(r => r.json())
+    .then(data => {
+      const cadvisorTarget = data.data?.activeTargets?.find((t: any) => t.labels?.job === 'cadvisor');
+      const statusEl = document.getElementById('cadvisor-status');
+      const iconEl = document.getElementById('cadvisor-icon');
+      if (statusEl && iconEl) {
+        if (cadvisorTarget?.health === 'up') {
+          setHealthy(statusEl, iconEl);
+        } else {
+          setUnhealthy(statusEl, iconEl);
+        }
+      }
+    })
+    .catch((err) => {
+      console.error('Failed to check cAdvisor status:', err);
+      const statusEl = document.getElementById('cadvisor-status');
+      if (statusEl) setUnknown(statusEl);
+    });
+
+  // Check Loki via Grafana datasource health
+  fetch('/grafana/api/datasources/uid/loki')
+    .then(r => r.ok ? 'Healthy' : 'Unhealthy')
+    .then(status => {
+      const statusEl = document.getElementById('loki-status');
+      const iconEl = document.getElementById('loki-icon');
+      if (statusEl && iconEl) {
+        if (status === 'Healthy') {
+          setHealthy(statusEl, iconEl);
+        } else {
+          setUnhealthy(statusEl, iconEl);
+        }
+      }
+    })
+    .catch((err) => {
+      console.error('Failed to check Loki status:', err);
+      const statusEl = document.getElementById('loki-status');
+      if (statusEl) setUnknown(statusEl);
+    });
+
+  // Promtail status - check via Loki targets API (if logs are flowing, Promtail is working)
+  fetch('/grafana/api/datasources/proxy/uid/loki/loki/api/v1/labels')
+    .then(r => r.ok ? 'Healthy' : 'Unhealthy')
+    .then(status => {
+      const statusEl = document.getElementById('promtail-status');
+      const iconEl = document.getElementById('promtail-icon');
+      if (statusEl && iconEl) {
+        if (status === 'Healthy') {
+          setHealthy(statusEl, iconEl);
+        } else {
+          setUnhealthy(statusEl, iconEl);
+        }
+      }
+    })
+    .catch((err) => {
+      console.error('Failed to check Promtail status:', err);
+      const statusEl = document.getElementById('promtail-status');
+      if (statusEl) setUnknown(statusEl);
+    });
+
+  // Iframe references and configuration
+  const caddyFrame = document.getElementById('caddy-dashboard-frame') as HTMLIFrameElement;
+  const containerFrame = document.getElementById('container-dashboard-frame') as HTMLIFrameElement;
+  const logsFrame = document.getElementById('logs-dashboard-frame') as HTMLIFrameElement;
+  const logLevelSelect = document.getElementById('log-level-select') as HTMLSelectElement;
+
+  const caddyDetails = document.getElementById('caddy-details') as HTMLDetailsElement;
+  const containerDetails = document.getElementById('container-details') as HTMLDetailsElement;
+  const logsDetails = document.getElementById('logs-details') as HTMLDetailsElement;
+
+  function getGrafanaTheme() {
+    return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+  }
+
+  // Build iframe URL based on dashboard type
+  function getIframeSrc(dashboard: string): string {
+    const theme = getGrafanaTheme();
+    if (dashboard === 'site-logs') {
+      const logLevel = encodeURIComponent(logLevelSelect?.value || 'error|fatal|critical|panic');
+      return `/grafana/d/site-logs/site-logs?orgId=1&kiosk&theme=${theme}&var-log_level=${logLevel}&var-container=.*`;
+    }
+    return `/grafana/d/${dashboard}/${dashboard}?orgId=1&kiosk&theme=${theme}`;
+  }
+
+  // Load iframe only when needed
+  function loadIframe(iframe: HTMLIFrameElement | null) {
+    if (!iframe) return;
+    const dashboard = iframe.dataset.dashboard;
+    if (dashboard && !iframe.src) {
+      iframe.src = getIframeSrc(dashboard);
+    }
+  }
+
+  // Unload iframe to free memory
+  function unloadIframe(iframe: HTMLIFrameElement | null) {
+    if (!iframe) return;
+    iframe.src = 'about:blank';
+  }
+
+  // Reload iframe with current theme (only if already loaded)
+  function reloadIframe(iframe: HTMLIFrameElement | null) {
+    if (!iframe || iframe.src === 'about:blank' || !iframe.src) return;
+    const dashboard = iframe.dataset.dashboard;
+    if (dashboard) {
+      iframe.src = getIframeSrc(dashboard);
+    }
+  }
+
+  // Handle details toggle - lazy load on open, unload on close
+  function setupDetailsToggle(details: HTMLDetailsElement | null, iframe: HTMLIFrameElement | null) {
+    if (!details || !iframe) return;
+    details.addEventListener('toggle', () => {
+      if (details.open) {
+        loadIframe(iframe);
+      } else {
+        // Unload after a short delay to allow close animation
+        setTimeout(() => unloadIframe(iframe), 100);
+      }
+    });
+  }
+
+  setupDetailsToggle(caddyDetails, caddyFrame);
+  setupDetailsToggle(containerDetails, containerFrame);
+  setupDetailsToggle(logsDetails, logsFrame);
+
+  // Log level dropdown handler - only reload if logs section is open
+  logLevelSelect?.addEventListener('change', () => {
+    if (logsDetails?.open && logsFrame) {
+      logsFrame.src = getIframeSrc('site-logs');
+    }
+  });
+
+  // Page Visibility API - unload iframes when tab is hidden to save memory
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // Page is hidden - unload all iframes
+      unloadIframe(caddyFrame);
+      unloadIframe(containerFrame);
+      unloadIframe(logsFrame);
+    } else {
+      // Page is visible - reload only open sections
+      if (caddyDetails?.open) loadIframe(caddyFrame);
+      if (containerDetails?.open) loadIframe(containerFrame);
+      if (logsDetails?.open) loadIframe(logsFrame);
+    }
+  });
+
+  // Listen for theme changes - debounced, only reload open iframes
+  let themeUpdateTimeout: ReturnType<typeof setTimeout> | null = null;
+  function debouncedUpdateFrames() {
+    if (themeUpdateTimeout) clearTimeout(themeUpdateTimeout);
+    themeUpdateTimeout = setTimeout(() => {
+      if (caddyDetails?.open) reloadIframe(caddyFrame);
+      if (containerDetails?.open) reloadIframe(containerFrame);
+      if (logsDetails?.open) reloadIframe(logsFrame);
+    }, 50);
+  }
+
+  // Watch for class changes on documentElement (theme toggle adds/removes 'light' class)
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.attributeName === 'class') {
+        debouncedUpdateFrames();
+        break; // Only need to update once per batch
+      }
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // Cleanup when page is unloaded
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
+    unloadIframe(caddyFrame);
+    unloadIframe(containerFrame);
+    unloadIframe(logsFrame);
+  });
+</script>
+
+<style>
+  /* Hide default summary marker */
+  details summary::-webkit-details-marker,
+  details summary::marker {
+    display: none;
+    content: '';
+  }
+
+  details summary {
+    list-style: none;
+  }
+</style>

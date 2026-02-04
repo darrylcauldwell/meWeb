@@ -1,0 +1,34 @@
+# =============================================================================
+# SELF-HOSTED NTFY PUSH NOTIFICATION SERVICE
+# =============================================================================
+# Provides a push notification relay for deployment alerts and other events.
+# Caddy reverse-proxies ntfy.dreamfold.dev to this container.
+#
+# USAGE:
+#   Include this in your main docker-compose.yml:
+#     include:
+#       - path: notifications/docker-compose.yml
+#
+# REQUIREMENTS:
+#   - Your app must be on the 'web' network
+#   - Set NTFY_ADDRESS env var for production domain (defaults to ntfy.localhost)
+# =============================================================================
+
+services:
+  ntfy:
+    image: binwiederhier/ntfy:v2.11.0
+    container_name: ntfy
+    restart: unless-stopped
+    command: serve
+    environment:
+      - NTFY_BASE_URL=http://ntfy
+      - NTFY_CACHE_FILE=/var/lib/ntfy/cache.db
+      - NTFY_BEHIND_PROXY=true
+      - NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments
+    volumes:
+      - ntfy_data:/var/lib/ntfy
+    networks:
+      - web
+
+volumes:
+  ntfy_data:

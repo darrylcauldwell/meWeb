@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { meAccentColor } from '../config/colors';
+---
+
+<BaseLayout title="Bio" description="About Darryl Cauldwell">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${meAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Bio</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">About Darryl Cauldwell</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+      <p>
+        Technologist with deep expertise in cloud infrastructure, virtualization, and automation.
+        Passionate about continuous learning and sharing knowledge with the community.
+      </p>
+
+      <h2>Background</h2>
+      <p>
+        With extensive experience across VMware, Kubernetes, and cloud platforms, I focus on
+        helping organizations modernize their infrastructure and adopt cloud-native practices.
+      </p>
+
+      <h2>Interests</h2>
+      <ul>
+        <li>Cloud infrastructure and automation</li>
+        <li>Kubernetes and container orchestration</li>
+        <li>VMware technologies</li>
+        <li>Infrastructure as Code</li>
+        <li>Home lab experimentation</li>
+      </ul>
+
+        <h2>Connect</h2>
+        <p>
+          Find me on <a href="https://linkedin.com/in/darrylcauldwell">LinkedIn</a> or
+          check out my work on <a href="https://github.com/darrylcauldwell">GitHub</a>.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

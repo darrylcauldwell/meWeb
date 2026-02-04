@@ -1,0 +1,76 @@
+# Global options
+{
+    email {$ACME_EMAIL:}
+    servers {
+        metrics
+    }
+}
+
+{$SITE_ADDRESS::80} {
+    # Serve static files
+    root * /srv
+    file_server
+
+    # Compression
+    encode gzip zstd
+
+    # Security headers
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        # Remove server header
+        -Server
+    }
+
+    # Cache static assets
+    @static {
+        path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2 *.ttf *.eot
+    }
+    header @static Cache-Control "public, max-age=31536000, immutable"
+
+    # Cache HTML for shorter period
+    @html {
+        path *.html
+    }
+    header @html Cache-Control "public, max-age=3600, must-revalidate"
+
+    # Health check endpoint
+    respond /healthz 200 {
+        body "healthy"
+        close
+    }
+
+    # Grafana reverse proxy
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    # Prometheus reverse proxy
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+
+    # Handle pretty URLs (try file, then directory, then .html extension)
+    try_files {path} {path}/ {path}.html
+
+    # Custom 404 page
+    handle_errors {
+        @404 {
+            expression {http.error.status_code} == 404
+        }
+        rewrite @404 /404.html
+        file_server
+    }
+}
+
+# ntfy push notification service
+{$NTFY_ADDRESS:ntfy.localhost} {
+    reverse_proxy ntfy:80
+}
+
+# Metrics endpoint for Prometheus (internal only)
+:2019 {
+    metrics
+}

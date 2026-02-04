@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import ListLayout from '../../layouts/ListLayout.astro';
+
+export async function getStaticPaths() {
+  const POSTS_PER_PAGE = 10;
+
+  const allPosts = await getCollection('post', ({ data }) => !data.draft);
+  const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
+
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: {
+      posts: sortedPosts.slice((i + 1) * POSTS_PER_PAGE, (i + 2) * POSTS_PER_PAGE),
+      currentPage: i + 2,
+      totalPages,
+    },
+  }));
+}
+
+interface Props {
+  posts: any[];
+  currentPage: number;
+  totalPages: number;
+}
+
+const { posts, currentPage, totalPages } = Astro.props;
+---
+
+<ListLayout
+  title={`Posts - Page ${currentPage}`}
+  posts={posts}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  baseUrl="/"
+  paginatedPath="/post/"
+  showHeader={false}
+/>

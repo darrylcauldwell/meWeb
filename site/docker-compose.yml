@@ -1,0 +1,33 @@
+# =============================================================================
+# LOCAL DEVELOPMENT DOCKER COMPOSE
+# =============================================================================
+# Runs the site on localhost with plain HTTP (no TLS).
+# For production deployment, use docker-compose.production.yml instead.
+#
+# Usage:
+#   docker compose up --build
+# =============================================================================
+
+include:
+  - path: observability/docker-compose.yml
+  - path: notifications/docker-compose.yml
+
+services:
+  site:
+    build: .
+    container_name: site
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:80:80"
+    environment:
+      - SITE_ADDRESS=:80
+      - ACME_EMAIL=
+      - NTFY_ADDRESS=ntfy.localhost
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES, isValidTag } from '../content.config';
+import { categoryLabels, getCategoryColor } from '../config/colors';
+
+interface Props {
+  showIntro?: boolean;
+}
+
+const { showIntro = true } = Astro.props;
+
+const allPosts = await getCollection('post', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+const recentPosts = sortedPosts.slice(0, 5);
+
+// Get category counts
+const categoryCounts = new Map<string, number>();
+CATEGORIES.forEach(cat => categoryCounts.set(cat, 0));
+allPosts.forEach((post) => {
+  const cat = post.data.category || 'automation';
+  categoryCounts.set(cat, (categoryCounts.get(cat) || 0) + 1);
+});
+
+// Get tag counts (only for valid tags)
+const tagCounts = new Map<string, number>();
+allPosts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    if (isValidTag(tag)) {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    }
+  });
+});
+const tags = Array.from(tagCounts.entries())
+  .sort((a, b) => b[1] - a[1]);
+---
+
+<aside class="lg:w-[30%] space-y-8">
+  {showIntro && (
+    <section class="bg-[var(--color-sidebar-bg)] rounded-lg p-6">
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-2">Darryl Cauldwell</h2>
+      <p class="text-sm text-[var(--color-text)] leading-relaxed">
+        Technologist, perpetual student, teacher, continual incremental improvement.
+      </p>
+    </section>
+  )}
+
+  <section class="bg-[var(--color-sidebar-bg)] rounded-lg p-6">
+    <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-4">Categories</h2>
+    <nav class="space-y-2">
+      {CATEGORIES.map((cat) => {
+        const catColor = getCategoryColor(cat);
+        return (
+          <a
+            href={`/${cat}/`}
+            class="sidebar-category flex items-center justify-between py-1 text-sm text-[var(--color-text)] transition-colors"
+            style={`--cat-color: ${catColor};`}
+          >
+            <span>{categoryLabels[cat]}</span>
+            <span class="text-xs text-[var(--color-text-muted)]">{categoryCounts.get(cat)}</span>
+          </a>
+        );
+      })}
+    </nav>
+  </section>
+
+  <section class="bg-[var(--color-sidebar-bg)] rounded-lg p-6">
+    <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-4">Recent Posts</h2>
+    <ul class="space-y-3">
+      {recentPosts.map((post) => (
+        <li>
+          <a
+            href={`/post/${post.id}/`}
+            class="text-sm text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors line-clamp-2"
+          >
+            {post.data.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {tags.length > 0 && (
+    <section class="bg-[var(--color-sidebar-bg)] rounded-lg p-6">
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-4">Technologies</h2>
+      <nav class="flex flex-wrap gap-2">
+        {tags.map(([tag, count]) => (
+          <a
+            href={`/tags/${tag}/`}
+            class="tag"
+          >
+            {tag.toUpperCase()}
+            <span class="tag-count">{count}</span>
+          </a>
+        ))}
+      </nav>
+    </section>
+  )}
+</aside>

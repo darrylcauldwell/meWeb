@@ -1,0 +1,871 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { meAccentColor } from '../config/colors';
+
+// Structured data for SEO
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Darryl Cauldwell",
+  "jobTitle": "Customer Success Architect",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "VMware"
+  },
+  "url": "https://darrylcauldwell.github.io",
+  "sameAs": [
+    "https://linkedin.com/in/darrylcauldwell",
+    "https://github.com/darrylcauldwell"
+  ],
+  "knowsAbout": ["VMware", "Kubernetes", "Cloud Architecture", "NSX", "AWS", "Terraform", "Ansible", "DevOps"],
+  "alumniOf": ["Royal Mail", "CSC", "Atos", "DXC Technology", "VMware"]
+};
+---
+
+<BaseLayout title="CV" description="Darryl Cauldwell - Customer Success Architect with 30+ years in enterprise IT, cloud infrastructure, and virtualization">
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8 cv-container">
+    <article class="max-w-4xl mx-auto">
+
+      <!-- Header with print button -->
+      <header class="mb-8 pb-6 border-b-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={`border-color: ${meAccentColor};`}>
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Darryl Cauldwell</h1>
+          <p class="text-xl font-medium mt-1" style={`color: ${meAccentColor};`}>Customer Success Architect</p>
+          <p class="text-sm text-[var(--color-text-muted)] mt-2">
+            <a href="mailto:darryl.cauldwell@gmail.com" class="hover:text-[var(--color-accent)]">darryl.cauldwell@gmail.com</a>
+            <span class="mx-2">•</span>
+            <a href="https://darrylcauldwell.github.io" class="hover:text-[var(--color-accent)]">darrylcauldwell.github.io</a>
+          </p>
+        </div>
+        <button
+          onclick="window.print()"
+          class="print-hide self-start sm:self-auto px-4 py-2 text-white rounded-lg transition-colors flex items-center gap-2"
+          style={`background-color: ${meAccentColor};`}
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          <span>Print / PDF</span>
+        </button>
+      </header>
+
+      <!-- Summary -->
+      <section class="mb-8">
+        <p class="text-[var(--color-text)] text-lg leading-relaxed">
+          Enterprise architect with <strong>30+ years</strong> delivering cloud infrastructure solutions across
+          <strong>VMware</strong>, <strong>Kubernetes</strong>, and <strong>public cloud</strong> platforms.
+          I provide architectural guidance for customers developing highly automated, secure, available, resilient, and multi-cloud architectural designs.
+          The designs typically need to seamlessly integrate with very complex estates which requires focussed problem-solving and analytical skills.
+          Recognised with <strong>12 industry awards</strong> for technical excellence and innovation.
+          Passionate about sustainability, community contribution, and enabling customer success.
+        </p>
+      </section>
+
+      <!-- Key Metrics -->
+      <section class="mb-8 print-hide">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center p-4 bg-[var(--color-translucent)] rounded-lg">
+            <div class="text-3xl font-bold text-[var(--color-accent)]">30+</div>
+            <div class="text-sm text-[var(--color-text-muted)]">Years Experience</div>
+          </div>
+          <div class="text-center p-4 bg-[var(--color-translucent)] rounded-lg">
+            <div class="text-3xl font-bold text-[var(--color-accent)]">12</div>
+            <div class="text-sm text-[var(--color-text-muted)]">Industry Awards</div>
+          </div>
+          <div class="text-center p-4 bg-[var(--color-translucent)] rounded-lg">
+            <div class="text-3xl font-bold text-[var(--color-accent)]">50+</div>
+            <div class="text-sm text-[var(--color-text-muted)]">Certifications</div>
+          </div>
+          <div class="text-center p-4 bg-[var(--color-translucent)] rounded-lg">
+            <div class="text-3xl font-bold text-[var(--color-accent)]">11+</div>
+            <div class="text-sm text-[var(--color-text-muted)]">Years vExpert</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Timeline -->
+      <section class="mb-8">
+        <h2 class="section-title">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Professional Experience
+        </h2>
+
+        <div class="timeline">
+          <!-- VMware -->
+          <div class="timeline-item">
+            <div class="timeline-marker current"></div>
+            <details class="timeline-content" open>
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">VMware</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Customer Success Architect</p>
+                </div>
+                <span class="timeline-date">2019 - Present</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>Customer Success Architect - Success 360</h4>
+                  <span class="role-date">September 2020 - Present</span>
+                  <p>My role entails close collaboration with customers who have purchased Success 360. I provide architectural guidance for customers developing highly automated, secure, available, resilient, and multi-cloud architectural designs. The designs typically need to seamlessly integrate with very complex estates which requires focussed problem-solving and analytical skills.</p>
+                  <p>In addition to architectural design, I also formulate architectural roadmaps that harmonise with both customer and product roadmaps. My alignment to customers are long-term which enables intimate understanding of their requirements and time to develop highly trusted relationships.</p>
+                  <p class="achievement">🏆 'Raising the Bar' award by Customer Success team for FY21</p>
+                  <p class="achievement">🏆 'Execution' award from Professional Services for FY23 Q1</p>
+                </div>
+                <div class="role">
+                  <h4>Chief Technology Office (OCTO) Ambassador</h4>
+                  <span class="role-date">February 2021 - Present</span>
+                  <p>In my role as a OCTO Ambassador, I have the honour of acting as a conduit between our customers and our research and development teams. This can be with regards to awareness and enablement of new innovation through to full design partnerships. I place a particular focus on innovation on edge, IT/OT convergence, sustainability and carbon reduction.</p>
+                </div>
+                <div class="role">
+                  <h4>Embedded Architect - Advanced Customer Engagement</h4>
+                  <span class="role-date">July 2019 - September 2020</span>
+                  <p>During this role, I worked as an embedded architect within strategic alliance partner's hybrid cloud architecture and engineering teams. My primary responsibility was to be on-point for all architectural aspects of the full VMware product portfolio.</p>
+                  <p>Delivering architectural consultancy, technical enablement, design partnerships, feature requests, large deal support, executive briefings, developed cohesive technical roadmaps, automation, infrastructure as code, continuous integration, and operational hygiene programs.</p>
+                  <p class="achievement">🏆 Annual Advanced Customer Engagement 'Leadership' award for FY20</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- DXC Technology -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <details class="timeline-content">
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">DXC Technology</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Principal Architect</p>
+                </div>
+                <span class="timeline-date">2016 - 2019</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>Managed Services for VMware Private Cloud</h4>
+                  <span class="role-date">May 2017 - July 2019</span>
+                  <p>In my role as the leader of the design and engineering team, I was tasked with developing a standardised Infrastructure as a Service private cloud offering that boasted a comprehensive self-service Platform as a Service (PaaS) catalogue.</p>
+                  <p>The PaaS service catalogue offered self-service delivery of servers, database engines, middleware, security services, backup, disaster recovery, firewall, and network function virtualisation.</p>
+                  <p>The resulting solution proved to be a success, with customers across industries such as defence, government secure, financial, and healthcare adopting it. The self-service portal-driven automation and orchestration workflows encompassed provisioning, guest customisation, day two lifecycle management, and billing.</p>
+                </div>
+                <div class="role">
+                  <h4>Managed Mid-range on VMware</h4>
+                  <span class="role-date">May 2017 - July 2019</span>
+                  <p>As the technical design and engineering lead for the global Managed Mid-range offering, I spearheaded the development of a highly standardised hosting platform that enabled streamlined day two operational support. Unlike the Infrastructure as a Service (IaaS) offering, this solution offered a more personalised approach to workload deployment, with greater flexibility for customisation.</p>
+                </div>
+                <div class="role">
+                  <h4>Modern Platform Initiative</h4>
+                  <span class="role-date">December 2016 - July 2019</span>
+                  <p>In my role as technical lead, I led an initiative to streamline the delivery of a VMware-based virtual hosting platform by industrialising the process. To achieve this, I created a modular technical design and configuration that could be consistently built by technology partners such as Dell, Hitachi, and HPE in their build factories.</p>
+                  <p>I also established a delivery workflow process that integrated with all data centre systems, from factory delivery through all the on-site systems integrations.</p>
+                  <p>The benefits of industrialising the delivery of the VMware virtual hosting platform were significant for the business, including enhanced sales capabilities, accurate pricing of deals, consistent global delivery, and reduced delivery timelines.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Atos -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <details class="timeline-content">
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">Atos</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Principal Architect</p>
+                </div>
+                <span class="timeline-date">2015 - 2016</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>Cloud DevOps</h4>
+                  <span class="role-date">December 2015 - December 2016</span>
+                  <p>While working in Global Cloud Engineering, I played a crucial role in transitioning product engineering from a monolithic approach to an iterative method. I introduced Ansible automation extensively to enable the delivery of infrastructure configuration as per the desired state.</p>
+                  <p>This standardisation of infrastructure configuration, coupled with measuring the desired state, helped the day two operations team achieve economies of scale, resulting in fewer incidents and better customer satisfaction. Moreover, adopting an iterative delivery approach enabled us to introduce new technology features into the product faster, while making smaller changes helped improve the change risk profile.</p>
+                </div>
+                <div class="role">
+                  <h4>Managed Public Cloud (AWS)</h4>
+                  <span class="role-date">September 2016 - December 2016</span>
+                  <p>As a team member, I participated in the architecture, engineering, automation, and delivery of a Managed Public Cloud (MPC) offering based on Amazon Web Services (AWS). This MPC service offered centralised management, billing, monitoring, and security solutions that were securely accessible to customers via ServiceNow.</p>
+                  <p>My responsibilities included designing the architecture and creating a set of complex CloudFormation templates to deploy standard configurations across AWS accounts. In cases where CloudFormation was insufficient, I created custom "glue" automation using a combination of Ansible and Lambda, with configuration stored in DynamoDB.</p>
+                </div>
+                <div class="role">
+                  <h4>Centralised Control Hub (NSX)</h4>
+                  <span class="role-date">December 2015 - September 2016</span>
+                  <p>As the technical lead for design, engineering, and delivery, I oversaw a complex NSX for vSphere solution. This solution provided a site-resilient, centralised control hub for thirty-one remote sites or "spokes." To join all the spokes to the hub, we used NSX Edge Services Gateway Site-to-Site VPN tunnels and ensured traffic security using micro-segmentation firewall rules.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- CSC -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <details class="timeline-content">
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">Computer Sciences Corporation (CSC)</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Architect / Platform Systems Engineer</p>
+                </div>
+                <span class="timeline-date">2004 - 2015</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>BizCloud Hyper-Converged</h4>
+                  <span class="role-date">March 2014 - December 2015</span>
+                  <p>As part of a team, I helped design, build, and automate a dedicated private cloud infrastructure using hyper-converged technology for VMware's SDDC. This cloud offering was made available for Infrastructure-as-a-Service (IaaS) through the Service Mesh Agility Platform.</p>
+                  <p>Additionally, I developed a capability demonstration which showcased the consumption of IaaS using a Continuous Integration/Continuous Deployment (CI/CD) pipeline based on Jenkins. This pipeline was responsible for delivering various components such as servers, applications, Software-Defined Networking (SDN), Distributed Firewall (DFW), and Network Function Virtualisation (NFV).</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare - DevOps Transformation</h4>
+                  <span class="role-date">April 2013 - March 2014</span>
+                  <p>As a systems engineer and leader within a DevOps team, I oversaw the transformation of our development workflow from a static release process to a continuous delivery approach. This was achieved through the use of Service Mesh Agility Platform to orchestrate the provisioning of virtual servers and the handoff to Puppet for applying the desired configuration state all the way to running the application.</p>
+                  <p>By adopting declarative infrastructure as code (IaC), we were able to improve the availability of our applications while also reducing operational support costs. The implementation of a continuous integration and continuous delivery (CI/CD) pipeline brought numerous benefits across the development and production lifecycle, fostering closer collaboration between IT Operations, testing, and Development teams.</p>
+                  <p class="achievement">🏆 CSC Global Award for Technical Excellence 2015</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare - Storage Consolidation</h4>
+                  <span class="role-date">December 2012 - April 2013</span>
+                  <p>As a member of a team responsible for evaluating potential replacement storage subsystems for a multi-petabyte migration zero data loss storage platform with a requirement of 99.99% availability, I contributed to the assessment of both EMC VMAX and Hitachi VSP systems.</p>
+                  <p>Following the selection of the chosen storage sub-system, I took on a leadership role in the platform systems engineering and implementation of a SAN consolidation effort. This initiative involved migrating from assorted legacy Hitachi SAN systems to a unified pair of Hitachi Virtual Storage Platform SAN, resulting in increased efficiency and a streamlined storage infrastructure.</p>
+                </div>
+                <div class="role">
+                  <h4>CSC Internal - Global Systems Management</h4>
+                  <span class="role-date">January 2012 - November 2012</span>
+                  <p>As the lead for technical design, engineering, and delivery, I oversaw the creation of a vSphere hosting platform dedicated to hosting global systems management tooling.</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare (Chennai) - Stateless Application Deployment</h4>
+                  <span class="role-date">August 2011 - December 2011</span>
+                  <p>As the engineering and delivery lead, I spearheaded the development and implementation of an application deployment and upgrade solution designed to render application and web servers stateless. This was achieved by leveraging virtual hard drive detachment and attachment, as well as updates to application configuration files. To automate the process, we utilised PowerShell scripting to orchestrate NetApp SAN snapshots, VMware VM hardware changes, and in-guest Windows changes.</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare - vCloud Director IaaS</h4>
+                  <span class="role-date">October 2011</span>
+                  <p>In my role as the technical design, engineering, and delivery lead, I oversaw the creation and implementation of a vCloud Director self-service Infrastructure-as-a-Service (IaaS) private cloud, which was based on VCE vBlock hardware. This private cloud was deployed within a hospital trust setting.</p>
+                </div>
+                <div class="role">
+                  <h4>CSC Internal (Copenhagen) - Nordics vCloud Director</h4>
+                  <span class="role-date">April 2011 - August 2011</span>
+                  <p>I played a key role in the design of a vCloud Director self-service Infrastructure-as-a-Service (IaaS) private cloud intended for internal use in the Nordics region. Following the design phase, I assumed the position of technical lead and was responsible for overseeing the implementation of the solution, collaborating closely with local delivery engineers throughout the process.</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare (Chennai) - VMware Hosting Redesign</h4>
+                  <span class="role-date">August 2009 - December 2011</span>
+                  <p>I led the redesign, engineering, and delivery of a VMware-based virtual hosting solution, which was designed to scale in order to meet growing demand and provide site DR business continuity capability. Through a partnership with NetApp, we were able to deliver an innovative solution.</p>
+                  <p class="achievement">🏆 NetApp EMEA Innovation Award 2011</p>
+                  <p class="achievement">🏆 CSC Global Presidents Award for Excellence 2011</p>
+                </div>
+                <div class="role">
+                  <h4>Identity and Passport Services</h4>
+                  <span class="role-date">June 2009 - August 2009</span>
+                  <p>In my capacity as a project lead, I oversaw the design, engineering, and delivery of a VMware-based virtual hosting solution, which was utilised by several hundred developers and testers. To ensure consistency across configurations, I made extensive use of automation throughout the development and deployment process.</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare (Chennai) - Developer Cloud</h4>
+                  <span class="role-date">June 2008 - June 2009</span>
+                  <p>As the lead for design, engineering, and delivery, I oversaw the development and implementation of a VMware-based hosting solution, which enabled developers and testers to deliver virtual servers using the same Altiris modular automation packages that were used in production environments.</p>
+                  <p>Additionally, I played a key role in recruiting the local operations team, and provided training and mentorship in order to ensure the ongoing maintenance and enhancement of the cloud hosting solution.</p>
+                </div>
+                <div class="role">
+                  <h4>UK Border Agency (Belgrade)</h4>
+                  <span class="role-date">June 2007</span>
+                  <p>I played a role in the delivery of an IT biometric identity solution for a new Visa Application Center. Although it was a small project, it was highly visible, and I had the opportunity to meet the UK ambassador to Serbia during its implementation.</p>
+                  <p class="achievement">🏆 MCA International Award 2007 (as part of broader multi-site effort)</p>
+                </div>
+                <div class="role">
+                  <h4>UK&I Healthcare - Enterprise Automation</h4>
+                  <span class="role-date">September 2004 - June 2008</span>
+                  <p>My focus was on automating the end-to-end delivery process for customer applications running on 4,500 physical servers, operating in a complex network environment with strict firewalls, and spread across multiple data centers with petabytes of synchronously replicated data.</p>
+                  <p>The solution involved the creation of reusable, modular scripting assets that were stored in Altiris, with unique server identities delivered by passing variables to the scripts and orchestrating the correct components in the correct order.</p>
+                  <p>This deployment was Veritas's largest worldwide deployment of VCS for Windows and VCS for VMware at the time.</p>
+                  <p class="achievement">🏆 CSC EMEA Presidents Award for Technical Excellence 2005</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- EDS -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <details class="timeline-content">
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">Electronic Data Systems (EDS)</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Operational Acceptance Test Engineer</p>
+                </div>
+                <span class="timeline-date">2003 - 2004</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>Department of Work and Pensions</h4>
+                  <span class="role-date">October 2003 - September 2004</span>
+                  <p>As part of the software development lifecycle team, I was responsible for conducting operational acceptance testing for custom client-server applications developed for the Department of Work and Pensions' Digital Office Infrastructure program.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- GMAC RFC -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <details class="timeline-content">
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">General Motors Residential Finance (GMAC RFC)</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Internet Infrastructure Engineer</p>
+                </div>
+                <span class="timeline-date">2003</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>Secure Banking Portal</h4>
+                  <span class="role-date">August 2003 - October 2003</span>
+                  <p>I was responsible for designing and engineering a secure web hosting platform specifically for hosting a secure banking portal.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Royal Mail -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <details class="timeline-content">
+              <summary class="timeline-header">
+                <div class="flex-1">
+                  <h3 class="font-bold text-[var(--color-heading)]">Royal Mail</h3>
+                  <p class="text-sm text-[var(--color-accent)]">Various Engineering Roles</p>
+                </div>
+                <span class="timeline-date">1994 - 2003</span>
+              </summary>
+              <div class="timeline-body">
+                <div class="role">
+                  <h4>Internet Infrastructure Engineer</h4>
+                  <span class="role-date">February 2001 - August 2003</span>
+                  <p>As a member of a small Agile team, I played a significant role in delivering and operating solutions using Windows Internet Information Server, Windows DNS, and Squid proxies.</p>
+                  <p>Additionally, I was a pivotal part of a team that designed, developed, and delivered a .NET web service for the 'Change of Address' application. Our team was one of the first to embrace the principles of the Agile manifesto.</p>
+                  <p class="achievement">🏆 British Computer Society Medal 2001 (for pioneering Agile and technical excellence)</p>
+                </div>
+                <div class="role">
+                  <h4>Operational Acceptance Engineer</h4>
+                  <span class="role-date">August 1998 - February 2001</span>
+                  <p>My responsibility was to operationally acceptance test intricate business applications that were eventually used by thousands of employees at hundreds of edge locations. These locations were connected back to a pair of active/passive data centres through a hub and spoke style network architecture.</p>
+                </div>
+                <div class="role">
+                  <h4>Windows Systems Engineer</h4>
+                  <span class="role-date">February 1996 - August 1998</span>
+                  <p>I was part of a team which delivered and operated enterprise business applications developed in-house, as well as customised common off-the-shelf (COTS) products.</p>
+                </div>
+                <div class="role">
+                  <h4>Electronics Engineer</h4>
+                  <span class="role-date">January 1994 - February 1996</span>
+                  <p>I conducted physical repairs on NCR towers, analogue mobile phones, modems, and barcode scanners. We held an inventory of working equipment which we used to replace broken devices.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section class="mb-8">
+        <h2 class="section-title">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+          </svg>
+          Awards & Recognition
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="award-item">
+            <span class="award-year">2023</span>
+            <span class="award-text">VMware Professional Services 'Execution' Award FY23 Q1</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2022-23</span>
+            <span class="award-text">VMware Office of CTO Ambassador</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2021</span>
+            <span class="award-text">VMware Customer Success 'Raising the Bar' Award FY21</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2020</span>
+            <span class="award-text">VMware ACE 'Leadership' Award FY20</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2015</span>
+            <span class="award-text">CSC Global Award for Technical Excellence - DevOps</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2013+</span>
+            <span class="award-text">VMware vExpert (11+ consecutive years)</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2012</span>
+            <span class="award-text">VMware Global & EMEA SI Partner of the Year</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2011</span>
+            <span class="award-text">NetApp EMEA Innovator of the Year</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2011</span>
+            <span class="award-text">CSC Global Award for Technical Excellence - Automation</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2007</span>
+            <span class="award-text">Management Consultancies Association (MCA) International Award</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2005</span>
+            <span class="award-text">CSC EMEA Presidents Award for Technical Excellence - Automation</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2001</span>
+            <span class="award-text">British Computer Society Medal - Agile Development</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community -->
+      <section class="mb-8">
+        <h2 class="section-title">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          Community & Volunteering
+        </h2>
+        <div class="space-y-4">
+          <div class="community-item">
+            <h3>VMware Sustainability Ambassadors</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">2019 - Present</p>
+            <p>As an active member of the VMware sustainability ambassadors, I am passionate about promoting sustainable practices within the company. Through my involvement, I have gained a deep understanding of VMware's sustainability value proposition, and I have developed several reusable assets to support this initiative. I am dedicated to sharing this message with my colleagues and customers, with the aim of promoting a more sustainable future.</p>
+          </div>
+          <div class="community-item">
+            <h3>UN Global Compact UK Network</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">2017 - Present</p>
+            <p>As an active member of the UN Global Compact's UK local network, I collaborate with stakeholders from businesses to promote the principles of the UN Global Compact. The community aims to advance the implementation of Sustainability and Development Goals, as well as facilitate opportunities for collective action and engagement among multiple stakeholders.</p>
+          </div>
+          <div class="community-item">
+            <h3>Food, Family, and Farming in World War One</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">2018</p>
+            <p>A grant was awarded to the local infant school for the purpose of producing two books and a ceramic sculpture in remembrance of the 100th anniversary of World War I. I participated in a small historical research team that studied the effects of the war on the daily lives of townspeople in our small farming community. The result of our research was published in two books, one of which was a historical reference book and the other was intended for children at the school.</p>
+          </div>
+          <div class="community-item">
+            <h3>team4tech Tanzania</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">April-May 2014</p>
+            <p>As a volunteer with Team4tech, I worked on a project team that supported the World Vision International 'Spark a Child's Digital Future' initiative. Our main objective was to develop a teacher training program that focused on digital literacy skills and could be implemented in five rural villages in Tanzania. After creating the program, we distributed laptops and communication equipment to the schools and provided training to the teachers on how to incorporate digital skills into their lessons.</p>
+          </div>
+          <div class="community-item">
+            <h3>vExpert Community</h3>
+            <p class="text-sm text-[var(--color-text-muted)]">2013 - Present</p>
+            <p>I maintain a thriving technology blog where I document my research and self-education in my spare time. The blog features a significant amount of content related to VMware, and my contributions to the community have earned me recognition as a valuable community asset.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="mb-8">
+        <h2 class="section-title">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          </svg>
+          Certifications & Qualifications
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="cert-group">
+            <h3 class="cert-title">Enterprise Architecture</h3>
+            <ul class="cert-list">
+              <li>TOGAF 9.2 Foundation</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">Kubernetes</h3>
+            <ul class="cert-list">
+              <li>Certified Kubernetes Administrator (CKA)</li>
+              <li>Certified Kubernetes Application Developer (CKAD)</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">VMware Expert Level</h3>
+            <ul class="cert-list">
+              <li>VCIX6-DCV (Implementation Expert)</li>
+              <li>VCIX6-NV (Implementation Expert)</li>
+              <li>VCAP6-DCV Design</li>
+              <li>VCAP5-DCA</li>
+              <li>VCAP5-DCD</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">VMware Professional Level</h3>
+            <ul class="cert-list">
+              <li>VCP6-CMA (Cloud Management)</li>
+              <li>VCP6-NV (Network Virtualization)</li>
+              <li>VCP5-NV</li>
+              <li>VCP5-DCV</li>
+              <li>VCP4-DCV</li>
+              <li>VCP3</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">VMware Associate & Sales</h3>
+            <ul class="cert-list">
+              <li>VCA5-Cloud, VCA5-DCV, VCA5-WM, VCA5-NV</li>
+              <li>VSP-NV, VTSP-NV</li>
+              <li>VTSP2015, VTSP-SDS, VTSP-BC</li>
+              <li>VTSP-SV, VTSP5, VTSP4</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">AWS</h3>
+            <ul class="cert-list">
+              <li>AWS Solutions Architect - Associate</li>
+              <li>AWS Developer - Associate (expired)</li>
+              <li>AWS Technical Professional (expired)</li>
+              <li>AWS Business Professional (expired)</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">Microsoft</h3>
+            <ul class="cert-list">
+              <li>MCITP: Enterprise Administrator</li>
+              <li>MCITP: Server Administrator</li>
+              <li>MCTS: Windows 7, Server 2008 (multiple)</li>
+              <li>MCSE: NT4</li>
+              <li>MCP+I</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">Other Technical</h3>
+            <ul class="cert-list">
+              <li>ISEB Software Testing Foundation</li>
+              <li>Veritas Cluster Manager 4.x & 5.x</li>
+              <li>Compaq ASE, ACT (expired)</li>
+              <li>CompTIA A+</li>
+            </ul>
+          </div>
+          <div class="cert-group">
+            <h3 class="cert-title">Education & Clearance</h3>
+            <ul class="cert-list">
+              <li>GNVQ Advanced - Data Networking & Communication</li>
+              <li>4 GCSEs grade C and above</li>
+              <li>MOD Security Cleared to SC Level</li>
+              <li>DBS (CRB) Checked</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal -->
+      <section class="mb-8">
+        <h2 class="section-title">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          Personal
+        </h2>
+        <div class="community-item">
+          <p>My family and I share a passion for travel, particularly in Africa where we have had some memorable experiences. In fact, my wife and I even got married in Zanzibar, Tanzania. I also have a keen interest in the countryside and often spend my free time walking the moors with our Sprocker Spaniel and acting as groom and driver for my daughter's Fell pony.</p>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="mb-8">
+        <h2 class="section-title">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Contact
+        </h2>
+        <div class="flex flex-wrap gap-4">
+          <a href="https://linkedin.com/in/darrylcauldwell" class="contact-link">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/darrylcauldwell" class="contact-link">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://darrylcauldwell.github.io" class="contact-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            Blog
+          </a>
+          <a href="mailto:darryl.cauldwell@gmail.com" class="contact-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Email
+          </a>
+        </div>
+      </section>
+
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Section titles with icons */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-title svg {
+    color: var(--color-accent);
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: var(--color-border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .timeline-marker {
+    position: absolute;
+    left: -1.25rem;
+    top: 1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 2px solid var(--color-accent);
+  }
+  .timeline-marker.current {
+    background: var(--color-accent);
+  }
+  .timeline-content {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .timeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--color-translucent);
+    cursor: pointer;
+  }
+  .timeline-header:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+  .timeline-header:hover h3,
+  .timeline-header:hover p {
+    color: white !important;
+  }
+  .timeline-date {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+  .timeline-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .role {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+  }
+  .role h4 {
+    font-weight: 600;
+    color: var(--color-heading);
+    font-size: 1rem;
+  }
+  .role-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .role p {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+  .achievement {
+    color: var(--color-accent) !important;
+    font-weight: 500;
+  }
+
+  /* Awards */
+  .award-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-translucent);
+    border-radius: 0.25rem;
+  }
+  .award-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    background: var(--color-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+  }
+  .award-text {
+    font-size: 0.875rem;
+    color: var(--color-text);
+  }
+
+  /* Community */
+  .community-item {
+    padding: 1rem;
+    background: var(--color-translucent);
+    border-radius: 0.5rem;
+  }
+  .community-item h3 {
+    font-weight: 600;
+    color: var(--color-heading);
+    font-size: 1rem;
+  }
+  .community-item p {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  /* Certifications */
+  .cert-group {
+    padding: 1rem;
+    background: var(--color-translucent);
+    border-radius: 0.5rem;
+  }
+  .cert-title {
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.9rem;
+  }
+  .cert-list {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .cert-list li::before {
+    content: '✓ ';
+    color: var(--color-accent);
+  }
+
+  /* Contact links */
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-translucent);
+    border-radius: 0.5rem;
+    color: var(--color-text);
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  /* Details/summary styling */
+  details summary {
+    list-style: none;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  .timeline-header::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+  }
+  details[open] .timeline-header::before {
+    transform: rotate(90deg);
+  }
+
+  /* Print styles */
+  @media print {
+    .print-hide {
+      display: none !important;
+    }
+    .cv-container {
+      padding: 0;
+    }
+    .timeline::before {
+      display: none;
+    }
+    .timeline {
+      padding-left: 0;
+    }
+    .timeline-marker {
+      display: none;
+    }
+    .timeline-content {
+      border: none;
+      margin-bottom: 1rem;
+    }
+    .timeline-header {
+      background: transparent;
+      padding: 0.5rem 0;
+    }
+    .timeline-header::before {
+      display: none;
+    }
+    details[open] .timeline-body,
+    details .timeline-body {
+      display: flex !important;
+    }
+    details {
+      break-inside: avoid;
+    }
+    .section-title svg {
+      display: none;
+    }
+    .award-item, .cert-group, .community-item {
+      background: transparent;
+      padding: 0.25rem;
+      border: 1px solid #ddd;
+    }
+    a {
+      text-decoration: none !important;
+    }
+    .contact-link {
+      background: transparent;
+      padding: 0;
+    }
+    @page {
+      margin: 1.5cm;
+    }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.125rem; margin-top: 1rem; }
+    body { font-size: 10pt; }
+    .role p { font-size: 9pt; }
+  }
+</style>

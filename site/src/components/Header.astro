@@ -1,0 +1,507 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import SearchWidget from './SearchWidget.astro';
+import { navCategories as categories, meLinks, meAccentColor, presentationLinks, presentationsAccentColor } from '../config/colors';
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+
+// Determine current category label for dropdown
+function getCurrentCategoryLabel() {
+  for (const cat of categories) {
+    if (cat.href !== '/' && currentPath.startsWith(cat.href)) {
+      return cat.label;
+    }
+  }
+  return 'All Posts';
+}
+
+const currentCategory = getCurrentCategoryLabel();
+const isBlogActive = currentPath === '/' || currentPath.startsWith('/post/') || categories.some(c => c.href !== '/' && currentPath.startsWith(c.href));
+const isMeActive = meLinks.some(link => currentPath.startsWith(link.href));
+const isPresentationsActive = currentPath.startsWith('/presentations');
+const isObservabilityActive = currentPath.startsWith('/observability');
+---
+
+<header class="bg-[var(--color-bg-header)] text-[var(--color-header-text-active)] sticky top-0 z-50">
+  <nav class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="text-xl font-bold hover:text-[var(--color-accent)] transition-colors">
+        Darryl Cauldwell
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-2">
+        <!-- Blog Dropdown -->
+        <div class="relative" id="blog-dropdown">
+          <button
+            id="blog-dropdown-btn"
+            class:list={[
+              'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
+              isBlogActive
+                ? 'bg-[var(--color-accent)] text-[var(--color-light)]'
+                : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
+            ]}
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="blog-dropdown-menu"
+          >
+            <span>Blog</span>
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            id="blog-dropdown-menu"
+            class="absolute left-0 top-full mt-1 w-48 bg-[var(--color-bg-elevated)] rounded-lg shadow-lg border border-[var(--color-translucent)] hidden z-50"
+            role="menu"
+            aria-labelledby="blog-dropdown-btn"
+          >
+            {categories.map((item) => {
+              const isItemActive = (item.href === '/' && currentPath === '/') || (item.href !== '/' && currentPath.startsWith(item.href));
+              return (
+                <a
+                  href={item.href}
+                  class:list={[
+                    'block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg',
+                    isItemActive
+                      ? 'font-semibold text-[var(--color-dark)]'
+                      : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+                  ]}
+                  style={isItemActive ? `background-color: ${item.color};` : ''}
+                  role="menuitem"
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        <!-- Me Dropdown -->
+        <div class="relative" id="me-dropdown">
+          <button
+            id="me-dropdown-btn"
+            class:list={[
+              'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
+              isMeActive
+                ? 'bg-[var(--color-accent)] text-[var(--color-light)]'
+                : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
+            ]}
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="me-dropdown-menu"
+          >
+            <span>Me</span>
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            id="me-dropdown-menu"
+            class="absolute left-0 top-full mt-1 w-32 bg-[var(--color-bg-elevated)] rounded-lg shadow-lg border border-[var(--color-translucent)] hidden z-50"
+            role="menu"
+            aria-labelledby="me-dropdown-btn"
+          >
+            {meLinks.map((item) => {
+              const isItemActive = currentPath.startsWith(item.href);
+              return (
+                <a
+                  href={item.href}
+                  class:list={[
+                    'block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg',
+                    isItemActive
+                      ? 'font-semibold text-[var(--color-dark)]'
+                      : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+                  ]}
+                  style={isItemActive ? `background-color: ${meAccentColor};` : ''}
+                  role="menuitem"
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        <!-- Presentations Dropdown -->
+        <div class="relative" id="presentations-dropdown">
+          <button
+            id="presentations-dropdown-btn"
+            class:list={[
+              'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
+              isPresentationsActive
+                ? 'bg-[var(--color-accent)] text-[var(--color-light)]'
+                : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
+            ]}
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="presentations-dropdown-menu"
+          >
+            <span>Presentations</span>
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            id="presentations-dropdown-menu"
+            class="absolute left-0 top-full mt-1 w-56 bg-[var(--color-bg-elevated)] rounded-lg shadow-lg border border-[var(--color-translucent)] hidden z-50"
+            role="menu"
+            aria-labelledby="presentations-dropdown-btn"
+          >
+            {presentationLinks.map((item) => {
+              const isItemActive = currentPath.startsWith(item.href);
+              return (
+                <a
+                  href={item.href}
+                  class:list={[
+                    'block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg',
+                    isItemActive
+                      ? 'font-semibold text-[var(--color-dark)]'
+                      : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+                  ]}
+                  style={isItemActive ? `background-color: ${presentationsAccentColor};` : ''}
+                  role="menuitem"
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        <!-- Observability Link -->
+        <a
+          href="/observability/"
+          class:list={[
+            'px-3 py-2 text-sm font-medium rounded-md transition-colors no-underline',
+            isObservabilityActive
+              ? 'bg-[var(--color-header-active-bg)] text-[var(--color-header-text-active)]'
+              : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
+          ]}
+        >
+          Observability
+        </a>
+
+        <div class="flex items-center gap-2 ml-2 pl-4 border-l border-[var(--color-header-border)]">
+          <SearchWidget />
+          <ThemeToggle />
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="flex items-center gap-2 lg:hidden">
+        <SearchWidget />
+        <ThemeToggle />
+        <button
+          id="mobile-menu-btn"
+          class="p-2 text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)]"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden pb-4">
+      <div class="flex flex-col gap-1">
+        <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase">Blog</div>
+        {categories.map((item) => {
+          const isItemActive = (item.href === '/' && currentPath === '/') || (item.href !== '/' && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2',
+                isItemActive
+                  ? 'text-[var(--color-dark)]'
+                  : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+              ]}
+              style={isItemActive ? `background-color: ${item.color};` : ''}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+
+        <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase mt-2">Me</div>
+        {meLinks.map((item) => {
+          const isItemActive = currentPath.startsWith(item.href);
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2',
+                isItemActive
+                  ? 'text-[var(--color-dark)]'
+                  : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+              ]}
+              style={isItemActive ? `background-color: ${meAccentColor};` : ''}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+
+        <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase mt-2">Presentations</div>
+        {presentationLinks.map((item) => {
+          const isItemActive = currentPath.startsWith(item.href);
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2',
+                isItemActive
+                  ? 'text-[var(--color-dark)]'
+                  : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+              ]}
+              style={isItemActive ? `background-color: ${presentationsAccentColor};` : ''}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+
+        <a
+          href="/observability/"
+          class:list={[
+            'px-3 py-2 rounded-md text-sm font-semibold transition-colors mt-2',
+            isObservabilityActive
+              ? 'bg-[var(--color-header-active-bg)] text-[var(--color-header-text-active)]'
+              : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
+          ]}
+        >
+          Observability
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle with focus management
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuBtn?.addEventListener('click', () => {
+    const isHidden = mobileMenu?.classList.toggle('hidden');
+    menuBtn?.setAttribute('aria-expanded', String(!isHidden));
+    // Move focus to first link when menu opens
+    if (!isHidden) {
+      const firstLink = mobileMenu?.querySelector('a') as HTMLElement;
+      firstLink?.focus();
+    }
+  });
+
+  // Auto-close mobile menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Dropdown elements
+  const blogDropdownBtn = document.getElementById('blog-dropdown-btn');
+  const blogDropdownMenu = document.getElementById('blog-dropdown-menu');
+  const blogDropdown = document.getElementById('blog-dropdown');
+  const meDropdownBtn = document.getElementById('me-dropdown-btn');
+  const meDropdownMenu = document.getElementById('me-dropdown-menu');
+  const meDropdown = document.getElementById('me-dropdown');
+  const presentationsDropdownBtn = document.getElementById('presentations-dropdown-btn');
+  const presentationsDropdownMenu = document.getElementById('presentations-dropdown-menu');
+  const presentationsDropdown = document.getElementById('presentations-dropdown');
+
+  function updateAriaExpanded() {
+    const blogOpen = !blogDropdownMenu?.classList.contains('hidden');
+    const meOpen = !meDropdownMenu?.classList.contains('hidden');
+    const presentationsOpen = !presentationsDropdownMenu?.classList.contains('hidden');
+    blogDropdownBtn?.setAttribute('aria-expanded', String(blogOpen));
+    meDropdownBtn?.setAttribute('aria-expanded', String(meOpen));
+    presentationsDropdownBtn?.setAttribute('aria-expanded', String(presentationsOpen));
+  }
+
+  // Get menu items for a dropdown
+  function getMenuItems(menu: HTMLElement | null): HTMLElement[] {
+    return menu ? Array.from(menu.querySelectorAll('[role="menuitem"]')) : [];
+  }
+
+  // Focus management for dropdown menus
+  function focusMenuItem(menu: HTMLElement | null, index: number) {
+    const items = getMenuItems(menu);
+    if (items.length > 0) {
+      const targetIndex = ((index % items.length) + items.length) % items.length;
+      items[targetIndex].focus();
+    }
+  }
+
+  function getCurrentFocusIndex(menu: HTMLElement | null): number {
+    const items = getMenuItems(menu);
+    return items.findIndex(item => item === document.activeElement);
+  }
+
+  // Open dropdown and focus first item
+  function openDropdown(menu: HTMLElement | null, btn: HTMLElement | null) {
+    menu?.classList.remove('hidden');
+    updateAriaExpanded();
+    // Focus first menu item
+    setTimeout(() => focusMenuItem(menu, 0), 10);
+  }
+
+  // Close dropdown and return focus to button
+  function closeDropdown(menu: HTMLElement | null, btn: HTMLElement | null) {
+    menu?.classList.add('hidden');
+    updateAriaExpanded();
+    btn?.focus();
+  }
+
+  // Blog dropdown click handler
+  blogDropdownBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !blogDropdownMenu?.classList.contains('hidden');
+    meDropdownMenu?.classList.add('hidden');
+    presentationsDropdownMenu?.classList.add('hidden');
+    if (isOpen) {
+      closeDropdown(blogDropdownMenu, blogDropdownBtn);
+    } else {
+      openDropdown(blogDropdownMenu, blogDropdownBtn);
+    }
+  });
+
+  // Me dropdown click handler
+  meDropdownBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !meDropdownMenu?.classList.contains('hidden');
+    blogDropdownMenu?.classList.add('hidden');
+    presentationsDropdownMenu?.classList.add('hidden');
+    if (isOpen) {
+      closeDropdown(meDropdownMenu, meDropdownBtn);
+    } else {
+      openDropdown(meDropdownMenu, meDropdownBtn);
+    }
+  });
+
+  // Presentations dropdown click handler
+  presentationsDropdownBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !presentationsDropdownMenu?.classList.contains('hidden');
+    blogDropdownMenu?.classList.add('hidden');
+    meDropdownMenu?.classList.add('hidden');
+    if (isOpen) {
+      closeDropdown(presentationsDropdownMenu, presentationsDropdownBtn);
+    } else {
+      openDropdown(presentationsDropdownMenu, presentationsDropdownBtn);
+    }
+  });
+
+  // Keyboard navigation for dropdowns
+  function handleDropdownKeydown(e: KeyboardEvent, menu: HTMLElement | null, btn: HTMLElement | null) {
+    const items = getMenuItems(menu);
+    const currentIndex = getCurrentFocusIndex(menu);
+    const isOpen = !menu?.classList.contains('hidden');
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        if (!isOpen) {
+          openDropdown(menu, btn);
+        } else {
+          focusMenuItem(menu, currentIndex + 1);
+        }
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (isOpen) {
+          focusMenuItem(menu, currentIndex - 1);
+        }
+        break;
+      case 'Home':
+        e.preventDefault();
+        if (isOpen) focusMenuItem(menu, 0);
+        break;
+      case 'End':
+        e.preventDefault();
+        if (isOpen) focusMenuItem(menu, items.length - 1);
+        break;
+      case 'Escape':
+        if (isOpen) {
+          e.preventDefault();
+          closeDropdown(menu, btn);
+        }
+        break;
+      case 'Tab':
+        if (isOpen) {
+          menu?.classList.add('hidden');
+          updateAriaExpanded();
+        }
+        break;
+    }
+  }
+
+  // Add keyboard listeners to dropdown buttons
+  blogDropdownBtn?.addEventListener('keydown', (e) => {
+    handleDropdownKeydown(e, blogDropdownMenu, blogDropdownBtn);
+  });
+
+  meDropdownBtn?.addEventListener('keydown', (e) => {
+    handleDropdownKeydown(e, meDropdownMenu, meDropdownBtn);
+  });
+
+  presentationsDropdownBtn?.addEventListener('keydown', (e) => {
+    handleDropdownKeydown(e, presentationsDropdownMenu, presentationsDropdownBtn);
+  });
+
+  // Add keyboard listeners to menu items
+  blogDropdownMenu?.addEventListener('keydown', (e) => {
+    handleDropdownKeydown(e, blogDropdownMenu, blogDropdownBtn);
+  });
+
+  meDropdownMenu?.addEventListener('keydown', (e) => {
+    handleDropdownKeydown(e, meDropdownMenu, meDropdownBtn);
+  });
+
+  presentationsDropdownMenu?.addEventListener('keydown', (e) => {
+    handleDropdownKeydown(e, presentationsDropdownMenu, presentationsDropdownBtn);
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!blogDropdown?.contains(e.target as Node)) {
+      blogDropdownMenu?.classList.add('hidden');
+    }
+    if (!meDropdown?.contains(e.target as Node)) {
+      meDropdownMenu?.classList.add('hidden');
+    }
+    if (!presentationsDropdown?.contains(e.target as Node)) {
+      presentationsDropdownMenu?.classList.add('hidden');
+    }
+    updateAriaExpanded();
+  });
+
+  // Global escape key handler
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const blogOpen = !blogDropdownMenu?.classList.contains('hidden');
+      const meOpen = !meDropdownMenu?.classList.contains('hidden');
+      const presentationsOpen = !presentationsDropdownMenu?.classList.contains('hidden');
+      if (blogOpen) closeDropdown(blogDropdownMenu, blogDropdownBtn);
+      if (meOpen) closeDropdown(meDropdownMenu, meDropdownBtn);
+      if (presentationsOpen) closeDropdown(presentationsDropdownMenu, presentationsDropdownBtn);
+    }
+  });
+</script>

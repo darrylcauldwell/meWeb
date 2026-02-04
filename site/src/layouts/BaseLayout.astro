@@ -1,0 +1,149 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = 'Personal portfolio and technical articles', ogImage } = Astro.props;
+const siteTitle = 'Darryl Cauldwell';
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const twitterHandle = '@daaboroern';
+
+// JSON-LD WebSite schema for AI and search engines
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": siteTitle,
+  "description": "Technical blog covering cloud infrastructure, Kubernetes, VMware, and DevOps automation",
+  "url": Astro.site?.toString() || "https://darrylcauldwell.github.io",
+  "author": {
+    "@type": "Person",
+    "name": "Darryl Cauldwell",
+    "jobTitle": "Cloud Infrastructure & DevOps Professional",
+    "url": "https://darrylcauldwell.github.io/bio/"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://darrylcauldwell.github.io/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:url" content={canonicalURL} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
+    <meta name="twitter:creator" content={twitterHandle} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD Structured Data for AI and Search Engines -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+    <!-- Using system Verdana font - no external fonts needed -->
+
+    <title>{fullTitle}</title>
+
+    <!-- Theme script - runs before page renders to prevent flash -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.add('light');
+        } else if (savedTheme === null) {
+          // No saved preference - check system preference (dark is still default)
+          if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.documentElement.classList.add('light');
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Skip to main content link for keyboard/screen reader users -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-light)] focus:rounded-md focus:outline-none">
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+    <BackToTop />
+
+    <!-- Screen reader announcement region -->
+    <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Code copy functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const announcer = document.getElementById('sr-announcer');
+
+        document.querySelectorAll('pre').forEach((pre) => {
+          const button = document.createElement('button');
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.setAttribute('type', 'button');
+          button.setAttribute('aria-label', 'Copy code to clipboard');
+
+          button.addEventListener('click', async () => {
+            const code = pre.querySelector('code')?.textContent || '';
+            try {
+              await navigator.clipboard.writeText(code);
+              button.textContent = 'Copied!';
+              button.classList.add('copied');
+              // Announce to screen readers
+              if (announcer) announcer.textContent = 'Code copied to clipboard';
+            } catch (err) {
+              console.error('Failed to copy code:', err);
+              button.textContent = 'Failed';
+              if (announcer) announcer.textContent = 'Failed to copy code';
+            }
+            setTimeout(() => {
+              button.textContent = 'Copy';
+              button.classList.remove('copied');
+              button.setAttribute('aria-label', 'Copy code to clipboard');
+            }, 2000);
+          });
+          pre.appendChild(button);
+        });
+      });
+    </script>
+  </body>
+</html>

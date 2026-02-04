@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const presentations = [
+  {
+    title: 'Sustainable Enterprise Software',
+    description: 'The what, the why, and the how to design and implement sustainable enterprise software.',
+    slug: 'sustainable-software',
+    date: '2024',
+    slides: 40,
+  },
+];
+---
+
+<BaseLayout title="Presentations" description="Slide decks and presentations">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-3xl font-bold text-[var(--color-heading)] mb-8">Presentations</h1>
+
+    <div class="grid gap-6">
+      {presentations.map((pres) => (
+        <a
+          href={`/presentations/${pres.slug}/`}
+          class="block bg-[var(--color-bg-elevated)] rounded-lg p-6 border border-[var(--color-translucent)] hover:border-[var(--color-accent)] transition-colors"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-xl font-semibold text-[var(--color-heading)] mb-2">{pres.title}</h2>
+              <p class="text-[var(--color-text-muted)] mb-4">{pres.description}</p>
+              <div class="flex gap-4 text-sm text-[var(--color-text-muted)]">
+                <span>{pres.date}</span>
+                <span>{pres.slides} slides</span>
+              </div>
+            </div>
+            <svg class="w-6 h-6 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 prose prose-sm max-w-none text-[var(--color-text-muted)]">
+      <h3 class="text-[var(--color-heading)] text-lg font-semibold mb-3">Navigation</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li><strong>Arrow keys</strong> or <strong>Space</strong> - Navigate slides</li>
+        <li><strong>Escape</strong> - Overview mode</li>
+        <li><strong>S</strong> - Speaker notes (if available)</li>
+        <li><strong>F</strong> - Fullscreen</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>

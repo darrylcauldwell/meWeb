@@ -1,0 +1,41 @@
+# =============================================================================
+# PRODUCTION DOCKER COMPOSE
+# =============================================================================
+# Runs the site with automatic HTTPS via Let's Encrypt.
+# Requires a .env file with SITE_ADDRESS and ACME_EMAIL set.
+#
+# Usage:
+#   cp .env.example .env   # then edit values
+#   docker compose -f docker-compose.production.yml up -d --build
+# =============================================================================
+
+include:
+  - path: observability/docker-compose.yml
+  - path: notifications/docker-compose.yml
+
+services:
+  site:
+    build: .
+    container_name: site
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    environment:
+      - SITE_ADDRESS=${SITE_ADDRESS}
+      - ACME_EMAIL=${ACME_EMAIL}
+      - NTFY_ADDRESS=${NTFY_ADDRESS}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

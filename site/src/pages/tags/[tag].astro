@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { TAGS } from '../../content.config';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('post', ({ data }) => !data.draft);
+
+  // Only create pages for valid tags that have posts
+  return TAGS.map((tag) => {
+    const filteredPosts = allPosts
+      .filter((post) => post.data.tags?.includes(tag))
+      .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+    return {
+      params: { tag },
+      props: {
+        tag,
+        posts: filteredPosts,
+      },
+    };
+  }).filter(({ props }) => props.posts.length > 0);
+}
+
+interface Props {
+  tag: string;
+  posts: any[];
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`Posts using ${tag}`} description={`All posts tagged with "${tag}"`}>
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-3xl mx-auto">
+      <!-- Tag header -->
+      <header class="mb-8 pb-6 border-b border-[var(--color-translucent)]">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="tag text-base">
+            {tag.toUpperCase()}
+          </span>
+          <span class="text-[var(--color-text-muted)] text-sm">{posts.length} posts</span>
+        </div>
+        <p class="text-[var(--color-text)]">All posts tagged with "{tag}"</p>
+      </header>
+
+      {posts.length > 0 ? (
+        <div class="space-y-6">
+          {posts.map((post) => (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="text-[var(--color-text)]">No posts found with this tag.</p>
+      )}
+    </main>
+  </div>
+</BaseLayout>

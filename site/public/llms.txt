@@ -1,0 +1,68 @@
+# Darryl Cauldwell - Technical Blog & Portfolio
+
+> Personal website of Darryl Cauldwell, a cloud infrastructure and DevOps professional with expertise in VMware, Kubernetes, AWS, and automation.
+
+## Site Overview
+
+This is a technical blog covering cloud infrastructure, containerization, automation, and DevOps practices. The author has 20+ years of experience in IT infrastructure, holding certifications including VCP, VCAP, AWS Solutions Architect, and CKA.
+
+## Content Categories
+
+### Cloud (/cloud/)
+Articles about public cloud platforms including AWS, Azure, and cloud-native services. Topics include EC2, Lambda, DynamoDB, S3, CloudFormation, and cloud architecture patterns.
+
+### Kubernetes (/kubernetes/)
+Container orchestration content covering Kubernetes deployments, Tanzu, Antrea networking, Knative, and cloud-native application patterns.
+
+### VMware (/vmware/)
+Enterprise virtualization topics including vSphere, NSX-T networking, vRealize Automation, VCF (VMware Cloud Foundation), and software-defined datacenter concepts.
+
+### Automation (/automation/)
+Infrastructure as Code and automation content covering Ansible, Terraform, Python scripting, PowerShell, and CI/CD pipelines.
+
+### Homelab (/homelab/)
+Personal lab setup guides including Raspberry Pi clusters, Intel NUC configurations, and home networking projects.
+
+### Career (/career/)
+Professional development content including DevOps practices, SRE principles, and technology career guidance.
+
+## Key Topics Covered
+
+- **NSX-T**: Network virtualization, microsegmentation, distributed firewall, load balancing
+- **Terraform**: Infrastructure provisioning for VMware and cloud platforms
+- **Ansible**: Configuration management and automation playbooks
+- **Kubernetes**: Container orchestration, Tanzu Kubernetes Grid, networking
+- **AWS**: EC2, Lambda, DynamoDB, CloudFormation, VPC design
+- **Python**: Automation scripts, API integrations, SDK usage
+- **Docker**: Container networking, image building, Docker Compose
+
+## Author Information
+
+- **Name**: Darryl Cauldwell
+- **Role**: Cloud Infrastructure & DevOps Professional
+- **Experience**: 20+ years in IT infrastructure
+- **Certifications**: VCP, VCAP, AWS SA, CKA
+- **Bio**: /bio/
+- **CV**: /cv/
+
+## Technical Stack
+
+This site runs on:
+- Astro (static site generator)
+- Caddy (web server with automatic HTTPS)
+- Full observability stack: Prometheus, Grafana, Loki
+
+## Navigation
+
+- Home: /
+- All Posts: /post/
+- Tags: /tags/
+- Observability Dashboard: /observability/
+
+## Contact
+
+The author can be reached through the social links on the website footer including LinkedIn and GitHub.
+
+## Content License
+
+Technical articles are provided for educational purposes. Code examples may be used freely with attribution.
