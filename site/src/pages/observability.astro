@@ -97,34 +97,133 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="text-xs text-[var(--color-text-muted)] mt-2">Log collection</div>
         </div>
 
+      </div>
+
+      <!-- Planespotter Containers -->
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mt-6 mb-3">Planespotter</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-icon">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-db-icon">
               <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">Planespotter</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-status">Checking...</p>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Database</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-db-status">Checking...</p>
             </div>
           </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Aircraft tracking app</div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">PostgreSQL</div>
         </div>
 
         <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="evm-icon">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-cache-icon">
               <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">EVM</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="evm-status">Checking...</p>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Cache</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-cache-status">Checking...</p>
             </div>
           </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Equestrian venue manager</div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Valkey</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-api-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">API</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-api-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">FastAPI backend</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-frontend-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Frontend</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-frontend-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Web UI</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-sync-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Sync</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-sync-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">ADSB data sync</div>
+        </div>
+      </div>
+
+      <!-- EVM Containers -->
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-3">Equestrian Venue Manager</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="evm-db-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Database</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="evm-db-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">PostgreSQL</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="evm-backend-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Backend</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="evm-backend-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">FastAPI backend</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="evm-frontend-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Frontend</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="evm-frontend-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">React frontend</div>
         </div>
       </div>
 
@@ -263,8 +362,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
   }
 
-  checkContainerRunning('planespotter-api', 'planespotter-status', 'planespotter-icon');
-  checkContainerRunning('evm-backend', 'evm-status', 'evm-icon');
+  // Planespotter containers
+  checkContainerRunning('planespotter-db', 'planespotter-db-status', 'planespotter-db-icon');
+  checkContainerRunning('planespotter-cache', 'planespotter-cache-status', 'planespotter-cache-icon');
+  checkContainerRunning('planespotter-api', 'planespotter-api-status', 'planespotter-api-icon');
+  checkContainerRunning('planespotter-frontend', 'planespotter-frontend-status', 'planespotter-frontend-icon');
+  checkContainerRunning('planespotter-sync', 'planespotter-sync-status', 'planespotter-sync-icon');
+
+  // EVM containers
+  checkContainerRunning('evm-db', 'evm-db-status', 'evm-db-icon');
+  checkContainerRunning('evm-backend', 'evm-backend-status', 'evm-backend-icon');
+  checkContainerRunning('evm-frontend', 'evm-frontend-status', 'evm-frontend-icon');
   // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
   fetch('/prometheus/api/v1/targets')
     .then(r => r.json())
