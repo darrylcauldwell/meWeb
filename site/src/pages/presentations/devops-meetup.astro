@@ -58,25 +58,32 @@
 
         <!-- Slide 3: Royal Mail IT Services -->
         <section>
-          <h2>Royal Mail IT Services</h2>
-          <p class="small">1993 &ndash; 2003</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 style="margin: 0;">Royal Mail IT Services <span class="small">1993 &ndash; 2003</span></h2>
+            <img src="/presentations/devops-meetup/royal-mail.png" alt="Royal Mail" style="max-height: 60px;">
+          </div>
           <div class="two-col">
-            <div>
-              <img src="/presentations/devops-meetup/royal-mail.png" alt="Royal Mail" style="max-height: 100px; margin-bottom: 1rem;">
-              <h3 style="font-size:0.8em;">48,000 Vehicles &mdash; 1,110 Parcelforce</h3>
-              <ul style="font-size:0.65em;">
-                <li>Analogue carphone, modem and compute device</li>
-                <li>Send back to central service centre for application lifecycle</li>
-                <li>Lifecycle management was slow and expensive</li>
-              </ul>
+            <div style="flex: 1;">
+              <div style="background: #42affa; color: #000; font-weight: bold; text-align: center; padding: 0.4rem 0.8rem; border-radius: 6px 6px 0 0; font-size: 0.75em;">Distributed Edge</div>
+              <div style="background: rgba(255,255,255,0.05); border-radius: 0 0 8px 8px; padding: 1rem;">
+                <h3 style="font-size:0.8em; margin-top: 0;">37 Sorting Offices &amp; 1,356 Delivery Offices</h3>
+                <ul style="font-size:0.6em;">
+                  <li>Windows PCs running track &amp; trace, route planning, revenue protection and MS Office</li>
+                  <li>&ldquo;Man in a van&rdquo; systems administration</li>
+                  <li>Poor configuration management, slow rollout, very expensive</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 style="font-size:0.8em;">37 Sorting Offices &amp; 1,356 Delivery Offices</h3>
-              <ul style="font-size:0.65em;">
-                <li>Windows PCs running track &amp; trace, route planning, revenue protection and MS Office</li>
-                <li>&ldquo;Man in a van&rdquo; systems administration</li>
-                <li>Poor configuration management, slow rollout, very expensive</li>
-              </ul>
+            <div style="flex: 1;">
+              <div style="background: #42affa; color: #000; font-weight: bold; text-align: center; padding: 0.4rem 0.8rem; border-radius: 6px 6px 0 0; font-size: 0.75em;">Distributed Far Edge</div>
+              <div style="background: rgba(255,255,255,0.05); border-radius: 0 0 8px 8px; padding: 1rem;">
+                <h3 style="font-size:0.8em; margin-top: 0;">48,000 Vehicles &mdash; 1,110 Parcelforce</h3>
+                <ul style="font-size:0.6em;">
+                  <li>Analogue carphone, modem and compute device</li>
+                  <li>Send back to central service centre for application lifecycle</li>
+                  <li>Lifecycle management was slow and expensive</li>
+                </ul>
+              </div>
             </div>
           </div>
           <aside class="notes">
@@ -87,13 +94,12 @@
         <!-- Slide 4: VMware -->
         <section>
           <h2>VMware &mdash; 2019 to present</h2>
-          <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 1rem;">
-            <img src="/presentations/devops-meetup/vmware-logo.png" alt="VMware by Broadcom" style="height: 60px;">
-            <img src="/presentations/devops-meetup/octo-logo.png" alt="Office of the CTO" style="height: 80px;">
-          </div>
           <div class="two-col" style="font-size: 0.7em;">
-            <div>
-              <h3 style="font-size:1em;">Customer Success Architect</h3>
+            <div style="flex: 1;">
+              <div style="text-align: center; margin-bottom: 0.8rem;">
+                <img src="/presentations/devops-meetup/vmware-logo.png" alt="VMware" style="height: 40px;">
+              </div>
+              <h3 style="font-size:1em; color:#42affa;">Customer Success Architect</h3>
               <ul>
                 <li>Cloud Foundation: vSphere, vSAN, NSX, Aria suite</li>
                 <li>Tanzu: App Modernisation, Spring, Cloud Foundry, Kubernetes</li>
@@ -101,8 +107,11 @@
                 <li>Secure Access Service Edge: SD-WAN, Edge Intelligence</li>
               </ul>
             </div>
-            <div>
-              <h3 style="font-size:1em;">Office of CTO Ambassador</h3>
+            <div style="flex: 1;">
+              <div style="text-align: center; margin-bottom: 0.8rem;">
+                <img src="/presentations/devops-meetup/octo-logo.png" alt="Office of the CTO" style="height: 50px;">
+              </div>
+              <h3 style="font-size:1em; color:#42affa;">Office of CTO Ambassador</h3>
               <ul>
                 <li>Sustainable Software</li>
                 <li>Serverless (Knative)</li>
@@ -118,35 +127,41 @@
         <!-- Slide 5: Near Edge -->
         <section>
           <h2>Near Edge</h2>
-          <p style="font-size:0.65em; color:#aaa;">Few nodes with shared storage, cluster for availability and resilience. Data centre WAN connectivity and management plane. Optimised for low latency applications. dGPU enabled AI.</p>
-          <div class="use-case-grid">
-            <div>
-              <h3>Warehouses</h3>
-              <ul>
+          <p style="font-size:0.55em; color:#888; margin-bottom: 1rem; border-left: 3px solid #42affa; padding-left: 0.8rem;">Few nodes with shared storage, cluster for availability and resilience. Data centre WAN connectivity and management plane. Optimised for low latency applications.</p>
+          <div style="display: flex; gap: 1rem;">
+            <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #e67e22, #d35400); padding: 0.8rem; text-align: center; height: 8.5rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 1.5em;">🏭</span>
+                <h3 style="font-size: 0.8em; margin: 0.3rem 0 0 0; color: #fff;">Warehouses</h3>
+              </div>
+              <ul style="font-size: 0.55em; padding: 0.8rem 0.8rem 0.8rem 1.8rem; margin: 0;">
                 <li>Quality Inspection &mdash; Computer Vision</li>
                 <li>Theft prevention &mdash; Computer Vision</li>
                 <li>Logistics</li>
               </ul>
             </div>
-            <div>
-              <h3>Factories</h3>
-              <ul>
-                <li>SCADA</li>
-                <li>SCADA Intrusion Detection</li>
-                <li>Predictive Maintenance &mdash; CV</li>
-                <li>Quality Inspection &mdash; CV</li>
-                <li>PLC</li>
-                <li>Physical security &mdash; CV</li>
+            <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #3498db, #2980b9); padding: 0.8rem; text-align: center; height: 8.5rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 1.5em;">⚙️</span>
+                <h3 style="font-size: 0.8em; margin: 0.3rem 0 0 0; color: #fff;">Factories</h3>
+              </div>
+              <ul style="font-size: 0.55em; padding: 0.8rem 0.8rem 0.8rem 1.8rem; margin: 0;">
+                <li>SCADA &amp; Intrusion Detection</li>
+                <li>Predictive Maintenance &mdash; Computer Vision</li>
+                <li>Quality Inspection &mdash; Computer Vision</li>
+                <li>PLC &amp; Physical security</li>
               </ul>
             </div>
-            <div>
-              <h3>Electricity Sub-stations</h3>
-              <ul>
+            <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #f1c40f, #f39c12); padding: 0.8rem; text-align: center; height: 8.5rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 1.5em;">⚡</span>
+                <h3 style="font-size: 0.8em; margin: 0.3rem 0 0 0; color: #000;">Electricity Grid<br>Transmission</h3>
+              </div>
+              <ul style="font-size: 0.55em; padding: 0.8rem 0.8rem 0.8rem 1.8rem; margin: 0;">
                 <li>Protection automation control</li>
                 <li>Overhead line telemetry</li>
                 <li>Intelligent Electronic Devices</li>
-                <li>SCADA &amp; Intrusion Detection</li>
-                <li>Physical security &mdash; CV</li>
+                <li>Physical security &mdash; Computer Vision</li>
               </ul>
             </div>
           </div>
@@ -158,35 +173,42 @@
         <!-- Slide 6: Distributed Edge -->
         <section>
           <h2>Distributed Edge</h2>
-          <p style="font-size:0.65em; color:#aaa;">Single or small number of nodes with resource constrained hardware. 4/5G connectivity, SD-WAN. Optimised for low latency applications. iGPU enabled AI.</p>
-          <div class="use-case-grid">
-            <div>
-              <h3>Retail</h3>
-              <ul>
-                <li>Point of Sale &mdash; CV</li>
-                <li>Theft prevention &mdash; CV</li>
-                <li>Quality Inspection &mdash; CV</li>
+          <p style="font-size:0.55em; color:#888; margin-bottom: 1rem; border-left: 3px solid #9b59b6; padding-left: 0.8rem;">Single or small number of nodes with resource constrained hardware. 4/5G connectivity, SD-WAN. Optimised for low latency applications.</p>
+          <div style="display: flex; gap: 1rem;">
+            <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #1abc9c, #16a085); padding: 0.8rem; text-align: center; height: 8.5rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 1.5em;">🛒</span>
+                <h3 style="font-size: 0.8em; margin: 0.3rem 0 0 0; color: #fff;">Retail</h3>
+              </div>
+              <ul style="font-size: 0.55em; padding: 0.8rem 0.8rem 0.8rem 1.8rem; margin: 0;">
+                <li>Point of Sale &mdash; Computer Vision</li>
+                <li>Theft prevention &mdash; Computer Vision</li>
+                <li>Quality Inspection &mdash; Computer Vision</li>
                 <li>Inventory management</li>
               </ul>
             </div>
-            <div>
-              <h3>Vehicles / Ships</h3>
-              <ul>
-                <li>Predictive Maintenance &mdash; CV</li>
-                <li>Physical security &mdash; CV</li>
-                <li>Intelligent Battlefields</li>
-                <li>Signals intelligence</li>
-                <li>Telemetry processing</li>
+            <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #34495e, #2c3e50); padding: 0.8rem; text-align: center; height: 8.5rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 1.5em;">🚢</span>
+                <h3 style="font-size: 0.8em; margin: 0.3rem 0 0 0; color: #fff;">Vehicles / Ships</h3>
+              </div>
+              <ul style="font-size: 0.55em; padding: 0.8rem 0.8rem 0.8rem 1.8rem; margin: 0;">
+                <li>Predictive Maintenance &mdash; Computer Vision</li>
+                <li>Physical security &mdash; Computer Vision</li>
+                <li>Signals &amp; Telemetry</li>
                 <li>Drone operation</li>
               </ul>
             </div>
-            <div>
-              <h3>Electricity Distribution</h3>
-              <ul>
+            <div style="flex: 1; background: rgba(255,255,255,0.03); border-radius: 8px; overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #e74c3c, #c0392b); padding: 0.8rem; text-align: center; height: 8.5rem; display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-size: 1.5em;">🔌</span>
+                <h3 style="font-size: 0.8em; margin: 0.3rem 0 0 0; color: #fff;">Electricity Grid<br>Distribution</h3>
+              </div>
+              <ul style="font-size: 0.55em; padding: 0.8rem 0.8rem 0.8rem 1.8rem; margin: 0;">
                 <li>Protection automation control</li>
                 <li>Intelligent Electronic Devices</li>
-                <li>Physical security &mdash; CV</li>
-                <li>Worker Safety &mdash; CV</li>
+                <li>Physical security &mdash; Computer Vision</li>
+                <li>Worker Safety &mdash; Computer Vision</li>
               </ul>
             </div>
           </div>
@@ -198,16 +220,27 @@
         <!-- Slide 7: Wind Turbines -->
         <section>
           <h2>Wind Turbines Predictive Maintenance</h2>
-          <p style="font-size:0.9em; color:#42affa; margin-bottom:0.5rem;">72,000+ turbines</p>
-          <ul>
-            <li>Management at scale</li>
-            <li>Observability at scale</li>
-            <li>Low cost commodity hardware</li>
-            <li>Consistent infrastructure deployment and configuration</li>
-            <li>Rapid, consistent iteration and delivery of computer vision inference models</li>
-            <li>Automated, zero touch provisioning</li>
-            <li>Secure 5G connectivity</li>
-          </ul>
+          <div style="display: flex; gap: 2rem; font-size: 0.65em;">
+            <div style="flex: 1;">
+              <ul style="margin: 0;">
+                <li>72,000+ turbines
+                  <ul>
+                    <li>Management at scale</li>
+                    <li>Observability at scale</li>
+                    <li>Low cost commodity hardware</li>
+                  </ul>
+                </li>
+                <li>Consistent infrastructure deployment and configuration</li>
+                <li>Rapid, consistent iteration and delivery of computer vision inference models</li>
+                <li>Automated, zero touch provisioning</li>
+                <li>Secure 5G connectivity</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Architecture Diagram -->
+          <div style="margin-top: 0.5rem; text-align: center;">
+            <img src="/presentations/devops-meetup/wind-turbine-v2.svg" alt="Wind Turbine Predictive Maintenance Architecture" style="max-width: 100%; max-height: 280px;">
+          </div>
           <aside class="notes">
             So if we look closer at the use case of how this might be used. And we look at enabling predictive maintenance of wind turbine fleet. The solution would be a camera and thermal imaging camera streaming views of the machinery. These image streams are processed by an inference engine which looks for anomalies. If found the event triggers the turbine to alter its behaviour and notify control centre. Not all possible anomalies are understood by the inference engine and so stream also feeds a cloud for model training and improvement. The refined model needs quick distribution to the fleet.
           </aside>
@@ -236,9 +269,6 @@
         <section>
           <h2>Common edge constraints</h2>
           <div class="two-col">
-            <div>
-              <img src="/presentations/devops-meetup/ball-chain.png" alt="Constraints" style="max-height: 250px; border-radius: 8px;">
-            </div>
             <div style="font-size:0.7em;">
               <ul>
                 <li><strong>Application</strong> &mdash; Many existing apps may not be modernised for years. Configuration drift. Lifecycle management complex.</li>
@@ -248,6 +278,10 @@
                 <li><strong>Siloed data</strong> &mdash; Pockets of data distributed in silos.</li>
                 <li><strong>People skillset</strong> &mdash; Few trained in IT at edge locations. Few dedicated to Edge in central IT.</li>
               </ul>
+            </div>
+            <div style="text-align: center;">
+              <img src="/presentations/devops-meetup/ball-chain.png" alt="Constraints" style="max-height: 400px; border-radius: 8px;">
+              <p style="font-size: 0.5em; color: #888; margin-top: 0.5rem;"><a href="https://jooinn.com/ball-and-chain-means-conquering-adversity-and-bound-3d-rendering.html" target="_blank" rel="noopener" style="color: #42affa;">Image: jooinn.com</a></p>
             </div>
           </div>
           <aside class="notes">
@@ -282,32 +316,7 @@
         <section>
           <h2>VECO Architecture</h2>
           <div style="text-align: center; margin-top: 1rem;">
-            <div style="display: flex; justify-content: center; gap: 2rem; align-items: flex-start;">
-              <div style="border: 2px solid #42affa; border-radius: 8px; padding: 1.5rem; min-width: 200px;">
-                <h3 style="font-size:0.9em; color:#42affa; margin-bottom:0.5rem;">Management Plane</h3>
-                <ul style="font-size:0.6em; list-style:none; padding:0;">
-                  <li>Lifecycle Management</li>
-                  <li>Site Profiles</li>
-                  <li>Visibility &amp; Monitoring</li>
-                  <li>Auditing</li>
-                </ul>
-              </div>
-            </div>
-            <div style="font-size:2em; color:#42affa; margin: 0.5rem 0;">&darr;</div>
-            <div style="display: flex; justify-content: center; gap: 1rem;">
-              <div style="border: 2px solid #888; border-radius: 8px; padding: 1rem; min-width: 150px;">
-                <h3 style="font-size:0.7em;">Control &amp; Data Plane</h3>
-                <p style="font-size:0.6em; margin:0;">ESXi &bull; Containers &bull; VMs</p>
-              </div>
-              <div style="border: 2px solid #888; border-radius: 8px; padding: 1rem; min-width: 150px;">
-                <h3 style="font-size:0.7em;">Control &amp; Data Plane</h3>
-                <p style="font-size:0.6em; margin:0;">ESXi &bull; Containers &bull; VMs</p>
-              </div>
-              <div style="border: 2px solid #888; border-radius: 8px; padding: 1rem; min-width: 150px;">
-                <h3 style="font-size:0.7em;">Control &amp; Data Plane</h3>
-                <p style="font-size:0.6em; margin:0;">ESXi &bull; Containers &bull; VMs</p>
-              </div>
-            </div>
+            <img src="/presentations/devops-meetup/veco-architecture.svg" alt="VECO Architecture - Management Plane connected to Control and Data Planes" style="max-width: 100%; max-height: 450px;">
           </div>
           <aside class="notes">
             The high level architecture is a cloud management plane and each edge site has its own control and data plane.
@@ -327,26 +336,19 @@
           <div style="text-align: center; margin-top: 1rem;">
             <div style="display: flex; justify-content: center; gap: 1.5rem; align-items: center; margin-bottom: 1rem;">
               <div style="text-align: center;">
-                <img src="/presentations/devops-meetup/git-logo.png" alt="Git" style="height: 80px;">
-                <p style="font-size:0.5em; margin-top:0.3rem;">Declarative source of truth</p>
+                <img src="/presentations/devops-meetup/git-logo.png" alt="Git" style="height: 100px;">
+                <p style="font-size:0.5em; margin-top:0.3rem;">Declarative source of truth for entire stack</p>
                 <p style="font-size:0.45em; color:#888;">firmware.yml &bull; esxconfig.yml &bull; vm.yml &bull; container.yml</p>
               </div>
               <div style="font-size:2em; color:#42affa;">&rarr;</div>
               <div style="text-align: center;">
-                <img src="/presentations/devops-meetup/flux-logo.png" alt="Flux" style="height: 60px;">
-                <p style="font-size:0.5em; margin-top:0.3rem;">Update triggers pipeline</p>
+                <img src="/presentations/devops-meetup/flux-logo.svg" alt="Flux" style="height: 100px;">
+                <p style="font-size:0.5em; margin-top:0.3rem;">Update to source of truth triggers pipeline</p>
               </div>
               <div style="font-size:2em; color:#42affa;">&rarr;</div>
               <div style="text-align: center;">
-                <div class="edge-grid">
-                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
-                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
-                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
-                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
-                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
-                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
-                </div>
-                <p style="font-size:0.5em;">Configuration pulled by each device</p>
+                <img src="/presentations/devops-meetup/edge-devices-config.svg" alt="Edge devices with VMs, Containers and ESXi Config" style="height: 140px;">
+                <p style="font-size:0.5em;">Configuration pulled and realised by each device</p>
               </div>
             </div>
           </div>
@@ -431,26 +433,22 @@ edge-vm                 guaranteed-small   photon-hw11-4.0.ova</code></pre>
 
         <!-- Slide 19: Computer Vision Demo -->
         <section>
-          <h2>Demo &mdash; Computer Vision at the Edge</h2>
-          <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 1.5rem;">
+          <h2>Demo</h2>
+          <div class="two-col" style="align-items: flex-start;">
             <div style="text-align: center;">
-              <img src="/presentations/devops-meetup/camera-icon.png" alt="RTSP Camera" style="height: 80px;">
-              <p style="font-size:0.55em;">RTSP Camera</p>
+              <img src="/presentations/devops-meetup/demo-architecture.svg" alt="Demo Architecture - RTSP Camera to Inference Engine stack to Git" style="max-height: 450px;">
             </div>
-            <div style="font-size:1.5em; color:#42affa;">&rarr;</div>
-            <div style="text-align: center;">
-              <img src="/presentations/devops-meetup/opencv-logo.png" alt="OpenCV" style="height: 50px; margin-bottom: 0.3rem;">
-              <p style="font-size:0.55em;">Inference Engine</p>
-              <img src="/presentations/devops-meetup/caffe-logo.png" alt="Caffe" style="height: 40px; margin-top: 0.3rem;">
-              <p style="font-size:0.45em; color:#888;">Caffe Face Detector<br>OpenCV Pre-trained Model</p>
+            <div style="font-size:0.55em; text-align: left;">
+              <div style="margin-bottom: 1rem;">
+                <img src="/presentations/devops-meetup/opencv-logo.png" alt="OpenCV" style="height: 60px; margin-bottom: 0.5rem;">
+                <p>OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library.</p>
+                <p style="margin-top: 0.5rem;">OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products.</p>
+              </div>
+              <div style="margin-top: 1.5rem;">
+                <p style="color: #c00; font-size: 2em; font-weight: bold; margin-bottom: 0.3rem;">Caffe</p>
+                <p>Caffe is a deep learning framework. Caffe Face Detector is an OpenCV Pre-trained Model.</p>
+              </div>
             </div>
-            <div style="font-size:1.5em; color:#42affa;">&rarr;</div>
-            <div style="text-align: center;">
-              <p style="font-size:0.7em;">Browser</p>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 1.5rem;">
-            <p style="font-size:0.6em; color:#888;">Running on NUC &bull; Managed by VECO &bull; Config in Git</p>
           </div>
         </section>
 
@@ -472,12 +470,19 @@ edge-vm                 guaranteed-small   photon-hw11-4.0.ova</code></pre>
         <section>
           <p class="appendix-label">Appendix</p>
           <h2>OpenVINO</h2>
-          <ul style="font-size:0.8em;">
-            <!-- cspell:disable-next-line -->
-            <li><strong>O</strong>pen <strong>V</strong>isual <strong>I</strong>nference <strong>N</strong>eural networks <strong>O</strong>ptimisation</li>
-          </ul>
-          <div class="image-slide" style="margin-top: 1rem;">
-            <img src="/presentations/devops-meetup/openvino-arch.png" alt="OpenVINO architecture - frameworks to hardware" style="max-height: 400px;">
+          <div class="two-col" style="align-items: flex-start;">
+            <div style="font-size:0.9em;">
+              <!-- cspell:disable -->
+              <p><strong style="color:#42affa;">Open</strong></p>
+              <p><strong style="color:#42affa;">V</strong>isual</p>
+              <p><strong style="color:#42affa;">I</strong>nference</p>
+              <p><strong style="color:#42affa;">N</strong>eural networks</p>
+              <p><strong style="color:#42affa;">O</strong>ptimisation</p>
+              <!-- cspell:enable -->
+            </div>
+            <div style="text-align: center;">
+              <img src="/presentations/devops-meetup/openvino-arch.png" alt="OpenVINO architecture - frameworks to hardware" style="max-height: 400px;">
+            </div>
           </div>
         </section>
 
@@ -515,14 +520,21 @@ edge-vm                 guaranteed-small   photon-hw11-4.0.ova</code></pre>
         <section>
           <p class="appendix-label">Appendix</p>
           <h2>GPU Access Models</h2>
-          <div class="two-col" style="margin-top: 1.5rem;">
-            <div style="border: 2px solid #42affa; border-radius: 8px; padding: 1.5rem; text-align: center;">
-              <h3 style="font-size:1em;">Passthrough</h3>
-              <p style="font-size:0.7em;">Dedicated GPU assigned to a single VM</p>
+          <div style="display: flex; align-items: center; gap: 2rem; margin-top: 0.5rem;">
+            <div style="flex: 1;">
+              <img src="/presentations/devops-meetup/gpu-passthrough.svg" alt="GPU Passthrough - dedicated GPU per VM" style="max-height: 180px;">
             </div>
-            <div style="border: 2px solid #42affa; border-radius: 8px; padding: 1.5rem; text-align: center;">
-              <h3 style="font-size:1em;">Shared vGPU</h3>
-              <p style="font-size:0.7em;">NVIDIA NVAIE license required</p>
+            <div style="flex: 1;">
+              <h3 style="font-size:1.2em; margin: 0;">Passthrough</h3>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 2rem; margin-top: 1rem;">
+            <div style="flex: 1;">
+              <img src="/presentations/devops-meetup/gpu-shared-vgpu.svg" alt="Shared vGPU - multiple VMs share one GPU" style="max-height: 180px;">
+            </div>
+            <div style="flex: 1;">
+              <h3 style="font-size:1.2em; margin: 0;">Shared vGPU</h3>
+              <p style="font-size:0.9em; margin: 0.3rem 0 0 0; color: #aaa;">( NVIDIA NVAIE license )</p>
             </div>
           </div>
         </section>

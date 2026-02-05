@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#42affa"/>
+    </marker>
+  </defs>
+
+  <!-- RTSP Camera label -->
+  <text x="60" y="175" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">RTSP</text>
+  <text x="60" y="192" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">Camera</text>
+
+  <!-- Camera icon circle -->
+  <circle cx="60" cy="120" r="40" fill="#42affa"/>
+
+  <!-- Camera icon (simplified) -->
+  <g transform="translate(32, 92)">
+    <rect x="8" y="8" width="32" height="22" rx="2" fill="white"/>
+    <polygon points="40,14 52,8 52,36 40,30" fill="white"/>
+    <circle cx="24" cy="19" r="7" fill="#42affa"/>
+    <rect x="18" y="32" width="12" height="14" fill="white"/>
+    <rect x="12" y="46" width="24" height="4" fill="white"/>
+  </g>
+
+  <!-- Arrow from camera to stack -->
+  <line x1="110" y1="120" x2="165" y2="120" stroke="#42affa" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Stack of boxes -->
+  <!-- Browser box -->
+  <rect x="175" y="10" width="140" height="45" fill="none" stroke="#42affa" stroke-width="2"/>
+  <text x="245" y="38" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">Browser</text>
+
+  <!-- Arrow from Browser to Inference -->
+  <line x1="245" y1="55" x2="245" y2="90" stroke="#42affa" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Inference engine box -->
+  <rect x="175" y="100" width="140" height="45" fill="none" stroke="#42affa" stroke-width="2"/>
+  <text x="245" y="128" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">Inference engine</text>
+
+  <!-- VECO box -->
+  <rect x="175" y="155" width="140" height="45" fill="none" stroke="#42affa" stroke-width="2"/>
+  <text x="245" y="183" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">VECO</text>
+
+  <!-- NUC box -->
+  <rect x="175" y="210" width="140" height="45" fill="none" stroke="#42affa" stroke-width="2"/>
+  <text x="245" y="238" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">NUC</text>
+
+  <!-- Arrow from VECO to Git -->
+  <line x1="315" y1="177" x2="355" y2="177" stroke="#42affa" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Git box -->
+  <rect x="365" y="155" width="110" height="45" fill="none" stroke="#42affa" stroke-width="2"/>
+  <text x="420" y="183" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">Git</text>
+</svg>

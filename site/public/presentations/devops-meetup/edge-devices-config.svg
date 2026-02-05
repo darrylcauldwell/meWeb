@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200">
+  <!-- Edge Device 1 -->
+  <rect x="10" y="10" width="80" height="85" fill="none" stroke="#42affa" stroke-width="2" rx="4"/>
+  <text x="50" y="28" fill="#42affa" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" font-weight="bold">Edge 1</text>
+
+  <rect x="18" y="35" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="50" y="46" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">VMs</text>
+
+  <rect x="18" y="55" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="50" y="66" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Containers</text>
+
+  <rect x="18" y="75" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="50" y="86" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ESXi Config</text>
+
+  <!-- Edge Device 2 -->
+  <rect x="100" y="10" width="80" height="85" fill="none" stroke="#42affa" stroke-width="2" rx="4"/>
+  <text x="140" y="28" fill="#42affa" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" font-weight="bold">Edge 2</text>
+
+  <rect x="108" y="35" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="140" y="46" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">VMs</text>
+
+  <rect x="108" y="55" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="140" y="66" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Containers</text>
+
+  <rect x="108" y="75" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="140" y="86" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ESXi Config</text>
+
+  <!-- Edge Device 3 -->
+  <rect x="190" y="10" width="80" height="85" fill="none" stroke="#42affa" stroke-width="2" rx="4"/>
+  <text x="230" y="28" fill="#42affa" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" font-weight="bold">Edge 3</text>
+
+  <rect x="198" y="35" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="230" y="46" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">VMs</text>
+
+  <rect x="198" y="55" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="230" y="66" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Containers</text>
+
+  <rect x="198" y="75" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="230" y="86" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ESXi Config</text>
+
+  <!-- Edge Device 4 -->
+  <rect x="10" y="105" width="80" height="85" fill="none" stroke="#42affa" stroke-width="2" rx="4"/>
+  <text x="50" y="123" fill="#42affa" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" font-weight="bold">Edge 4</text>
+
+  <rect x="18" y="130" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="50" y="141" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">VMs</text>
+
+  <rect x="18" y="150" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="50" y="161" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Containers</text>
+
+  <rect x="18" y="170" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="50" y="181" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ESXi Config</text>
+
+  <!-- Edge Device 5 -->
+  <rect x="100" y="105" width="80" height="85" fill="none" stroke="#42affa" stroke-width="2" rx="4"/>
+  <text x="140" y="123" fill="#42affa" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" font-weight="bold">Edge 5</text>
+
+  <rect x="108" y="130" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="140" y="141" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">VMs</text>
+
+  <rect x="108" y="150" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="140" y="161" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Containers</text>
+
+  <rect x="108" y="170" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="140" y="181" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ESXi Config</text>
+
+  <!-- Edge Device 6 -->
+  <rect x="190" y="105" width="80" height="85" fill="none" stroke="#42affa" stroke-width="2" rx="4"/>
+  <text x="230" y="123" fill="#42affa" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" font-weight="bold">Edge 6</text>
+
+  <rect x="198" y="130" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="230" y="141" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">VMs</text>
+
+  <rect x="198" y="150" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="230" y="161" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Containers</text>
+
+  <rect x="198" y="170" width="64" height="16" fill="#1a3a5c" stroke="#42affa" stroke-width="1" rx="2"/>
+  <text x="230" y="181" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">ESXi Config</text>
+</svg>
