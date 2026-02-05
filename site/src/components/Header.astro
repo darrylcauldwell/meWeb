@@ -1,29 +1,9 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import SearchWidget from './SearchWidget.astro';
-import { navCategories as categories, meLinks, meAccentColor, presentationLinks, presentationsAccentColor, appsLinks, appsAccentColor } from '../config/colors';
+import { navCategories as categories, meLinks, presentationLinks, appsLinks } from '../config/colors';
 
 const currentPath = Astro.url.pathname;
-
-function isActive(href: string) {
-  if (href === '/') return currentPath === '/';
-  return currentPath.startsWith(href);
-}
-
-// Determine current category label for dropdown
-function getCurrentCategoryLabel() {
-  for (const cat of categories) {
-    if (cat.href !== '/' && currentPath.startsWith(cat.href)) {
-      return cat.label;
-    }
-  }
-  return 'All Posts';
-}
-
-const currentCategory = getCurrentCategoryLabel();
-const isBlogActive = currentPath === '/' || currentPath.startsWith('/post/') || categories.some(c => c.href !== '/' && currentPath.startsWith(c.href));
-const isMeActive = meLinks.some(link => currentPath.startsWith(link.href));
-const isPresentationsActive = currentPath.startsWith('/presentations');
 const isObservabilityActive = currentPath.startsWith('/observability');
 ---
 
@@ -41,12 +21,7 @@ const isObservabilityActive = currentPath.startsWith('/observability');
         <div class="relative" id="blog-dropdown">
           <button
             id="blog-dropdown-btn"
-            class:list={[
-              'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
-              isBlogActive
-                ? 'bg-[var(--color-accent)] text-[var(--color-light)]'
-                : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
-            ]}
+            class="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]"
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="blog-dropdown-menu"
@@ -64,24 +39,15 @@ const isObservabilityActive = currentPath.startsWith('/observability');
             role="menu"
             aria-labelledby="blog-dropdown-btn"
           >
-            {categories.map((item) => {
-              const isItemActive = (item.href === '/' && currentPath === '/') || (item.href !== '/' && currentPath.startsWith(item.href));
-              return (
-                <a
-                  href={item.href}
-                  class:list={[
-                    'block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg',
-                    isItemActive
-                      ? 'font-semibold text-[var(--color-dark)]'
-                      : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-                  ]}
-                  style={isItemActive ? `background-color: ${item.color};` : ''}
-                  role="menuitem"
-                >
-                  {item.label}
-                </a>
-              );
-            })}
+            {categories.map((item) => (
+              <a
+                href={item.href}
+                class="block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
+                role="menuitem"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -89,12 +55,7 @@ const isObservabilityActive = currentPath.startsWith('/observability');
         <div class="relative" id="me-dropdown">
           <button
             id="me-dropdown-btn"
-            class:list={[
-              'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
-              isMeActive
-                ? 'bg-[var(--color-accent)] text-[var(--color-light)]'
-                : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
-            ]}
+            class="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]"
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="me-dropdown-menu"
@@ -112,24 +73,15 @@ const isObservabilityActive = currentPath.startsWith('/observability');
             role="menu"
             aria-labelledby="me-dropdown-btn"
           >
-            {meLinks.map((item) => {
-              const isItemActive = currentPath.startsWith(item.href);
-              return (
-                <a
-                  href={item.href}
-                  class:list={[
-                    'block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg',
-                    isItemActive
-                      ? 'font-semibold text-[var(--color-dark)]'
-                      : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-                  ]}
-                  style={isItemActive ? `background-color: ${meAccentColor};` : ''}
-                  role="menuitem"
-                >
-                  {item.label}
-                </a>
-              );
-            })}
+            {meLinks.map((item) => (
+              <a
+                href={item.href}
+                class="block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
+                role="menuitem"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -137,12 +89,7 @@ const isObservabilityActive = currentPath.startsWith('/observability');
         <div class="relative" id="presentations-dropdown">
           <button
             id="presentations-dropdown-btn"
-            class:list={[
-              'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
-              isPresentationsActive
-                ? 'bg-[var(--color-accent)] text-[var(--color-light)]'
-                : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
-            ]}
+            class="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]"
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="presentations-dropdown-menu"
@@ -160,24 +107,15 @@ const isObservabilityActive = currentPath.startsWith('/observability');
             role="menu"
             aria-labelledby="presentations-dropdown-btn"
           >
-            {presentationLinks.map((item) => {
-              const isItemActive = currentPath.startsWith(item.href);
-              return (
-                <a
-                  href={item.href}
-                  class:list={[
-                    'block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg',
-                    isItemActive
-                      ? 'font-semibold text-[var(--color-dark)]'
-                      : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-                  ]}
-                  style={isItemActive ? `background-color: ${presentationsAccentColor};` : ''}
-                  role="menuitem"
-                >
-                  {item.label}
-                </a>
-              );
-            })}
+            {presentationLinks.map((item) => (
+              <a
+                href={item.href}
+                class="block px-4 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
+                role="menuitem"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -261,61 +199,34 @@ const isObservabilityActive = currentPath.startsWith('/observability');
     <div id="mobile-menu" class="hidden lg:hidden pb-4">
       <div class="flex flex-col gap-1">
         <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase">Blog</div>
-        {categories.map((item) => {
-          const isItemActive = (item.href === '/' && currentPath === '/') || (item.href !== '/' && currentPath.startsWith(item.href));
-          return (
-            <a
-              href={item.href}
-              class:list={[
-                'px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2',
-                isItemActive
-                  ? 'text-[var(--color-dark)]'
-                  : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-              ]}
-              style={isItemActive ? `background-color: ${item.color};` : ''}
-            >
-              {item.label}
-            </a>
-          );
-        })}
+        {categories.map((item) => (
+          <a
+            href={item.href}
+            class="px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2 text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
+          >
+            {item.label}
+          </a>
+        ))}
 
         <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase mt-2">Me</div>
-        {meLinks.map((item) => {
-          const isItemActive = currentPath.startsWith(item.href);
-          return (
-            <a
-              href={item.href}
-              class:list={[
-                'px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2',
-                isItemActive
-                  ? 'text-[var(--color-dark)]'
-                  : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-              ]}
-              style={isItemActive ? `background-color: ${meAccentColor};` : ''}
-            >
-              {item.label}
-            </a>
-          );
-        })}
+        {meLinks.map((item) => (
+          <a
+            href={item.href}
+            class="px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2 text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
+          >
+            {item.label}
+          </a>
+        ))}
 
         <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase mt-2">Presentations</div>
-        {presentationLinks.map((item) => {
-          const isItemActive = currentPath.startsWith(item.href);
-          return (
-            <a
-              href={item.href}
-              class:list={[
-                'px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2',
-                isItemActive
-                  ? 'text-[var(--color-dark)]'
-                  : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-              ]}
-              style={isItemActive ? `background-color: ${presentationsAccentColor};` : ''}
-            >
-              {item.label}
-            </a>
-          );
-        })}
+        {presentationLinks.map((item) => (
+          <a
+            href={item.href}
+            class="px-3 py-2 rounded-md text-sm font-semibold transition-colors ml-2 text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
+          >
+            {item.label}
+          </a>
+        ))}
 
         <div class="px-3 py-2 text-xs font-semibold text-[var(--color-text-muted)] uppercase mt-2">Apps</div>
         {appsLinks.map((item) => (
