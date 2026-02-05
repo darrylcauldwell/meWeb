@@ -345,14 +345,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   checkService('/prometheus/-/healthy', 'prometheus-status', 'prometheus-icon');
   checkService('/grafana/api/health', 'grafana-status', 'grafana-icon');
 
-  // Check apps via cAdvisor container metrics (these apps don't expose Prometheus metrics)
+  // Check Prometheus target health by job name
+  async function checkPrometheusTarget(jobName: string, statusId: string, iconId: string) {
+    const statusEl = document.getElementById(statusId);
+    const iconEl = document.getElementById(iconId);
+    if (!statusEl || !iconEl) return;
+
+    try {
+      const response = await fetch('/prometheus/api/v1/targets');
+      const data = await response.json();
+      const target = data.data?.activeTargets?.find((t: any) => t.labels?.job === jobName);
+      if (target?.health === 'up') {
+        setHealthy(statusEl, iconEl);
+      } else {
+        setUnhealthy(statusEl, iconEl);
+      }
+    } catch {
+      setUnknown(statusEl);
+    }
+  }
+
+  // Check container running via cAdvisor metrics
   async function checkContainerRunning(containerName: string, statusId: string, iconId: string) {
     const statusEl = document.getElementById(statusId);
     const iconEl = document.getElementById(iconId);
     if (!statusEl || !iconEl) return;
 
     try {
-      // Query Prometheus for container CPU usage (if container is running, it will have metrics)
       const query = encodeURIComponent(`container_cpu_usage_seconds_total{name="${containerName}"}`);
       const response = await fetch(`/prometheus/api/v1/query?query=${query}`);
       const data = await response.json();
@@ -369,11 +388,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   // Planespotter containers
   checkContainerRunning('planespotter-db', 'planespotter-db-status', 'planespotter-db-icon');
   checkContainerRunning('planespotter-cache', 'planespotter-cache-status', 'planespotter-cache-icon');
-  checkContainerRunning('planespotter-api', 'planespotter-api-status', 'planespotter-api-icon');
+  checkPrometheusTarget('planespotter-api', 'planespotter-api-status', 'planespotter-api-icon');
   checkContainerRunning('planespotter-frontend', 'planespotter-frontend-status', 'planespotter-frontend-icon');
   checkContainerRunning('planespotter-sync', 'planespotter-sync-status', 'planespotter-sync-icon');
 
-  // EVM containers
+  // EVM containers (no Prometheus metrics yet, use cAdvisor)
   checkContainerRunning('evm-db', 'evm-db-status', 'evm-db-icon');
   checkContainerRunning('evm-backend', 'evm-backend-status', 'evm-backend-icon');
   checkContainerRunning('evm-frontend', 'evm-frontend-status', 'evm-frontend-icon');

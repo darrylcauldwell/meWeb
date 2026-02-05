@@ -38,13 +38,18 @@ scrape_configs:
   # ---------------------------------------------------------------------------
 
   # Caddy web server metrics
-  # Remove or modify this section for other applications
   - job_name: 'caddy'
     static_configs:
       - targets: ['site:2019']
 
-  # Note: Planespotter and EVM don't expose Prometheus metrics.
-  # Their container metrics are collected automatically via cAdvisor.
+  # Planespotter API metrics (FastAPI with prometheus-fastapi-instrumentator)
+  - job_name: 'planespotter-api'
+    static_configs:
+      - targets: ['planespotter-api:8000']
+    metrics_path: /metrics
+
+  # Note: EVM doesn't expose Prometheus metrics yet.
+  # Container metrics are collected automatically via cAdvisor.
 
   # Example: Node.js application with prom-client
   # - job_name: 'nodejs-app'
