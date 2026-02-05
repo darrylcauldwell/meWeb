@@ -1,7 +1,7 @@
 ---
 title: "NSX-T for Planespotter"
 date: "2019-02-14"
-category: "vmware"
+category: "apps"
 description: "NSX-T for Planespotter"
 thumbnail: "clarity-icons/mobile-144.svg"
 tags:
