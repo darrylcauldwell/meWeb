@@ -72,10 +72,12 @@
 
 # Planespotter application
 {$PLANESPOTTER_ADDRESS:planespotter.localhost} {
-    # Health check
-    respond /healthz 200 {
-        body "healthy"
-        close
+    # Health check (must be handle block for proper routing)
+    handle /healthz {
+        respond 200 {
+            body "healthy"
+            close
+        }
     }
 
     # API routes
@@ -83,7 +85,7 @@
         reverse_proxy planespotter-api:8000
     }
 
-    # Health endpoints passthrough
+    # Health endpoints passthrough to API
     handle /health* {
         reverse_proxy planespotter-api:8000
     }
@@ -96,10 +98,12 @@
 
 # Equestrian Venue Manager
 {$EVM_ADDRESS:evm.localhost} {
-    # Health check
-    respond /healthz 200 {
-        body "healthy"
-        close
+    # Health check (must be handle block for proper routing)
+    handle /healthz {
+        respond 200 {
+            body "healthy"
+            close
+        }
     }
 
     # API routes
