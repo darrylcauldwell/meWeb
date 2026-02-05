@@ -48,8 +48,11 @@ scrape_configs:
       - targets: ['planespotter-api:8000']
     metrics_path: /metrics
 
-  # Note: EVM doesn't expose Prometheus metrics yet.
-  # Container metrics are collected automatically via cAdvisor.
+  # EVM API metrics (FastAPI with prometheus-fastapi-instrumentator)
+  - job_name: 'evm-backend'
+    static_configs:
+      - targets: ['evm-backend:8000']
+    metrics_path: /metrics
 
   # Example: Node.js application with prom-client
   # - job_name: 'nodejs-app'

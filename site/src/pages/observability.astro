@@ -392,9 +392,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   checkContainerRunning('planespotter-frontend', 'planespotter-frontend-status', 'planespotter-frontend-icon');
   checkContainerRunning('planespotter-sync', 'planespotter-sync-status', 'planespotter-sync-icon');
 
-  // EVM containers (no Prometheus metrics yet, use cAdvisor)
+  // EVM containers
   checkContainerRunning('evm-db', 'evm-db-status', 'evm-db-icon');
-  checkContainerRunning('evm-backend', 'evm-backend-status', 'evm-backend-icon');
+  checkPrometheusTarget('evm-backend', 'evm-backend-status', 'evm-backend-icon');
   checkContainerRunning('evm-frontend', 'evm-frontend-status', 'evm-frontend-icon');
   // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
   fetch('/prometheus/api/v1/targets')
