@@ -89,12 +89,19 @@ async function optimizeImage(imagePath, metadata) {
   // Get new metadata
   const newMetadata = await getImageMetadata(tempPath);
 
-  // Only replace if the new file is smaller
+  // Replace if file is smaller OR if we needed to resize (dimension compliance is mandatory)
   if (newMetadata.sizeKB < sizeKB) {
     fs.unlinkSync(imagePath);
     fs.renameSync(tempPath, imagePath);
     console.log(`  Optimized: ${newMetadata.sizeKB.toFixed(1)}KB, ${newMetadata.width}x${newMetadata.height}`);
     console.log(`  Saved: ${(sizeKB - newMetadata.sizeKB).toFixed(1)}KB (${((1 - newMetadata.sizeKB / sizeKB) * 100).toFixed(0)}%)`);
+    return { optimized: true, saved: sizeKB - newMetadata.sizeKB };
+  } else if (needsResize) {
+    // Force resize even if file size increases - dimension compliance is mandatory for CI
+    fs.unlinkSync(imagePath);
+    fs.renameSync(tempPath, imagePath);
+    console.log(`  Resized: ${newMetadata.sizeKB.toFixed(1)}KB, ${newMetadata.width}x${newMetadata.height}`);
+    console.log(`  Size increased by ${(newMetadata.sizeKB - sizeKB).toFixed(1)}KB (dimension compliance)`);
     return { optimized: true, saved: sizeKB - newMetadata.sizeKB };
   } else {
     fs.unlinkSync(tempPath);
