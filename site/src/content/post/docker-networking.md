@@ -1,7 +1,7 @@
 ---
 title: "Introduction To Docker Container Networking"
 date: "2019-11-18"
-category: "automation"
+category: "kubernetes"
 description: "Introduction To Docker Container Networking"
 thumbnail: "clarity-icons/code-144.svg"
 tags:

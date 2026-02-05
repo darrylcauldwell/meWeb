@@ -1,7 +1,7 @@
 ---
 title: "Docker Networking"
 date: "2016-11-08"
-category: "automation"
+category: "kubernetes"
 description: "Docker Networking"
 thumbnail: "clarity-icons/code-144.svg"
 tags:

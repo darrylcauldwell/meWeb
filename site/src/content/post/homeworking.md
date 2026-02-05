@@ -1,7 +1,7 @@
 ---
 title: "Working From Home In Pandemic"
 date: "2020-04-08"
-category: "career"
+category: "lifestyle"
 description: "Working From Home In Pandemic"
 thumbnail: "clarity-icons/code-144.svg"
 ---

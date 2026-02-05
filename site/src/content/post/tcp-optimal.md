@@ -1,7 +1,7 @@
 ---
 title: "Optimal TCP Window Size For Long Distance WAN Link"
 date: "2014-07-24"
-category: "homelab"
+category: "cloud"
 description: "How To Calculate Optimal TCP Window Size For Long Distance WAN Link"
 thumbnail: "clarity-icons/code-144.svg"
 featured: "false"
