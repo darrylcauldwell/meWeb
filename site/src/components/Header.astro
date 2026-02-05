@@ -3,8 +3,6 @@ import ThemeToggle from './ThemeToggle.astro';
 import SearchWidget from './SearchWidget.astro';
 import { navCategories as categories, meLinks, presentationLinks, appsLinks } from '../config/colors';
 
-const currentPath = Astro.url.pathname;
-const isObservabilityActive = currentPath.startsWith('/observability');
 ---
 
 <header class="bg-[var(--color-bg-header)] text-[var(--color-header-text-active)] sticky top-0 z-50">
@@ -161,12 +159,7 @@ const isObservabilityActive = currentPath.startsWith('/observability');
         <!-- Observability Link -->
         <a
           href="/observability/"
-          class:list={[
-            'px-3 py-2 text-sm font-medium rounded-md transition-colors no-underline',
-            isObservabilityActive
-              ? 'bg-[var(--color-header-active-bg)] text-[var(--color-header-text-active)]'
-              : 'text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]'
-          ]}
+          class="px-3 py-2 text-sm font-medium rounded-md transition-colors no-underline text-[var(--color-header-text)] hover:text-[var(--color-header-text-active)] hover:bg-[var(--color-header-hover-bg)]"
         >
           Observability
         </a>
@@ -245,12 +238,7 @@ const isObservabilityActive = currentPath.startsWith('/observability');
 
         <a
           href="/observability/"
-          class:list={[
-            'px-3 py-2 rounded-md text-sm font-semibold transition-colors mt-2',
-            isObservabilityActive
-              ? 'bg-[var(--color-header-active-bg)] text-[var(--color-header-text-active)]'
-              : 'text-[var(--color-text)] hover:bg-[var(--color-translucent)]'
-          ]}
+          class="px-3 py-2 rounded-md text-sm font-semibold transition-colors mt-2 text-[var(--color-text)] hover:bg-[var(--color-translucent)]"
         >
           Observability
         </a>
