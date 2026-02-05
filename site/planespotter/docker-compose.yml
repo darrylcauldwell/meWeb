@@ -7,7 +7,7 @@
 
 services:
   planespotter-db:
-    image: ghcr.io/darrylcauldwell/planespotter/db-install:1.1
+    image: ghcr.io/darrylcauldwell/planespotter/db-install:1.3
     container_name: planespotter-db
     restart: unless-stopped
     environment:
@@ -37,7 +37,7 @@ services:
       retries: 5
 
   planespotter-api:
-    image: ghcr.io/darrylcauldwell/planespotter/api-server:1.1
+    image: ghcr.io/darrylcauldwell/planespotter/api-server:1.3
     container_name: planespotter-api
     restart: unless-stopped
     environment:
@@ -58,7 +58,7 @@ services:
         condition: service_healthy
 
   planespotter-frontend:
-    image: ghcr.io/darrylcauldwell/planespotter/frontend:1.1
+    image: ghcr.io/darrylcauldwell/planespotter/frontend:1.3
     container_name: planespotter-frontend
     restart: unless-stopped
     environment:
@@ -70,7 +70,7 @@ services:
       - planespotter-api
 
   planespotter-sync:
-    image: ghcr.io/darrylcauldwell/planespotter/adsb-sync:1.1
+    image: ghcr.io/darrylcauldwell/planespotter/adsb-sync:1.3
     container_name: planespotter-sync
     restart: unless-stopped
     environment:
