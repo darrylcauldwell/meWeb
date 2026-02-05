@@ -25,9 +25,9 @@ COPY Caddyfile /etc/caddy/Caddyfile
 # Copy built site from builder stage
 COPY --from=builder /app/dist /srv
 
-# Health check
+# Health check (use --no-check-certificate as Caddy redirects HTTP to HTTPS)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget -q --spider http://127.0.0.1/healthz || exit 1
+  CMD wget -q --spider --no-check-certificate https://127.0.0.1/healthz || exit 1
 
 # HTTP port
 EXPOSE 80
