@@ -12,6 +12,7 @@ export const CATEGORIES = [
   'homelab',
   'career',
   'apps',
+  'lifestyle',
 ] as const;
 
 // Valid tags (fixed vocabulary)
