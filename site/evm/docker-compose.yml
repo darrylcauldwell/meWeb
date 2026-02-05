@@ -50,5 +50,20 @@ services:
     depends_on:
       - evm-backend
 
+  evm-seed:
+    image: ghcr.io/darrylcauldwell/equestrian-venue-manager/backend:latest
+    container_name: evm-seed
+    restart: "no"
+    environment:
+      - DATABASE_URL=postgresql://${EVM_DB_USER:-evm}:${EVM_DB_PASSWORD:-evm_password}@evm-db:5432/${EVM_DB_NAME:-evm_db}
+    command: python scripts/seed_database.py --no-validate
+    networks:
+      - web
+    depends_on:
+      evm-backend:
+        condition: service_healthy
+    profiles:
+      - seed
+
 volumes:
   evm_postgres_data:
