@@ -96,6 +96,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="text-xs text-[var(--color-text-muted)] mt-2">Log collection</div>
         </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="planespotter-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Planespotter</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="planespotter-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Aircraft tracking app</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="evm-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">EVM</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="evm-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Equestrian venue manager</div>
+        </div>
       </div>
 
       <!-- HTTP Traffic Dashboard -->
@@ -211,6 +241,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   checkService('/healthz', 'site-status', 'site-icon');
   checkService('/prometheus/-/healthy', 'prometheus-status', 'prometheus-icon');
   checkService('/grafana/api/health', 'grafana-status', 'grafana-icon');
+
+  // Check external apps via their health endpoints
+  async function checkExternalApp(url: string, statusId: string, iconId: string) {
+    const statusEl = document.getElementById(statusId);
+    const iconEl = document.getElementById(iconId);
+    if (!statusEl || !iconEl) return;
+
+    try {
+      const response = await fetch(url, { method: 'GET', mode: 'cors' });
+      if (response.ok) {
+        setHealthy(statusEl, iconEl);
+      } else {
+        setUnhealthy(statusEl, iconEl);
+      }
+    } catch {
+      // CORS might block, try assuming healthy if we can't check
+      setUnknown(statusEl);
+    }
+  }
+
+  checkExternalApp('https://planespotter.dreamfold.dev/healthz', 'planespotter-status', 'planespotter-icon');
+  checkExternalApp('https://evm.dreamfold.dev/healthz', 'evm-status', 'evm-icon');
   // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
   fetch('/prometheus/api/v1/targets')
     .then(r => r.json())
