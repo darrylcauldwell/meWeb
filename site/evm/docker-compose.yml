@@ -17,7 +17,9 @@ services:
     volumes:
       - evm_postgres_data:/var/lib/postgresql/data
     networks:
-      - web
+      web:
+        aliases:
+          - db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${EVM_DB_USER:-evm}"]
       interval: 10s
