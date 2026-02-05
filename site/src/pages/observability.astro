@@ -5,7 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Observability" description="System monitoring and metrics">
   <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <article class="max-w-6xl mx-auto">
-      <!-- Service Status Cards -->
+      <!-- Site -->
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-3">Site</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
           <div class="flex items-center gap-3">
@@ -15,92 +16,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </svg>
             </div>
             <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">Site</h3>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Caddy</h3>
               <p class="text-xs text-[var(--color-text-muted)]" id="site-status">Checking...</p>
             </div>
           </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Caddy serving static content</div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Reverse proxy & static content</div>
         </div>
-
-        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="prometheus-icon">
-              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">Prometheus</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="prometheus-status">Checking...</p>
-            </div>
-          </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Metrics collection</div>
-        </div>
-
-        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="grafana-icon">
-              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">Grafana</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="grafana-status">Checking...</p>
-            </div>
-          </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Visualization</div>
-        </div>
-
-        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="cadvisor-icon">
-              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">cAdvisor</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="cadvisor-status">Checking...</p>
-            </div>
-          </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Container metrics</div>
-        </div>
-
-        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="loki-icon">
-              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">Loki</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="loki-status">Checking...</p>
-            </div>
-          </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Log aggregation</div>
-        </div>
-
-        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="promtail-icon">
-              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-[var(--color-heading)] text-sm">Promtail</h3>
-              <p class="text-xs text-[var(--color-text-muted)]" id="promtail-status">Checking...</p>
-            </div>
-          </div>
-          <div class="text-xs text-[var(--color-text-muted)] mt-2">Log collection</div>
-        </div>
-
       </div>
 
       <!-- Planespotter Containers -->
-      <h2 class="text-lg font-semibold text-[var(--color-heading)] mt-6 mb-3">Planespotter</h2>
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-3">Planespotter</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
           <div class="flex items-center gap-3">
@@ -224,6 +149,85 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
           </div>
           <div class="text-xs text-[var(--color-text-muted)] mt-2">React frontend</div>
+        </div>
+      </div>
+
+      <!-- Observability Stack -->
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-3">Observability Stack</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="prometheus-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Prometheus</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="prometheus-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Metrics collection</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="grafana-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Grafana</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="grafana-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Visualization</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="cadvisor-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">cAdvisor</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="cadvisor-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Container metrics</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="loki-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Loki</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="loki-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Log aggregation</div>
+        </div>
+
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="promtail-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">Promtail</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="promtail-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">Log collection</div>
         </div>
       </div>
 
