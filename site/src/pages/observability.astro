@@ -242,30 +242,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   checkService('/prometheus/-/healthy', 'prometheus-status', 'prometheus-icon');
   checkService('/grafana/api/health', 'grafana-status', 'grafana-icon');
 
-  // Check apps via Prometheus targets (avoids CORS issues)
-  async function checkAppViaPrometheus(jobName: string, statusId: string, iconId: string) {
+  // Check apps via cAdvisor container metrics (these apps don't expose Prometheus metrics)
+  async function checkContainerRunning(containerName: string, statusId: string, iconId: string) {
     const statusEl = document.getElementById(statusId);
     const iconEl = document.getElementById(iconId);
     if (!statusEl || !iconEl) return;
 
     try {
-      const response = await fetch('/prometheus/api/v1/targets');
+      // Query Prometheus for container CPU usage (if container is running, it will have metrics)
+      const query = encodeURIComponent(`container_cpu_usage_seconds_total{name="${containerName}"}`);
+      const response = await fetch(`/prometheus/api/v1/query?query=${query}`);
       const data = await response.json();
-      const target = data.data?.activeTargets?.find((t: any) => t.labels?.job === jobName);
-      if (target?.health === 'up') {
+      if (data.data?.result?.length > 0) {
         setHealthy(statusEl, iconEl);
-      } else if (target) {
-        setUnhealthy(statusEl, iconEl);
       } else {
-        setUnknown(statusEl);
+        setUnhealthy(statusEl, iconEl);
       }
     } catch {
       setUnknown(statusEl);
     }
   }
 
-  checkAppViaPrometheus('planespotter-api', 'planespotter-status', 'planespotter-icon');
-  checkAppViaPrometheus('evm-backend', 'evm-status', 'evm-icon');
+  checkContainerRunning('planespotter-api', 'planespotter-status', 'planespotter-icon');
+  checkContainerRunning('evm-backend', 'evm-status', 'evm-icon');
   // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
   fetch('/prometheus/api/v1/targets')
     .then(r => r.json())
