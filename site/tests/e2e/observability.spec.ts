@@ -105,17 +105,13 @@ test.describe('Observability Page', () => {
     expect(count).toBeGreaterThanOrEqual(3); // Error, Warning, Info
   });
 
-  test('should have Architecture section', async ({ page }) => {
-    const architectureHeading = page.locator('h3:has-text("Architecture")');
-    await expect(architectureHeading).toBeVisible();
-  });
-
-  test('should list all container services in Architecture', async ({ page }) => {
-    const services = ['Caddy', 'Prometheus', 'Grafana', 'cAdvisor', 'Loki', 'Promtail'];
+  test('should display service status cards', async ({ page }) => {
+    // Services are displayed in status cards with h3 headings
+    const services = ['Site', 'Prometheus', 'Grafana', 'cAdvisor', 'Loki', 'Promtail'];
 
     for (const service of services) {
-      const serviceText = page.locator(`text=${service}`).first();
-      await expect(serviceText).toBeVisible();
+      const serviceHeading = page.locator(`h3:has-text("${service}")`);
+      await expect(serviceHeading).toBeVisible();
     }
   });
 });
