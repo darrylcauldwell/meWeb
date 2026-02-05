@@ -1,7 +1,7 @@
 ---
 title: "Configuring Puppet"
 date: "2013-09-23"
-category: "cloud"
+category: "automation"
 description: "Configuring Puppet"
 thumbnail: "clarity-icons/code-144.svg"
 ---
