@@ -1,7 +1,7 @@
 ---
 title: "GitHub Pages Git Branching Workflow"
 date: "2021-06-18"
-category: "vmware"
+category: "career"
 description: "GitHub Pages Git Branching Workflow"
 thumbnail: "clarity-icons/code-144.svg"
 ---
