@@ -29,7 +29,7 @@ Download OVA's and perform initial deployment of NSX Manager,  NSX Controller an
 
 ## NSX-T Routing
 
-One of the biggest differences between NSX for vSphere and NSX-T is the routing architecture. The services are split between service router (SR) and distributed router (DR), the service router functions are run on the NSX edge and the distributed router (DR) is a kernel module running on the ESXi hosts. My lab setup uses defaults for all transit switches, it is importanrt to understand the relationship when we look at packets flow through these various hops.
+One of the biggest differences between NSX for vSphere and NSX-T is the routing architecture. The services are split between service router (SR) and distributed router (DR), the service router functions are run on the NSX edge and the distributed router (DR) is a kernel module running on the ESXi hosts. My lab setup uses defaults for all transit switches, it is important to understand the relationship when we look at packets flow through these various hops.
 
 ![NSX-T Routing](/images/planespotter-edge-arch.png)
 
@@ -43,6 +43,6 @@ The planespotter application is made up of various microservices and database. F
 
 One neat feature of NSX-T and geneve is to inject data into the header and use this to trace flows. The traceflow feature helps inspect the path of a packet as it travels from one logical port to a single or multiple logical ports.
 
-So if we select the port connected to planespotter frontend and port connected to planespotter api, we get a nice visual represenation of the path.
+So if we select the port connected to planespotter frontend and port connected to planespotter api, we get a nice visual representation of the path.
 
 ![NSX-T Logical Switches](/images/planespotter-traceflow.png)

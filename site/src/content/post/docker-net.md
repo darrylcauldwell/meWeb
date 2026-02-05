@@ -7,7 +7,7 @@ thumbnail: "clarity-icons/code-144.svg"
 tags:
   - "docker"
 ---
-Hear I describe Docker networking from the very basic through to extending it by pluggin in alternative drivers. In order to follow along with this post you will require Docker capability on your laptop to do this follow [these instructions](https://docs.docker.com/engine/installation/).
+Hear I describe Docker networking from the very basic through to extending it by plugin in alternative drivers. In order to follow along with this post you will require Docker capability on your laptop to do this follow [these instructions](https://docs.docker.com/engine/installation/).
 
 Mostly will be using [Alpine Linux](https://www.alpinelinux.org/) as it is very small so downloads quickly and doesn't consume many resources.
 
@@ -182,9 +182,9 @@ PING 172.17.0.3 (172.17.0.3): 56 data bytes
 8 packets transmitted, 0 packets received, 100% packet loss
 ```
 
-We have focussed on the shipped bridge driver, however since [LibNetwork project](https://github.com/docker/libnetwork) got integrated into docker the driver became plugable. Some of the Docker networking ecosystems, include Weave, Nuage, Cisco, Microsoft, Calico, Midokura, and VMware.
+We have focussed on the shipped bridge driver, however since [LibNetwork project](https://github.com/docker/libnetwork) got integrated into docker the driver became pluggable. Some of the Docker networking ecosystems, include Weave, Nuage, Cisco, Microsoft, Calico, Midokura, and VMware.
 
-Upto now we have looked at networking between containers on the same host by bridging to the network interface card. You will probably want to extend the layer 2 networking capacibility so containers on different hosts can communicate. To do this we would use [Docker Swarm](https://docs.docker.com/swarm/networking/) which includes the multi-host networking feature and allows the creation of custom container networks which span multiple Docker hosts. By default it does this by use of the 'overlay' network driver 
+Up to now we have looked at networking between containers on the same host by bridging to the network interface card. You will probably want to extend the layer 2 networking capability so containers on different hosts can communicate. To do this we would use [Docker Swarm](https://docs.docker.com/swarm/networking/) which includes the multi-host networking feature and allows the creation of custom container networks which span multiple Docker hosts. By default it does this by use of the 'overlay' network driver 
 
 An interesting option to use as a Docker networking driver is [Project Calico for Containers](https://github.com/projectcalico/calico-containers) as the overlay networking expands across more and more hosts it can experience performance issues. Project Calico aims to over come this issue but allow container connectivity across hosts by having each container route directly at Layer 3 rather than Layer 2.  It does this by having a calico-node container installed and running on each host which manages the network routing etc.
 

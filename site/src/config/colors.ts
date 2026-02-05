@@ -62,6 +62,7 @@ export const meAccentColor = categoryColors.career;
 
 // Presentations section links
 export const presentationLinks = [
+  { label: 'GitOps For The Distributed Enterprise Edge', href: '/presentations/devops-meetup/' },
   { label: 'Sustainable Software', href: '/presentations/sustainable-software/' },
 ];
 export const presentationsAccentColor = '#30D158'; // Green - growth, knowledge sharing

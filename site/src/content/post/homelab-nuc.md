@@ -20,17 +20,17 @@ The NUC6i5SYH was latest model when I purchased. My purchasing decision was prim
 
 # Storage
 
-To form vSAN required the two internal disks be fully available which drove the addition of USB Flash Drive. The NUCs sit on and around desk so its very easy for them to get knocked the SanDisk Cruzer Fit formfactor keeps the chance of damage to a minimum.
+To form vSAN required the two internal disks be fully available which drove the addition of USB Flash Drive. The NUCs sit on and around desk so its very easy for them to get knocked the SanDisk Cruzer Fit form factor keeps the chance of damage to a minimum.
 
-I was working to a budget but wanted good performance. When cluster operating with vSAN all writes go via a cache disk and then get destaged to capacity tier. For the vSAN cache tier I chose the 128GB Samsung SM951 NVMe M.2 as it is rated for ~2,150MiB/sec read and 1550MB/s MiB/sec write. For the vSAN capacity tier I chose the 1TB Samsung 850 EVO SATA3 as it is rated for ~500MiB/sec read and write. The lab does not need a lot of capacity so only two of the three NUCs are populated with disks and contribute to vSAN the third contributes only compute capacity to the cluster.
+I was working to a budget but wanted good performance. When cluster operating with vSAN all writes go via a cache disk and then get de-staged to capacity tier. For the vSAN cache tier I chose the 128GB Samsung SM951 NVMe M.2 as it is rated for ~2,150MiB/sec read and 1550MB/s MiB/sec write. For the vSAN capacity tier I chose the 1TB Samsung 850 EVO SATA3 as it is rated for ~500MiB/sec read and write. The lab does not need a lot of capacity so only two of the three NUCs are populated with disks and contribute to vSAN the third contributes only compute capacity to the cluster.
 
 As well as internal storage I have a Synology DiskStation DS213j a  "budget-friendly" 2-bay NAS server. It isn't the fastest but offers iSCSI and/or NFS with 100MiB/sec read and 70MiB/sec write.
 
 # Network
 
-One of usecases I wanted to explore with this hardware was Software Defined Networking. To this end I wanted network switch to support configuring multiple VLANs. To connect three NUCs each with two 1GbE NICs would consume six ports, to uplink to wider home network and the Synolofy DiskStation drove my choice to the eight 1GbE port Cisco SG200-08.
+One of use cases I wanted to explore with this hardware was Software Defined Networking. To this end I wanted network switch to support configuring multiple VLANs. To connect three NUCs each with two 1GbE NICs would consume six ports, to uplink to wider home network and the Synology DiskStation drove my choice to the eight 1GbE port Cisco SG200-08.
 
-To simulate redundant networking scenarios at the ESXi side I wanted to add a second NIC albeit connecting to same switch. To allow for USB NIC on NUCs VMware released a unsupported driver by way of a Fling. This was a little prescritive and this lead me to the StarTech USB 3.0 to Gigabit Ethernet NICs.
+To simulate redundant networking scenarios at the ESXi side I wanted to add a second NIC albeit connecting to same switch. To allow for USB NIC on NUCs VMware released a unsupported driver by way of a Fling. This was a little prescriptive and this lead me to the StarTech USB 3.0 to Gigabit Ethernet NICs.
 
 My home office is in a cabin in the garden while it has power cabling it has no network cabling. To give a cabled network connection I use TP-Link AV500/AV600s. As these are very specific to my scenario I've not included them in the BOM. 
 

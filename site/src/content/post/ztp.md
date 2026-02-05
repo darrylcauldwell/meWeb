@@ -8,7 +8,7 @@ tags:
   - "vsphere"
 ---
 
-Most remote sites don’t come with an IT expert, and noone enjoys clicking through ESXi setup screens. That’s where zero touch provisioning comes in. In this post, I’ll show you how to fully automate ESXi installation using a Kickstart script, use VCF Orchestrator to spin up a site specific cluster and onboard the hosts—no keyboard or mouse required.
+Most remote sites don’t come with an IT expert, and no one enjoys clicking through ESXi setup screens. That’s where zero touch provisioning comes in. In this post, I’ll show you how to fully automate ESXi installation using a Kickstart script, use VCF Orchestrator to spin up a site specific cluster and onboard the hosts—no keyboard or mouse required.
 
 But it’s not just about convenience. Automation brings consistency, reduces human error, and gives you a repeatable, auditable process—especially important if you’re working in regulated environments. Whether you’re scaling edge infrastructure or building out a new region, this approach ensures every host is deployed the same way, every time, without needing skilled hands on-site.
 

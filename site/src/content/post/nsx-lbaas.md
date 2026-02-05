@@ -17,7 +17,7 @@ Here is what I plan to achieve my client and browser will sit on the 192.168.1.0
 
 ![One Armed Load Balancer](/images/nsx-lbaas-onearm.jpg)
 
-A destination network address translation (DNAT) rule will be configured to pass this OOB network IP address to the load balancerd address on the WEB network. The load balancer will round robin traffic between the two web servers. Port 80 will be monitored on web servers and when apache is stopped on one server all traffic should direct to the active server. The Edge firewall will be configured to block all traffic except for HTTP to the web servers.
+A destination network address translation (DNAT) rule will be configured to pass this OOB network IP address to the load balancer address on the WEB network. The load balancer will round robin traffic between the two web servers. Port 80 will be monitored on web servers and when apache is stopped on one server all traffic should direct to the active server. The Edge firewall will be configured to block all traffic except for HTTP to the web servers.
 
 ## Configure Underlay
 

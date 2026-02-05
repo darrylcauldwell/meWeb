@@ -7,7 +7,7 @@ thumbnail: "clarity-icons/code-144.svg"
 tags:
   - "vsphere"
 ---
-I recently began looking more closely at cloud-init for customizing VMware guest VMs. This caused me some heachaches! I took various notes while troubleshooting and researching around this.
+I recently began looking more closely at cloud-init for customizing VMware guest VMs. This caused me some headaches! I took various notes while troubleshooting and researching around this.
 
 ## Why Guest OS Customization Is Needed
 

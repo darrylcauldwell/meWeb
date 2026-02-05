@@ -21,7 +21,7 @@ The files needed to set this up are provided as a gzip file
 |Mac OS X |10.11 (TBC)|
 |Linux|Ubuntu 15.04, others TBD|
 
-My homelab is vCenter, single cluster of two ESX hosts, storage VSAN and networking NSX. Security is not important in my homelab and TLS adds complication so I chose not to add this. There are great syntaxt examples to follow in the documentation, but here are options I used.
+My homelab is vCenter, single cluster of two ESX hosts, storage VSAN and networking NSX. Security is not important in my homelab and TLS adds complication so I chose not to add this. There are great syntax examples to follow in the documentation, but here are options I used.
 
 ```
 ./vic-machine-darwin create --target 192.168.1.13 --user Administrator@vsphere.local --password VMware1! --compute-resource ElectricChair --image-datastore vsanDatastore --bridge-network DPortGroup --name vch
@@ -91,6 +91,6 @@ As its so easy to install and configure its probably worth while removing VCH an
 
 ![vSphere Integrated Containers Bye!](/images/vic-bye.jpg)
 
-There is a little bug just now and the image files don't seem to get removed by uninstall process but these are easy enough to delete along with the VIC folder from the datatore.
+There is a little bug just now and the image files don't seem to get removed by uninstall process but these are easy enough to delete along with the VIC folder from the datastore.
 
 I'm disappointed in myself for waiting so long to look at this, what was putting me off was the thought it might be complex but it proved to be very much straight forwards.

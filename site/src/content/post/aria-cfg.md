@@ -11,7 +11,7 @@ SaltStack (also known as Salt) is an open-source configuration management and re
 
 ## SaltStack Architecture
 
-SaltStack uses a master-minion architecture, where a central Salt master server controls multiple minion nodes. Salt supports clustering of masters for high availability and load balancing. Multiple masters can be can indeed be deployed across regions to improve resilience and disaster recovery sceanrios. Separate components like databases (e.g., PostgreSQL, Redis) can be used for persistent storage and caching.
+SaltStack uses a master-minion architecture, where a central Salt master server controls multiple minion nodes. Salt supports clustering of masters for high availability and load balancing. Multiple masters can be can indeed be deployed across regions to improve resilience and disaster recovery scenarios. Separate components like databases (e.g., PostgreSQL, Redis) can be used for persistent storage and caching.
 
 ## What is Aria Automation Config
 

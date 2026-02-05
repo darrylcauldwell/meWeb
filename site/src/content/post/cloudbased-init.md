@@ -9,7 +9,7 @@ tags:
 ---
 vRealize Automation Cloud and 8.x allows you to deploy and configure cloud agnostic virtual machines. To achieve agnostic in-guest OS customization capability across for on-premises vSphere, AWS, GCP and Azure endpoints [cloud-init](https://cloud-init.io/) is used for Linux guests and [cloudbase-init](https://cloudbase.it/cloudbase-init/) is used for Windows guests.
 
-## Inital Attempt All Defaults
+## Initial Attempt All Defaults
 In vSphere I created a Windows 2019 VM with defaults except for mapping ISO as CD/ROM. I then ran through installer to install Standard edition with Desktop experience, installed VMware Tools, disabled firewall and enabled Remote Desktop. I installed Cloudbased- init 0.9.12.dev76 and optional Carbon PowerShell module to default location. For configuration options I left the default Admin user be created into Administrators group, in addition I selected option to ‘Run Cloudbased-Init service as LocalSystem’. I chose options to 'Run Sysprep to create a generalized image' and 'Shutdown when Sysprep terminates'. When complete I change virtual machine to be a virtual machine template.
  
 I connect to vRealize Automation Cloud > Infrastructure > Cloud Accounts > {my account} and run 'Sync Images'.  Once image sync is completed vRealize Automation Cloud > Infrastructure > Image Mappings and create 'New Image Mapping'. Create a Blueprint with single Cloud Agnostic Machine linked to the image mapping.

@@ -16,7 +16,7 @@ Third in a series of posts which build on each other looking Tanzu.
 3. [Managing Tanzu for vSphere Clusters Using Tanzu Misson Control](/post/tanzu-tmc)
 4. [Deploying Tanzu for AWS Using Tanzu Misson Control](/post/tanzu-tmc-aws)
 
-I am moving next to look at Tanzu Mission Control. The Mission Control inventory has a hierachy, first I'll create a group to place the clusters in. While adding the group add some metadata to group including a label so other users know who to contact with any queries.
+I am moving next to look at Tanzu Mission Control. The Mission Control inventory has a hierarchy, first I'll create a group to place the clusters in. While adding the group add some metadata to group including a label so other users know who to contact with any queries.
 
 ![Tanzu Mission Control Cluster Group](/images/tanzu-tmc-cluster-group.png)
 
@@ -24,7 +24,7 @@ With the group in place we can look at attaching an existing cluster to TMC.  Fo
 
 ![Tanzu Mission Control Cluster Metadata](/images/tanzu-tmc-cluster-meta.png)
 
-anzu Misson Control does not need to connect inwards to the cluster to be managed.  Instead agents are deployed and configured on the cluster which initiate outbound connection to Tanzu Misson Control. Outbound internet communications are sometimes via proxy, if required add proxy details next.
+Tanzu Misson Control does not need to connect inwards to the cluster to be managed.  Instead agents are deployed and configured on the cluster which initiate outbound connection to Tanzu Misson Control. Outbound internet communications are sometimes via proxy, if required add proxy details next.
 
 ![Tanzu Mission Control Cluster Proxy](/images/tanzu-tmc-cluster-proxy.png)
 
@@ -107,33 +107,33 @@ With the supervisor cluster registered we can start to some interesting things f
   * hogwarts-cluster-01
 * Hogsmead
 
-Starting the TMC wizard to create cluster first prompt is for the provider. This is analagous to namespace so we'll look at creating cluster under Hogsmead.
+Starting the TMC wizard to create cluster first prompt is for the provider. This is analogous to namespace so we'll look at creating cluster under Hogsmead.
 
-![Tanzu Mission Control Cluster Provising Provider](/images/tanzu-tmc-cluster-prov-provider.png)
+![Tanzu Mission Control Cluster Provisioning Provider](/images/tanzu-tmc-cluster-prov-provider.png)
 
 Then add some cluster metadata.
 
-![Tanzu Mission Control Cluster Provising Metadata](/images/tanzu-tmc-cluster-prov-meta.png)
+![Tanzu Mission Control Cluster Provisioning Metadata](/images/tanzu-tmc-cluster-prov-meta.png)
 
 Can then pick a version of Kubernetes which the cluster will run, the Pod and Service networking configuration and storage class.
 
-![Tanzu Mission Control Cluster Provising Config](/images/tanzu-tmc-cluster-prov-config.png)
+![Tanzu Mission Control Cluster Provisioning Config](/images/tanzu-tmc-cluster-prov-config.png)
 
-Followed by choosing the VM class, hardware specifcation of the cluster nodes.
+Followed by choosing the VM class, hardware specification of the cluster nodes.
 
-![Tanzu Mission Control Cluster Provising VM Class](/images/tanzu-tmc-cluster-prov-vmclass.png)
+![Tanzu Mission Control Cluster Provisioning VM Class](/images/tanzu-tmc-cluster-prov-vmclass.png)
 
 Finally the node pool configuration.
 
-![Tanzu Mission Control Cluster Provising Node Pool](/images/tanzu-tmc-cluster-prov-nodepool.png)
+![Tanzu Mission Control Cluster Provisioning Node Pool](/images/tanzu-tmc-cluster-prov-nodepool.png)
 
 It takes a few minutes to deploy the required VMs and configure the Kubernetes cluster.  You can get a view on how far it is along by looking in vCenter.
 
-![Tanzu Mission Control Cluster Provising vCenter](/images/tanzu-tmc-cluster-prov-vcenter.png)
+![Tanzu Mission Control Cluster Provisioning vCenter](/images/tanzu-tmc-cluster-prov-vcenter.png)
 
 When deploying cluster from TMC the agents and configuration to register the cluster as with TMC is included.  After a few minutes when VMs are built and configured the cluster shows in UI.
 
-![Tanzu Mission Control Cluster Provising Registered](/images/tanzu-tmc-cluster-prov-registered.png)
+![Tanzu Mission Control Cluster Provisioning Registered](/images/tanzu-tmc-cluster-prov-registered.png)
 
 As well as provisioning TMC can also help with day two operations. When deploying the Hogsmead cluster I selected an v1.20.12 version of k8s. Upgrading to latest can be initiated very easily. Within the cluster view just hit Upgrade and select from drop down of all newer versions the version you need.
 

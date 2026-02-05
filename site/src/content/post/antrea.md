@@ -16,11 +16,11 @@ Antrea is Container Network Interface (CNI) plugin for Kubernetes. The Antrea CN
 
 ## Architecture
 
-Antrea is composed of several components deployed as Pods in the kube-system namespace of the cluster. The Antrea Conroller monitors the addition and deletion of objects by watching the Kubernetes API. A daemonset is deployed which druns Antrea Agent on each node the Agent applys flow configuration to Open vSwitch (OVS). 
+Antrea is composed of several components deployed as Pods in the kube-system namespace of the cluster. The Antrea Controller monitors the addition and deletion of objects by watching the Kubernetes API. A daemonset is deployed which runs Antrea Agent on each node the Agent applies flow configuration to Open vSwitch (OVS). 
 
 ![Antrea Logo](/images/antrea-architecture.png)
 
-The network configration required by Kubernetes is configured in a collection of Open vSwitch (OVS) flow tables. To make it easy to interpret each type of network traffic is classified and each traffic classification is stored in its own flow table.
+The network configuration required by Kubernetes is configured in a collection of Open vSwitch (OVS) flow tables. To make it easy to interpret each type of network traffic is classified and each traffic classification is stored in its own flow table.
 
 ![OVS Pipeline](/images/antrea-ovs-pipeline.svg)
 

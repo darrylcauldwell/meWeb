@@ -1,0 +1,542 @@
+---
+// Standalone reveal.js presentation - no layout wrapper
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitOps For The Distributed Enterprise Edge - Darryl Cauldwell</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+    <style is:inline>
+      .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+      .reveal section { text-align: left; }
+      .reveal .title-slide { text-align: center; }
+      .reveal ul { font-size: 0.85em; }
+      .reveal .small { font-size: 0.6em; color: #888; }
+      .reveal .two-col { display: flex; gap: 2rem; }
+      .reveal .two-col > div { flex: 1; }
+      .reveal .image-slide { text-align: center; }
+      .reveal .image-slide img { max-height: 500px; }
+      .reveal .demo-slide { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; }
+      .reveal .demo-slide h2 { font-size: 2em; color: #42affa; }
+      .reveal .edge-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1rem 0; }
+      .reveal .edge-grid img { height: 40px; }
+      .reveal .use-case-grid { display: flex; gap: 1.5rem; margin-top: 1rem; }
+      .reveal .use-case-grid > div { flex: 1; font-size: 0.7em; }
+      .reveal .use-case-grid h3 { font-size: 1em; color: #42affa; margin-bottom: 0.5rem; }
+      .reveal .use-case-grid ul { margin: 0; padding-left: 1.2em; }
+      .reveal .use-case-grid li { margin-bottom: 0.3em; }
+      .reveal .appendix-label { font-size: 0.5em; color: #666; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    </style>
+  </head>
+  <body>
+    <div id="back-nav" style="position:fixed;top:0;left:0;width:auto;height:auto;z-index:99999;pointer-events:auto;padding:12px;">
+      <a href="/presentations/" style="display:inline-block;background:rgba(255,255,255,0.25);color:#fff;font:14px/1 Helvetica,sans-serif;padding:8px 14px;border-radius:6px;text-decoration:none;pointer-events:auto;cursor:pointer;">&larr; Back to site</a>
+    </div>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Slide 1: Title -->
+        <section class="title-slide">
+          <h1>GitOps For The Distributed Enterprise Edge</h1>
+          <p><strong>Darryl Cauldwell</strong></p>
+        </section>
+
+        <!-- Slide 2: What is edge computing? -->
+        <section>
+          <h2>What is edge computing?</h2>
+          <div class="image-slide">
+            <img src="/presentations/devops-meetup/edge-cliff.png" alt="Edge computing concept" style="max-height: 450px; border-radius: 8px;">
+          </div>
+          <aside class="notes">
+            What is the edge? Well it has been around for a long time and can mean different things to different people.
+          </aside>
+        </section>
+
+        <!-- Slide 3: Royal Mail IT Services -->
+        <section>
+          <h2>Royal Mail IT Services</h2>
+          <p class="small">1993 &ndash; 2003</p>
+          <div class="two-col">
+            <div>
+              <img src="/presentations/devops-meetup/royal-mail.png" alt="Royal Mail" style="max-height: 100px; margin-bottom: 1rem;">
+              <h3 style="font-size:0.8em;">48,000 Vehicles &mdash; 1,110 Parcelforce</h3>
+              <ul style="font-size:0.65em;">
+                <li>Analogue carphone, modem and compute device</li>
+                <li>Send back to central service centre for application lifecycle</li>
+                <li>Lifecycle management was slow and expensive</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="font-size:0.8em;">37 Sorting Offices &amp; 1,356 Delivery Offices</h3>
+              <ul style="font-size:0.65em;">
+                <li>Windows PCs running track &amp; trace, route planning, revenue protection and MS Office</li>
+                <li>&ldquo;Man in a van&rdquo; systems administration</li>
+                <li>Poor configuration management, slow rollout, very expensive</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            My first roles in IT was with Royal Mail. I first worked with Parcelforce on their cab communications system. Essentially a car phone, a modem and a compute device. With this edge solution software rollout was slow and expensive with all devices sent back to our central team. I then moved to the field driving around delivery offices with bundles of floppy disks. This was hard to scale, configuration drift was a nightmare and it was very expensive.
+          </aside>
+        </section>
+
+        <!-- Slide 4: VMware -->
+        <section>
+          <h2>VMware &mdash; 2019 to present</h2>
+          <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 1rem;">
+            <img src="/presentations/devops-meetup/vmware-logo.png" alt="VMware by Broadcom" style="height: 60px;">
+            <img src="/presentations/devops-meetup/octo-logo.png" alt="Office of the CTO" style="height: 80px;">
+          </div>
+          <div class="two-col" style="font-size: 0.7em;">
+            <div>
+              <h3 style="font-size:1em;">Customer Success Architect</h3>
+              <ul>
+                <li>Cloud Foundation: vSphere, vSAN, NSX, Aria suite</li>
+                <li>Tanzu: App Modernisation, Spring, Cloud Foundry, Kubernetes</li>
+                <li>Telco Cloud: RAN Disaggregation, Private 4/5G, OpenStack</li>
+                <li>Secure Access Service Edge: SD-WAN, Edge Intelligence</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="font-size:1em;">Office of CTO Ambassador</h3>
+              <ul>
+                <li>Sustainable Software</li>
+                <li>Serverless (Knative)</li>
+                <li>Edge</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Fast forwards a 30 years and I'm still helping customers with edge and other solutions. I work across the full VMware suite of products and across industry verticals. I am also aligned to the Office of the CTO. Spend 20% of my time working on R&amp;D projects. Focus on sustainable software, serverless and the edge.
+          </aside>
+        </section>
+
+        <!-- Slide 5: Near Edge -->
+        <section>
+          <h2>Near Edge</h2>
+          <p style="font-size:0.65em; color:#aaa;">Few nodes with shared storage, cluster for availability and resilience. Data centre WAN connectivity and management plane. Optimised for low latency applications. dGPU enabled AI.</p>
+          <div class="use-case-grid">
+            <div>
+              <h3>Warehouses</h3>
+              <ul>
+                <li>Quality Inspection &mdash; Computer Vision</li>
+                <li>Theft prevention &mdash; Computer Vision</li>
+                <li>Logistics</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Factories</h3>
+              <ul>
+                <li>SCADA</li>
+                <li>SCADA Intrusion Detection</li>
+                <li>Predictive Maintenance &mdash; CV</li>
+                <li>Quality Inspection &mdash; CV</li>
+                <li>PLC</li>
+                <li>Physical security &mdash; CV</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Electricity Sub-stations</h3>
+              <ul>
+                <li>Protection automation control</li>
+                <li>Overhead line telemetry</li>
+                <li>Intelligent Electronic Devices</li>
+                <li>SCADA &amp; Intrusion Detection</li>
+                <li>Physical security &mdash; CV</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Edge customers typically have multiple remote sites which run applications which connect back to data centres systems. In recent years the edge application landscape has grown extensively and become unwieldy. Some examples of edge locations would be: Factories, Warehouses and Electricity transmission sub-stations. Some examples applications include: Security, both physical buildings security and computer security. PLC and SCADA, industrial control systems.
+          </aside>
+        </section>
+
+        <!-- Slide 6: Distributed Edge -->
+        <section>
+          <h2>Distributed Edge</h2>
+          <p style="font-size:0.65em; color:#aaa;">Single or small number of nodes with resource constrained hardware. 4/5G connectivity, SD-WAN. Optimised for low latency applications. iGPU enabled AI.</p>
+          <div class="use-case-grid">
+            <div>
+              <h3>Retail</h3>
+              <ul>
+                <li>Point of Sale &mdash; CV</li>
+                <li>Theft prevention &mdash; CV</li>
+                <li>Quality Inspection &mdash; CV</li>
+                <li>Inventory management</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Vehicles / Ships</h3>
+              <ul>
+                <li>Predictive Maintenance &mdash; CV</li>
+                <li>Physical security &mdash; CV</li>
+                <li>Intelligent Battlefields</li>
+                <li>Signals intelligence</li>
+                <li>Telemetry processing</li>
+                <li>Drone operation</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Electricity Distribution</h3>
+              <ul>
+                <li>Protection automation control</li>
+                <li>Intelligent Electronic Devices</li>
+                <li>Physical security &mdash; CV</li>
+                <li>Worker Safety &mdash; CV</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            The fastest moving area of edge is at the distributed edge. Typically these are many hundreds and potentially thousands of widely distributed remote locations. Due to the scale these are mostly low cost commodity hardware connecting back to cloud services via the 4/5G networks.
+          </aside>
+        </section>
+
+        <!-- Slide 7: Wind Turbines -->
+        <section>
+          <h2>Wind Turbines Predictive Maintenance</h2>
+          <p style="font-size:0.9em; color:#42affa; margin-bottom:0.5rem;">72,000+ turbines</p>
+          <ul>
+            <li>Management at scale</li>
+            <li>Observability at scale</li>
+            <li>Low cost commodity hardware</li>
+            <li>Consistent infrastructure deployment and configuration</li>
+            <li>Rapid, consistent iteration and delivery of computer vision inference models</li>
+            <li>Automated, zero touch provisioning</li>
+            <li>Secure 5G connectivity</li>
+          </ul>
+          <aside class="notes">
+            So if we look closer at the use case of how this might be used. And we look at enabling predictive maintenance of wind turbine fleet. The solution would be a camera and thermal imaging camera streaming views of the machinery. These image streams are processed by an inference engine which looks for anomalies. If found the event triggers the turbine to alter its behaviour and notify control centre. Not all possible anomalies are understood by the inference engine and so stream also feeds a cloud for model training and improvement. The refined model needs quick distribution to the fleet.
+          </aside>
+        </section>
+
+        <!-- Slide 8: Why data processing at the edge? -->
+        <section>
+          <h2>Why data processing at the edge?</h2>
+          <ul>
+            <li>Real-time decision making</li>
+            <li>Increase app reliability, responsiveness and security</li>
+            <li>Reduce bandwidth and infrastructure costs</li>
+            <li>Enhanced customer experience</li>
+            <li>Enhanced data privacy and security</li>
+          </ul>
+          <blockquote style="font-size:0.7em; margin-top:1.5rem; border-left: 4px solid #42affa; padding-left: 1rem;">
+            &ldquo;55% of all data analysis by deep neural networks will occur at the point of capture in an edge system by 2025&rdquo;
+            <br><span class="small">Source: Gartner Identifies Top Trends Shaping the Future of Data Science and Machine Learning, August 2023</span>
+          </blockquote>
+          <aside class="notes">
+            Looking at the applications across edge locations there is a use case pattern that emerges. Data processing and the use of AI inference engines at the edge.
+          </aside>
+        </section>
+
+        <!-- Slide 9: Common edge constraints -->
+        <section>
+          <h2>Common edge constraints</h2>
+          <div class="two-col">
+            <div>
+              <img src="/presentations/devops-meetup/ball-chain.png" alt="Constraints" style="max-height: 250px; border-radius: 8px;">
+            </div>
+            <div style="font-size:0.7em;">
+              <ul>
+                <li><strong>Application</strong> &mdash; Many existing apps may not be modernised for years. Configuration drift. Lifecycle management complex.</li>
+                <li><strong>Limited compute</strong> &mdash; Inelastic resources. Apps tied to specific hardware. GPUs tied to specific applications.</li>
+                <li><strong>Organic growth</strong> &mdash; Disparate hardware and operating systems.</li>
+                <li><strong>Limited network</strong> &mdash; High latency, low bandwidth. Potential outages to central management.</li>
+                <li><strong>Siloed data</strong> &mdash; Pockets of data distributed in silos.</li>
+                <li><strong>People skillset</strong> &mdash; Few trained in IT at edge locations. Few dedicated to Edge in central IT.</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Some of the largest constraints today are the same as they were 30 years ago with my work at Royal Mail namely: Application lifecycle management. Configuration management across a large distributed sites. Few trained in IT at the edge, and few dedicated to edge in central IT.
+          </aside>
+        </section>
+
+        <!-- Slide 10: VECO -->
+        <section>
+          <h2>VMware Edge Cloud Orchestrator</h2>
+          <div class="two-col">
+            <div>
+              <ul>
+                <li>Zero touch provisioning of infrastructure and applications</li>
+                <li>GitOps workflows for day zero and day two operations</li>
+                <li>Infrastructure and applications desired state manifest files in a git repository</li>
+                <li>VM and container based applications run side-by-side</li>
+                <li>Consumer grade hardware</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="font-size:0.9em; color:#42affa;">Tech Showcase &mdash; xLabs</h3>
+              <p style="font-size:0.7em;">xLabs is a program within the Advanced Technology Group in VMware&rsquo;s Office of the Chief Technology Officer. Cultivating cutting-edge technologies in collaboration with partners and customers.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            As part of alignment to OCTO I have been working on an edge project which aims to offer customers a GitOps workflow for device edge estate management and control. With edge hosts capable of running VMs and containers side by side on consumer grade hardware.
+          </aside>
+        </section>
+
+        <!-- Slide 11: VECO Architecture -->
+        <section>
+          <h2>VECO Architecture</h2>
+          <div style="text-align: center; margin-top: 1rem;">
+            <div style="display: flex; justify-content: center; gap: 2rem; align-items: flex-start;">
+              <div style="border: 2px solid #42affa; border-radius: 8px; padding: 1.5rem; min-width: 200px;">
+                <h3 style="font-size:0.9em; color:#42affa; margin-bottom:0.5rem;">Management Plane</h3>
+                <ul style="font-size:0.6em; list-style:none; padding:0;">
+                  <li>Lifecycle Management</li>
+                  <li>Site Profiles</li>
+                  <li>Visibility &amp; Monitoring</li>
+                  <li>Auditing</li>
+                </ul>
+              </div>
+            </div>
+            <div style="font-size:2em; color:#42affa; margin: 0.5rem 0;">&darr;</div>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+              <div style="border: 2px solid #888; border-radius: 8px; padding: 1rem; min-width: 150px;">
+                <h3 style="font-size:0.7em;">Control &amp; Data Plane</h3>
+                <p style="font-size:0.6em; margin:0;">ESXi &bull; Containers &bull; VMs</p>
+              </div>
+              <div style="border: 2px solid #888; border-radius: 8px; padding: 1rem; min-width: 150px;">
+                <h3 style="font-size:0.7em;">Control &amp; Data Plane</h3>
+                <p style="font-size:0.6em; margin:0;">ESXi &bull; Containers &bull; VMs</p>
+              </div>
+              <div style="border: 2px solid #888; border-radius: 8px; padding: 1rem; min-width: 150px;">
+                <h3 style="font-size:0.7em;">Control &amp; Data Plane</h3>
+                <p style="font-size:0.6em; margin:0;">ESXi &bull; Containers &bull; VMs</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            The high level architecture is a cloud management plane and each edge site has its own control and data plane.
+          </aside>
+        </section>
+
+        <!-- Slide 12: Demo - Console -->
+        <section class="demo-slide">
+          <h2>Live Demo</h2>
+          <p>VECO Console</p>
+          <p class="small">veco.showcase.vmware.com</p>
+        </section>
+
+        <!-- Slide 13: GitOps Workflow -->
+        <section>
+          <h2>GitOps Workflow</h2>
+          <div style="text-align: center; margin-top: 1rem;">
+            <div style="display: flex; justify-content: center; gap: 1.5rem; align-items: center; margin-bottom: 1rem;">
+              <div style="text-align: center;">
+                <img src="/presentations/devops-meetup/git-logo.png" alt="Git" style="height: 80px;">
+                <p style="font-size:0.5em; margin-top:0.3rem;">Declarative source of truth</p>
+                <p style="font-size:0.45em; color:#888;">firmware.yml &bull; esxconfig.yml &bull; vm.yml &bull; container.yml</p>
+              </div>
+              <div style="font-size:2em; color:#42affa;">&rarr;</div>
+              <div style="text-align: center;">
+                <img src="/presentations/devops-meetup/flux-logo.png" alt="Flux" style="height: 60px;">
+                <p style="font-size:0.5em; margin-top:0.3rem;">Update triggers pipeline</p>
+              </div>
+              <div style="font-size:2em; color:#42affa;">&rarr;</div>
+              <div style="text-align: center;">
+                <div class="edge-grid">
+                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
+                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
+                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
+                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
+                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
+                  <img src="/presentations/devops-meetup/edge-device-1.png" alt="Edge device">
+                </div>
+                <p style="font-size:0.5em;">Configuration pulled by each device</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            The different aspects of the edge configuration are stored in yaml files in Git repository. The flux continuous delivery engine is configured to poll repository every 60 seconds. Flux pulls the configuration and hands to Kubernetes Kustomize to realise the configuration.
+          </aside>
+        </section>
+
+        <!-- Slide 14: Demo - Git repo -->
+        <section class="demo-slide">
+          <h2>Live Demo</h2>
+          <p>Git Repository</p>
+          <p class="small">github.com/darrylcauldwell/keswick</p>
+        </section>
+
+        <!-- Slide 15: Zero touch provision -->
+        <section>
+          <h2>Zero Touch Provision and Operate</h2>
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="background:#42affa; color:#000; font-weight:bold; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</span>
+              <div><strong>Ship</strong> &mdash; OEM ships edge box(es) to site</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="background:#42affa; color:#000; font-weight:bold; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</span>
+              <div><strong>Plug in</strong> &mdash; Person at site connects edge box(es)</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="background:#42affa; color:#000; font-weight:bold; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</span>
+              <div><strong>Setup</strong> &mdash; Edge agent contacts cloud service, authenticates, pulls configuration, updates itself</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="background:#42affa; color:#000; font-weight:bold; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">4</span>
+              <div><strong>Day 2</strong> &mdash; Edge agent notices mismatch with desired state and acts to resolve</div>
+            </div>
+          </div>
+          <aside class="notes">
+            There can be no assumed IT skills at the device edge as such zero touch provisioning is used. The device gets shipped with just enough configuration to connect and authenticate with the cloud service to pull its configuration.
+          </aside>
+        </section>
+
+        <!-- Slide 16: ESXi Operator -->
+        <section>
+          <h2>ESXi Operator in Kubernetes</h2>
+          <pre style="font-size:0.55em;"><code>kubectl get crd | grep esx
+hostconfigurations.esx.vmware.com
+
+kubectl -n esx-system get HostConfiguration
+NAME
+esx-base-profile
+keswick-host-config</code></pre>
+          <p style="font-size:0.8em; margin-top:1rem;">VMware wrote a Kubernetes <strong>HostConfiguration Operator</strong> to manage ESXi host configuration. It connects to the ESXi APIs to enact configuration pulled from the git repository.</p>
+          <aside class="notes">
+            In order for Kustomize to manage ESXi host configuration VMware wrote a Kubernetes HostConfiguration Operator. This connects to the ESXi APIs to enact the configuration pulled from the git repository.
+          </aside>
+        </section>
+
+        <!-- Slide 17: VM Operators -->
+        <section>
+          <h2>VM Operators in Kubernetes</h2>
+          <p style="font-size:0.7em; color:#aaa;">Introduced vSphere 7.0 U2a &mdash; VirtualMachine, VirtualMachineImage, VirtualMachineClasses and VirtualMachineServices</p>
+          <pre style="font-size:0.45em;"><code>kubectl get crd | grep vmoperator
+virtualmachineclasses.vmoperator.vmware.com
+virtualmachineimages.vmoperator.vmware.com
+virtualmachines.vmoperator.vmware.com
+virtualmachineservices.vmoperator.vmware.com
+...
+
+kubectl get vm -o wide
+NAME      POWER-STATE   CLASS              IMAGE
+edge-vm                 guaranteed-small   photon-hw11-4.0.ova</code></pre>
+          <aside class="notes">
+            Kubernetes to control the deployment of VMs this uses the Kubernetes VM Operators introduced with vSphere 7.
+          </aside>
+        </section>
+
+        <!-- Slide 18: Demo - Terminal -->
+        <section class="demo-slide">
+          <h2>Live Demo</h2>
+          <p>Terminal SSH &mdash; Host and VM Operators</p>
+        </section>
+
+        <!-- Slide 19: Computer Vision Demo -->
+        <section>
+          <h2>Demo &mdash; Computer Vision at the Edge</h2>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 1.5rem;">
+            <div style="text-align: center;">
+              <img src="/presentations/devops-meetup/camera-icon.png" alt="RTSP Camera" style="height: 80px;">
+              <p style="font-size:0.55em;">RTSP Camera</p>
+            </div>
+            <div style="font-size:1.5em; color:#42affa;">&rarr;</div>
+            <div style="text-align: center;">
+              <img src="/presentations/devops-meetup/opencv-logo.png" alt="OpenCV" style="height: 50px; margin-bottom: 0.3rem;">
+              <p style="font-size:0.55em;">Inference Engine</p>
+              <img src="/presentations/devops-meetup/caffe-logo.png" alt="Caffe" style="height: 40px; margin-top: 0.3rem;">
+              <p style="font-size:0.45em; color:#888;">Caffe Face Detector<br>OpenCV Pre-trained Model</p>
+            </div>
+            <div style="font-size:1.5em; color:#42affa;">&rarr;</div>
+            <div style="text-align: center;">
+              <p style="font-size:0.7em;">Browser</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <p style="font-size:0.6em; color:#888;">Running on NUC &bull; Managed by VECO &bull; Config in Git</p>
+          </div>
+        </section>
+
+        <!-- Slide 20: Thank you -->
+        <section class="title-slide">
+          <h1>Thank you</h1>
+        </section>
+
+        <!-- Slide 21: Appendix - What is OpenVINO? -->
+        <section>
+          <p class="appendix-label">Appendix</p>
+          <h2>What is OpenVINO?</h2>
+          <div class="image-slide">
+            <img src="/presentations/devops-meetup/openvino-logo.png" alt="OpenVINO" style="max-height: 150px;">
+          </div>
+        </section>
+
+        <!-- Slide 22: OpenVINO Architecture -->
+        <section>
+          <p class="appendix-label">Appendix</p>
+          <h2>OpenVINO</h2>
+          <ul style="font-size:0.8em;">
+            <!-- cspell:disable-next-line -->
+            <li><strong>O</strong>pen <strong>V</strong>isual <strong>I</strong>nference <strong>N</strong>eural networks <strong>O</strong>ptimisation</li>
+          </ul>
+          <div class="image-slide" style="margin-top: 1rem;">
+            <img src="/presentations/devops-meetup/openvino-arch.png" alt="OpenVINO architecture - frameworks to hardware" style="max-height: 400px;">
+          </div>
+        </section>
+
+        <!-- Slide 23: AI Accelerators -->
+        <section>
+          <p class="appendix-label">Appendix</p>
+          <h2>AI Accelerators for Deep Learning Inference</h2>
+          <ul style="font-size:0.75em;">
+            <li>An AI accelerator is a dedicated processor designed to accelerate machine learning computations</li>
+            <li>Deep learning is primarily composed of linear algebra computations that can be easily parallelised</li>
+            <li>Inference is often the most time consuming part of your application that directly affects user experience</li>
+          </ul>
+          <div style="display: flex; gap: 2rem; margin-top: 1.5rem; font-size:0.7em;">
+            <div>
+              <h3 style="font-size:1em; color:#42affa;">iGPU</h3>
+              <p>Integrated graphics processing on Intel Core and AMD Ryzen processors</p>
+            </div>
+            <div>
+              <h3 style="font-size:1em; color:#42affa;">dGPU</h3>
+              <p>Discrete graphics processing units typically supplied by AMD and Nvidia</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 24: OpenVINO Toolkit -->
+        <section>
+          <p class="appendix-label">Appendix</p>
+          <h2>OpenVINO Toolkit</h2>
+          <div class="image-slide">
+            <img src="/presentations/devops-meetup/openvino-toolkit.png" alt="OpenVINO toolkit workflow" style="max-height: 500px;">
+          </div>
+        </section>
+
+        <!-- Slide 25: GPU Passthrough vs Shared -->
+        <section>
+          <p class="appendix-label">Appendix</p>
+          <h2>GPU Access Models</h2>
+          <div class="two-col" style="margin-top: 1.5rem;">
+            <div style="border: 2px solid #42affa; border-radius: 8px; padding: 1.5rem; text-align: center;">
+              <h3 style="font-size:1em;">Passthrough</h3>
+              <p style="font-size:0.7em;">Dedicated GPU assigned to a single VM</p>
+            </div>
+            <div style="border: 2px solid #42affa; border-radius: 8px; padding: 1.5rem; text-align: center;">
+              <h3 style="font-size:1em;">Shared vGPU</h3>
+              <p style="font-size:0.7em;">NVIDIA NVAIE license required</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+    <script is:inline>
+      Reveal.initialize({
+        hash: true,
+        plugins: [ RevealHighlight ]
+      });
+    </script>
+  </body>
+</html>

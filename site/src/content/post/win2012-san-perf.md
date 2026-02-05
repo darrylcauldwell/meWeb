@@ -49,7 +49,7 @@ I then manually worked through each Windows task in Task Scheduler and took note
 \Microsoft\Windows\Time Synchronization\SynchronizeTime
 ```
 
-Of these tasks,  we identified *ScheduleDefrag* and *Chkdsk* as potentially moving a lot of data around and freeing up blocks which would trigger Windows to isssue TRIM \ Unmap commands for the SAN to \recover the space within the Thin LUN.
+Of these tasks,  we identified *ScheduleDefrag* and *Chkdsk* as potentially moving a lot of data around and freeing up blocks which would trigger Windows to issue TRIM \ Unmap commands for the SAN to \recover the space within the Thin LUN.
 
 While looking at Trim \ Unmap on 2012 I  found that you can disable Trim \ Unmap commands being issued by setting the [DisableDeleteNotify](http://technet.microsoft.com/en-us/library/cc785435.aspx) file system attribute.
 

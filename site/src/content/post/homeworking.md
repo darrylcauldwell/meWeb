@@ -109,4 +109,4 @@ Having both my wife and daughter off at the same time has meant his has affected
 17:00 - 19:30   Family dinner, after which I take over with daughter dog walk, book and bed etc
 ```
 
-Since the pandemic I found the Peleton was offering three months of membership for free. Previously I had only ever thought you needed the Peleton equipment to do the sessions. There are two membership levels one for using your own bike/ treadmill and the other which requires their equipment. The class based Peleton treadmill workouts have proved to be really enjoyable alternative while the gyms are closed.
+Since the pandemic I found the Peloton was offering three months of membership for free. Previously I had only ever thought you needed the Peloton equipment to do the sessions. There are two membership levels one for using your own bike/ treadmill and the other which requires their equipment. The class based Peloton treadmill workouts have proved to be really enjoyable alternative while the gyms are closed.

@@ -21,7 +21,7 @@ The process is pretty straight forwards,  first task is to download the AWS Serv
 
 ![Deploy OVF Ready to complete](/images/aws-sms-ova-deploy-final.jpeg)
 
-The SMS Connector needst to connect to your AWS account and therefore we need to create a user with the "ServerMigrationConnector" role attached.
+The SMS Connector needs to connect to your AWS account and therefore we need to create a user with the "ServerMigrationConnector" role attached.
 
 ![MigrationUser Role Mapping](/images/aws-sms-account.jpeg)
 
@@ -91,7 +91,7 @@ A replication job refers to the server being migrated,  as we mentioned earlier 
 aws sms get-replication-runs --replication-job-id sms-job-2ca54045  
 ```
 
-In the following example we can see this has three runs in the runlist, the initial seed which has completed, an incrememental which has completed, it also has a pending job as I had left the default replication job values to schedule a daily incremental.
+In the following example we can see this has three runs in the runlist, the initial seed which has completed, an incremental which has completed, it also has a pending job as I had left the default replication job values to schedule a daily incremental.
 
 ![AWS Server Migration Service Replication Runs](/images/aws-sms-repl-runs.jpeg)
 
@@ -110,7 +110,7 @@ While the job state is in the Active state the statusMessage rolls through the v
 
 Each run forms a new AMI, each newly created AMIs can then be launched in ec2, so you can for example start from the initial seed replication, one containing all the incrementals or anywhere in between.
 
-## Offical SMS Documentation Links
+## Official SMS Documentation Links
 
 [Marketing Page](https://aws.amazon.com/server-migration-service/)  
 

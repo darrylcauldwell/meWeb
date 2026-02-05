@@ -8,7 +8,7 @@ tags:
   - "aws"
   - "powershell"
 ---
-AWS dynamoDB is a really useful key-value store which is really easy to consume from scripts. However while the AWS Powershell module contains functions for 'Managing Tables' it does not contain functions for 'Reading Data' or 'Modifying Data'.  I had found Julian Biddle had written a [blog post](https://anoriginalidea.wordpress.com/2015/01/20/using-amazon-aws-dynamodb-from-powershell/) about how this might be done by making direct calls to AWS AmazonDynamoDBClient SDK for .net. While this was a useful starting point I had to read around this alot to get it to work how I needed, this post is an explaination of my understanding.
+AWS dynamoDB is a really useful key-value store which is really easy to consume from scripts. However while the AWS Powershell module contains functions for 'Managing Tables' it does not contain functions for 'Reading Data' or 'Modifying Data'.  I had found Julian Biddle had written a [blog post](https://anoriginalidea.wordpress.com/2015/01/20/using-amazon-aws-dynamodb-from-powershell/) about how this might be done by making direct calls to AWS AmazonDynamoDBClient SDK for .net. While this was a useful starting point I had to read around this a lot to get it to work how I needed, this post is an explanation of my understanding.
 
 The script this blog post documents is stored [here](https://github.com/darrylcauldwell/dynamoDB-powershell/blob/master/dynamoDB.ps1).
 

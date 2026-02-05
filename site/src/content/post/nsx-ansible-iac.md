@@ -1,8 +1,8 @@
 ---
-title: "Ansibile NSX Configuration - Infrastructure As Code"
+title: "Ansible NSX Configuration - Infrastructure As Code"
 date: "2016-06-07"
 category: "vmware"
-description: "Ansibile NSX Configuration - Infrastructure As Code"
+description: "Ansible NSX Configuration - Infrastructure As Code"
 tags:
   - "ansible"
   - "nsx"
@@ -14,4 +14,4 @@ Tools which are commonly used for deploying applications with declarative config
 
 VMware NSX offers many things to many people with this rich feature set comes complexity in configuration.  At VMworld Europe 2015 I was introduced to Yves Fauser and attended his session [‘NET4972 – Incorporating VMware NSX in your DevOps Toolchain – Network Programmability with Python and Ansible‘.](https://vmworld2015.lanyonevents.com/connect/sessionDetail.ww?SESSION_ID=4972&tclass=popup)  He had created an [NSX RAML specification]((http://github.com/vmware/nsxraml), a [Python NSX RAML client](http://github.com/vmware/nsxramlclient.) he then brings these altogether into a usable form by way of an [NSX Ansible module.](https://github.com/vmware/nsxansible)  The [Ansible module](https://github.com/vmware/nsxansible) offers examples which give the ability to NSX Manager, configure NSX to vCenter integration, configure VXLAN, deploy NSX Controllers and then deploy some logical switches.
 
-I explorered this capability in [this follow up post.]({{ site.url }}/deploy-nsx-from-ansible)
+I explored this capability in [this follow up post.]({{ site.url }}/deploy-nsx-from-ansible)

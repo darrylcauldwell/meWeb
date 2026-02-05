@@ -8,12 +8,12 @@ tags:
   - "python"
   - "raspberry-pi"
 ---
-Following on from [base Ubuntu build](/post/homelab-pi) here I begin to look at Parrallel Programming.
+Following on from [base Ubuntu build](/post/homelab-pi) here I begin to look at Parallel Programming.
 
-## Parrallel Programming
+## Parallel Programming
 Each Raspberry Pi is a small unit of compute, one of my goals is to understand how operating many in a cluster. There are various approaches to parallel computational models, message-passing has proven to be an effective one. MPI the Message Passing Interface, is a standardized and portable message-passing system designed to function on a wide variety of parallel computers. 
 
-My prefered language is Python and usefully there is [MPI for Python](https://mpi4py.readthedocs.io/en/stable/install.html).
+My preferred language is Python and usefully there is [MPI for Python](https://mpi4py.readthedocs.io/en/stable/install.html).
 
 ```
 sudo apt-get install -y libopenmpi-dev python-dev pip

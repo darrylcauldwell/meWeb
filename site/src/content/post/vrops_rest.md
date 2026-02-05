@@ -5,20 +5,20 @@ category: "vmware"
 description: "Orchestrating configuration of vROps via REST API with Postman"
 thumbnail: "clarity-icons/code-144.svg"
 ---
-vRealize Operations Manager (vROps) exposes some of its configuration via RESTful API. With this we can look to programatically control its configuration. My workflow is to use a REST client to explore API and validate payload formatting before moving to script the steps. My REST client of choice is [Postman](https://www.postman.com/).
+vRealize Operations Manager (vROps) exposes some of its configuration via RESTful API. With this we can look to programmatically control its configuration. My workflow is to use a REST client to explore API and validate payload formatting before moving to script the steps. My REST client of choice is [Postman](https://www.postman.com/).
 
 Performing any REST configuration in vRealize Operations Manager requires at least two steps:
 
 * Authenticate
 * Perform action, like configure a new vCenter adapter
 
-To faciliate running a sequence of actions I start by creating a POSTMAN collection. Requests stored within the collection can be played in sequence. Using the example of configuring a new vCenter adapter we might create a collection called 'vROps - New vCenter Adapter'.
+To facilitate running a sequence of actions I start by creating a POSTMAN collection. Requests stored within the collection can be played in sequence. Using the example of configuring a new vCenter adapter we might create a collection called 'vROps - New vCenter Adapter'.
 
-In case we have multiple environments and want to export our collection and reuse we  want to store environmental specifics as variables. To faciliate this we can create a POSTMAN envrionment. For example we might create a environment called 'Homelab' which has variable vrops-fqdn and both initial and current value of vrops01.example.local
+In case we have multiple environments and want to export our collection and reuse we  want to store environmental specifics as variables. To facilitate this we can create a POSTMAN environment. For example we might create a environment called 'Homelab' which has variable vrops-fqdn and both initial and current value of vrops01.example.local
  
-vRealize Operations Manager REST API documentation describes how we can [aquire an authentication token](https://docs.vmware.com/en/vRealize-Operations-Manager/8.1/com.vmware.vcom.api.doc/GUID-C3F0A911-A587-40F7-9998-13D4880A0C2B.html).
+vRealize Operations Manager REST API documentation describes how we can [acquire an authentication token](https://docs.vmware.com/en/vRealize-Operations-Manager/8.1/com.vmware.vcom.api.doc/GUID-C3F0A911-A587-40F7-9998-13D4880A0C2B.html).
 
-Create new reques in Postman with name 'Aquire token', set the request method to POST and set URL to use environment variable like:
+Create new request in Postman with name 'Acquire token', set the request method to POST and set URL to use environment variable like:
 
 ```
 {% raw %}
@@ -51,7 +51,7 @@ postman.setEnvironmentVariable("bearerToken", jsonData.token);
 
 We can now look at the next step in our example is to add a vCenter adapter which is documented [here](https://docs.vmware.com/en/vRealize-Operations-Manager/8.1/com.vmware.vcom.api.doc/GUID-18D17D09-628F-4974-AFE4-E94446E3462D.html).
 
-Create new reques in Postman with name 'Aquire token', set the request method to POST and set URL to use environment variable like:
+Create new request in Postman with name 'Acquire token', set the request method to POST and set URL to use environment variable like:
 
 ```
 {% raw %}
@@ -69,7 +69,7 @@ Authentication: vRealizeOpsToken {{bearerToken}}
 {% endraw %}
 ```
 
-The documentation supplies an example body to post with some optional parameters. Similar to aquire step we place this in request body tab and ensure raw format is selected (ensuring you set envioronmentally values).
+The documentation supplies an example body to post with some optional parameters. Similar to acquire step we place this in request body tab and ensure raw format is selected (ensuring you set envioronmentally values).
 
 ```
 {

@@ -8,7 +8,7 @@ tags:
   - "kubernetes"
   - "nsx"
 ---
-When developing a cloud native application using Docker containers she soon needs to understand how Docker containers communicate. In previous [post](/post/docker-networking) I looked at how Docker containers communicate on a single host. When the developer wants to scaleout capacity of the hosting across multiple hosts or increase abailability she might look at deploying this on a Kubernetes cluster. The move from single Docker host to multiple hosts managed as Kubernetes Cluster introduces changes to the container networking model. The four distinct networking problems a Kubernetes Cluster needs to address:
+When developing a cloud native application using Docker containers she soon needs to understand how Docker containers communicate. In previous [post](/post/docker-networking) I looked at how Docker containers communicate on a single host. When the developer wants to scaleout capacity of the hosting across multiple hosts or increase availability she might look at deploying this on a Kubernetes cluster. The move from single Docker host to multiple hosts managed as Kubernetes Cluster introduces changes to the container networking model. The four distinct networking problems a Kubernetes Cluster needs to address:
 
 * Highly-coupled container-to-container communications
 * Pod-to-Pod communications
@@ -19,9 +19,9 @@ When developing a cloud native application using Docker containers she soon need
 
 A Docker container is great for deploying a single atomic unit of software. This model can become a bit cumbersome when you want to run multiple pieces of software together. You often see this when developers create Docker images that use [supervisord](https://docs.docker.com/config/containers/multi-service_container/) as an entrypoint to start and manage multiple processes. Many have found that it is instead more useful to deploy those applications in groups of containers that are partially isolated and partially share an environment. It is possible to configure Docker to control the level of sharing between groups of containers by creating a parent container and manage the lifetime of those containers, however this is administratively complex. Kubernetes provides an abstraction called Pods for just this use case.
 
-A Kubernetes Pod implements a 'pause' container as the managing parent container, the Pod also contains one or more of  application containers. The 'pause' container serves as the basis of Linux namespace sharing in the Pod the other containers are starterd within that namespace. Sharing a namespace includes sharing network stack and other resources such as volumes. Sharing a network namespace means containers within a Pod share an IP address and all containers within a Pod can all reach each other’s ports on localhost.
+A Kubernetes Pod implements a 'pause' container as the managing parent container, the Pod also contains one or more of  application containers. The 'pause' container serves as the basis of Linux namespace sharing in the Pod the other containers are started within that namespace. Sharing a namespace includes sharing network stack and other resources such as volumes. Sharing a network namespace means containers within a Pod share an IP address and all containers within a Pod can all reach each other’s ports on localhost.
 
-![Kubernets Pod](/images/k8s-nsxt-pod.png)
+![Kubernetes Pod](/images/k8s-nsxt-pod.png)
 
 ## What Is A Kubernetes Service
 
@@ -29,7 +29,7 @@ Typically a Kubernetes Deployment is used to When a Kubernetes Pod is deployed P
 
 ## What Is Container Networking Interface (CNI)
 
-Container-centric infrastructure needs a network and this network must be dynamic. Container networking is designed to be plugable, the Container Networking Interface is a defined [specification](https://github.com/containernetworking/cni/blob/master/SPEC.md). Various open source projects and vendors provide CNI compliant plugins which provide dynamic networking solution for containers.
+Container-centric infrastructure needs a network and this network must be dynamic. Container networking is designed to be pluggable, the Container Networking Interface is a defined [specification](https://github.com/containernetworking/cni/blob/master/SPEC.md). Various open source projects and vendors provide CNI compliant plugins which provide dynamic networking solution for containers.
 
 ## What Is NSX-T Container Plugin (NCP)
 
@@ -50,7 +50,7 @@ I looked at the [NCP initially for integration with OpenShift](http://darrylcaul
 
 ### Policy API Object Support
 
-Prior to the 2.5 release all NSX objects which the NCP interacted with had to be created via the Advanced Networking & Security tab in the UI or the old imperative APIs. The imperative API was harder than it could have been to control programatically so with the NSX-T 2.4 release VMware introduced a new intent-based Policy API and corresponding Simplified UI. The NCP now supports either the imperative or the intent-based API,  to use the intent-based API a new parameter in the NCP configmap (ncp.ini) policy_nsxapi needs to be set to True.
+Prior to the 2.5 release all NSX objects which the NCP interacted with had to be created via the Advanced Networking & Security tab in the UI or the old imperative APIs. The imperative API was harder than it could have been to control programmatically so with the NSX-T 2.4 release VMware introduced a new intent-based Policy API and corresponding Simplified UI. The NCP now supports either the imperative or the intent-based API,  to use the intent-based API a new parameter in the NCP configmap (ncp.ini) policy_nsxapi needs to be set to True.
 
 ### Simplified Installation
 
@@ -70,11 +70,11 @@ An extra-small NSX Manager appliance (192.168.1.14) is deployed.  All esxi hosts
 
 ## Kubernetes IP Address Space
 
-A Kubernetes Cluster requires all Pods on a node to communicate with all Pods on all nodes in the cluster without NAT these are refered to as CluterIP. To support this a range of IP addresses must be defined to be issued to Pods and Services within a cluster. Even though the range is used for both Pods and Services, it is called the Pod address range. The last /20 of the Pod address range is used for Services. A /20 range has 212 = 4096 addresses. So 4096 addresses are used for Services, and the rest of the range is used for Pods.
+A Kubernetes Cluster requires all Pods on a node to communicate with all Pods on all nodes in the cluster without NAT these are referred to as ClusterIP. To support this a range of IP addresses must be defined to be issued to Pods and Services within a cluster. Even though the range is used for both Pods and Services, it is called the Pod address range. The last /20 of the Pod address range is used for Services. A /20 range has 212 = 4096 addresses. So 4096 addresses are used for Services, and the rest of the range is used for Pods.
 
 The address range I will be using to issue ClusterIP for this lab cluster is 10.0.0.0/16.
 
-As well as internal communicatins using ClusterIP some parts of your application may need to be exposed as a Service to be accessible on an externally routable IP address. There are two methods for exposing Service onto an externally routable IP address, NodePort and LoadBalancer. Source NAT is used for translating private ClusterIP address to a public routable address.
+As well as internal communications using ClusterIP some parts of your application may need to be exposed as a Service to be accessible on an externally routable IP address. There are two methods for exposing Service onto an externally routable IP address, NodePort and LoadBalancer. Source NAT is used for translating private ClusterIP address to a public routable address.
 
 The external address range I will be using to issue ExternalIP for this lab cluster is 172.16.0.0/16.
 
@@ -90,7 +90,7 @@ There can be many objects deployed within NSX-T, the NCP needs to understand whi
 
 The NCP configuration is stored in ncp.ini file. It is possible to put the UUID of NSX objects in the ncp.ini but this an administrative pain. The mapping of which NSX objects for NCP to interact with is better achieved by applying tags to the appropriate NSX objects.
 
-An NSX-T instance can support multiple Kubernetes clusters to ensure correct object mapping a cluster name is used. The cluster name is specified in NCP configuration and the appopriate NSX objects must have tag of same name applied.
+An NSX-T instance can support multiple Kubernetes clusters to ensure correct object mapping a cluster name is used. The cluster name is specified in NCP configuration and the appropriate NSX objects must have tag of same name applied.
 
 For this lab environment I am configuring with cluster name 'pandora'.
 
@@ -158,7 +158,7 @@ Network connectivity to the containers running in Kubernetes is provided by a NS
 
 ## Kubernetes Master VM
 
-Create a Ubuntu 18.04 VM with 2x CPU, 4GB RAM and 50GB vHDD named 'k8s-master'. The VM should have two vNIC one which is used to communicate with NSX API and which will host Kubernetes API. The second connected to the node logical switch which will have the Open vSwitch (OVS) bridge configured to give connectivity to the Pods. In my lab first connected to 'VM Network' enumerates as ens160 and the scond connected to 'node-logical-switch' enumerates as ens192.
+Create a Ubuntu 18.04 VM with 2x CPU, 4GB RAM and 50GB vHDD named 'k8s-master'. The VM should have two vNIC one which is used to communicate with NSX API and which will host Kubernetes API. The second connected to the node logical switch which will have the Open vSwitch (OVS) bridge configured to give connectivity to the Pods. In my lab first connected to 'VM Network' enumerates as ens160 and the second connected to 'node-logical-switch' enumerates as ens192.
 
 ```
 cat /etc/netplan/01-netcfg.yaml 

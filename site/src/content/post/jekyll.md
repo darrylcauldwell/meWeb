@@ -13,9 +13,9 @@ Learning new technical skills is straight forwards but while building any new sk
 
 I found at my old job I was more and more using distributed source control more and more to help my day to day work, since changing job this required much less. The goal at my employer is to use this in the near future so editing my personal blog is a good way to keep learning and building knowledge with github. By migrating my blog to GitHub Pages and Jekyll, publishing a blog post becomes committing changes and pushing them to GitHub.
 
-Albeit distributed source control is used much less in my new role writting infrastructure configuration code is still very much required. I've moved away from Sublime Text and been starting to use the excellent Visual Studio Code at work. I write much less code at home on Mac and struggle with the shortcut key differences. By maintaining my personal blog as a series of files which I use a code editor will help me with this.
+Albeit distributed source control is used much less in my new role writing infrastructure configuration code is still very much required. I've moved away from Sublime Text and been starting to use the excellent Visual Studio Code at work. I write much less code at home on Mac and struggle with the shortcut key differences. By maintaining my personal blog as a series of files which I use a code editor will help me with this.
 
-While working with Ansible I use YAML formatted files, using Jeykll and passing variables seems a great way to keep using and learning.
+While working with Ansible I use YAML formatted files, using Jekyll and passing variables seems a great way to keep using and learning.
 
 ## Migration Overview
 
@@ -81,5 +81,5 @@ git push -u origin master
 ```
 
 ## Redirect URL
-Once your happy that your website is fully funcional on the URL *yourproject*.github.io you can then add a DNS alias to point your domain
+Once your happy that your website is fully functional on the URL *yourproject*.github.io you can then add a DNS alias to point your domain
 name to the new site.  After a few days if your still happy you can then remove your account from previous hosting company.

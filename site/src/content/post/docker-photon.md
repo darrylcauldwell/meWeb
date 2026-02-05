@@ -10,7 +10,7 @@ tags:
 There has been a lot of industry noise around Docker and VMware project Photon so these have been on the agenda to explore as well.  I generally perform my little research projects running nested ESXi on VMware Fusion on my laptop, but VMware are [offering £300 of free service credits](http://vcloud.vmware.com/uk/service-offering/virtual-private-cloud-ondemand) for trialing vCloud Air OnDemand.  Here is my how to guide of the steps I used.
 
 ## vCloud Air Networking
-This post assumes your starting with a clean vCloud Air account,  obviously you may already have vCloud Air networking setup,  if so there is no need for this section as long as the Photon and test nexted ESXi VM sit on a common broadcast network this should be fine.
+This post assumes your starting with a clean vCloud Air account,  obviously you may already have vCloud Air networking setup,  if so there is no need for this section as long as the Photon and test nested ESXi VM sit on a common broadcast network this should be fine.
 
 First task would be to setup a 'Virtual Private Cloud OnDemand' this you create in a location close to you for me thats Slough, UK,  this will create virtual datacenter with 'default-routed-network' (192.168.109.1/24).
 

@@ -12,7 +12,7 @@ I'd heard lots of great things about Peloton however it the basic bike costs £1
 
 Peloton membership is required to provide access to their live workout classes and back catalogue of cycling, running, strength, yoga, meditation workout classes.
 
-Their are two types of membership, all-access £39 per month and digital £12.99 per month. The all-access membership allows you to create multiple user accounts, the digial membership is single user. The all-access membership also gives access to the Peloton leaderboard feature. Access to all-access membership is only available to owners of Peloton Bike or Tread. Access to the digital membership is with the [Peloton App](https://www.onepeloton.co.uk/app).
+Their are two types of membership, all-access £39 per month and digital £12.99 per month. The all-access membership allows you to create multiple user accounts, the digital membership is single user. The all-access membership also gives access to the Peloton leaderboard feature. Access to all-access membership is only available to owners of Peloton Bike or Tread. Access to the digital membership is with the [Peloton App](https://www.onepeloton.co.uk/app).
 
 ## Donor Bike
 
@@ -20,13 +20,13 @@ Like most people I had in garage an old mountain bike, GT Tempest circa 1995. I 
 
 ## Turbo Trainer
 
-The Peloton workouts require capability of varying pedaling resistence multiple times during the workout, so the turbo-trainer I chose had to have a handlebar mounted resistance dial. From what I had read the Peloton bike has 100 levels of resistance, the bike I was using 24 gears so in theory if my turbo-trainer had at least four levels of resistance I would be able to be close enough. I chose for the Elite Volare Mag from [Evans Cycles £99](https://www.evanscycles.com/elite-volare-mag-turbo-trainer-00104161) which has five levels of resistance. For level 100 I use level five resistance and am in highest gear 3:8. For level 1 I use level one resistance and am in lowest gear 1:1.
+The Peloton workouts require capability of varying pedaling resistance multiple times during the workout, so the turbo-trainer I chose had to have a handlebar mounted resistance dial. From what I had read the Peloton bike has 100 levels of resistance, the bike I was using 24 gears so in theory if my turbo-trainer had at least four levels of resistance I would be able to be close enough. I chose for the Elite Volare Mag from [Evans Cycles £99](https://www.evanscycles.com/elite-volare-mag-turbo-trainer-00104161) which has five levels of resistance. For level 100 I use level five resistance and am in highest gear 3:8. For level 1 I use level one resistance and am in lowest gear 1:1.
 
 ![Volare Turbo Trainer](/images/pelo-turbo-train.jpeg)
 
 ## Phone Mount
 
-The app presents the cycling workouts with a video stream of the instructor, paricipant list and stream of metrics around your heartrate, cadence and estimate of burned calories. The official Peloton bike comes with a huge screen yo display this, the app is available for Apple TV, iPad and iPhone. I wanted to use the solution in the garage or home office neither of these have a Apple TV or a TV, so this wasn't an option for me. It is possible to get mounting bracket to attach iPad to bike handlebars.  I chose a phone mount so I could use this if ever I went for an outdoor bike ride. The Peloton app can be viewed in landscape or portrait so I opted to get the Visun mount which allowed 360 rotation for [Amazon £18](https://www.amazon.co.uk/gp/product/B01JLX8N1O).
+The app presents the cycling workouts with a video stream of the instructor, participant list and stream of metrics around your heartrate, cadence and estimate of burned calories. The official Peloton bike comes with a huge screen yo display this, the app is available for Apple TV, iPad and iPhone. I wanted to use the solution in the garage or home office neither of these have a Apple TV or a TV, so this wasn't an option for me. It is possible to get mounting bracket to attach iPad to bike handlebars.  I chose a phone mount so I could use this if ever I went for an outdoor bike ride. The Peloton app can be viewed in landscape or portrait so I opted to get the Visun mount which allowed 360 rotation for [Amazon £18](https://www.amazon.co.uk/gp/product/B01JLX8N1O).
 
 ![Phone Mount](/images/pelo-phone-mount.jpeg)
 
@@ -48,6 +48,6 @@ I aim to do a cycling workout every day even if its a quick 20 minute. Its not a
 
 ## Summary
 
-Overal I'm really pleased with how the solution turned out. I do miss out on the Peloton leaderboard feature. Over the Peloton bike my solution has flexibility of me using one bike for both indoor or oudoor workout. The total for one-off costs was £153 so dramatic difference to £1,990 and recurring monthly £12.99 rather than £39. 
+Overall I'm really pleased with how the solution turned out. I do miss out on the Peloton leaderboard feature. Over the Peloton bike my solution has flexibility of me using one bike for both indoor or outdoor workout. The total for one-off costs was £153 so dramatic difference to £1,990 and recurring monthly £12.99 rather than £39. 
 
 ![Budget Peloton](/images/pelo-full.jpeg)

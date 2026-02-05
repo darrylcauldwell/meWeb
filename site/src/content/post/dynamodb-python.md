@@ -8,7 +8,7 @@ tags:
   - "aws"
   - "python"
 ---
-The goal of this post is to walk through the creation of a AWS test environment which I use to explore the Python SDK interactions with DyanmoDB. For learning I use the free tier and so used to create the environment as needed manually. After doing this once I decided to encapsulate the configuration in a Cloud Formations template and then deploy the stack when I needed it.
+The goal of this post is to walk through the creation of a AWS test environment which I use to explore the Python SDK interactions with DynamoDB. For learning I use the free tier and so used to create the environment as needed manually. After doing this once I decided to encapsulate the configuration in a Cloud Formations template and then deploy the stack when I needed it.
 
 # Environment Configuration
 The resources I require the Cloud Formation template to create

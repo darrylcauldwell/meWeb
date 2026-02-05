@@ -16,7 +16,7 @@ The image is configured with DHCP client, [Pi device MAC addresses are prefixed 
 
 ![Ubuntu Password](/images/pi/ubuntu-pw.png)
 
-I want to reliably know how to connect to these and like to change from dynamic to a staticly asssigned IP address. To do this for Ubuntu 20.10 we update Netplan configuration.
+I want to reliably know how to connect to these and like to change from dynamic to a statically assigned IP address. To do this for Ubuntu 20.10 we update Netplan configuration.
 
 ```
 sudo vi /etc/netplan/50-cloud-init.yaml

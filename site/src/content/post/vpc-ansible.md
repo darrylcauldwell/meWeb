@@ -12,7 +12,7 @@ In this post I look at setting up [AWS VPC peering](http://docs.aws.amazon.com/A
 
 ## Local Peering
 
-I'll start by configuring two VPCs within the same account a single account, and configure peering between them. The Ansible host will sit within the same account which we create the new VPCs and peering. In order that Ansible can manage the AWS VPC services create an IAM Role named Ansible and assign it to the AdmistratorAccess policy. Once the IAM role is created we can then create a RHEL7 EC2 instance with this IAM role attached.
+I'll start by configuring two VPCs within the same account a single account, and configure peering between them. The Ansible host will sit within the same account which we create the new VPCs and peering. In order that Ansible can manage the AWS VPC services create an IAM Role named Ansible and assign it to the AdministratorAccess policy. Once the IAM role is created we can then create a RHEL7 EC2 instance with this IAM role attached.
 
  The Ansible AWS modules manages AWS via the API by use of the [Python boto library](http://boto.cloudhackers.com/), presently the boto project is migrating from v2 to v3, the Ansible VPC module relies on both versions.  In order for boto to function correctly we also need locally installed AWSCLI. Once the RHEL instance is running connect and run the following commands to install Ansible and the boto and AWS CLI python library.
 
@@ -116,7 +116,7 @@ I've added debugging of output, if you run this you will see the two VPCs get cr
 
 As well as confguring peering within a single account, we can also use Ansible across AWS accounts. The steps we use are very similar but we begin to use [boto configuration profiles](http://boto.cloudhackers.com/en/latest/boto_config_tut.html) once we have a configuration profile for each account in place we can then target each task in the play to a different account. As we are using boto we'll authenticate using AWS Access Key and Secret rather than role based permissions applied to the EC2 instance, we cannot remove a role from a EC2 instance so terminate the old Ansible server and create a new one as above but without the IAM Role attached.
 
-Within each account your managing create an IAM User called AnsibleAdministratorAccess and attach the AdmistratorAccess policy, add the Access Key ID and Secret Access Key to the boto2 and boto3 configuration files. I create a profile for each account named the account number.
+Within each account your managing create an IAM User called AnsibleAdministratorAccess and attach the AdministratorAccess policy, add the Access Key ID and Secret Access Key to the boto2 and boto3 configuration files. I create a profile for each account named the account number.
 
 ```bash
 sudo vi /etc/boto.cfg
@@ -247,7 +247,7 @@ aws_access_key_id = <your_access_key_here>
 aws_secret_access_key = <your_secret_key_here>
 ```
 
-In order to configure boto3 to use AssumeRole we first, create an IAM User called AnsibleAdminUser in your first account. Then create an IAM Role your second account called 'AnsibleAdministrator' for role type select 'Role for Cross-Account Access \ Provide access between AWS accounts you own' then enter the Account ID of your first account and attach policy AdmistratorAccess. Once created view your new role in IAM and copy the Role ARN eg arn:aws:iam::664710917345:role/AnsibleAdministrator
+In order to configure boto3 to use AssumeRole we first, create an IAM User called AnsibleAdminUser in your first account. Then create an IAM Role your second account called 'AnsibleAdministrator' for role type select 'Role for Cross-Account Access \ Provide access between AWS accounts you own' then enter the Account ID of your first account and attach policy AdministratorAccess. Once created view your new role in IAM and copy the Role ARN eg arn:aws:iam::664710917345:role/AnsibleAdministrator
 
 Configure boto3 credentials
 

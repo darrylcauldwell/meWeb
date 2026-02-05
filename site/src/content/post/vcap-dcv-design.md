@@ -6,7 +6,7 @@ description: "VMware Certified Advanced Professional - Data Center Virtualizatio
 thumbnail: "clarity-icons/code-144.svg"
 ---
 Having passed the VCAP5-DCD exam with little to no studying only eighteen months ago and VCIX6-NV since. All things considered I was pretty confident of doing well in the VCAP6-DCV Design exam, and when I completed exam I was pretty sure I'd passed. To my surprise I failed the exam with a 285, to make matters worse during the drive home I couldn't fathom in my mind where it had gone wrong.
-Luckily on readin the score report it highlights the blueprint objectives relating the area's of weakness. For me that was,
+Luckily on reading the score report it highlights the blueprint objectives relating the area's of weakness. For me that was,
 
 * Objective 1.2 - Gather and Analyze Application Requirements
 * Objective 1.3 - Determine risks, requirements, constraints and assumptions
@@ -70,7 +70,7 @@ Resources I used
 [RAID](https://www.prepressure.com/library/technology/raid)  
 [vSphere Flash Read Cache aka vFlash](http://www.yellow-bricks.com/2013/08/26/introduction-to-vsphere-flash-read-cache-aka-vflash/)  
 [vSphere Flash Read Cache aka vFlash - FAQs](http://www.yellow-bricks.com/2013/09/11/frequently-asked-questions-vsphere-flash-read-cache/)
-[VMware Infrastructure Architecitecture Overview](https://www.vmware.com/pdf/vi_architecture_wp.pdf)
+[VMware Infrastructure Architecture Overview](https://www.vmware.com/pdf/vi_architecture_wp.pdf)
 
 # General
 

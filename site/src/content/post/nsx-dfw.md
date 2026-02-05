@@ -15,7 +15,7 @@ An NSX distributed firewall (dFW) runs as an ESXi host as a kernel module added 
 
 The NSX dFW enforces a state full firewall service for VMs using the vNIC as the enforcement point. Every packet that leaves the VM (before VTEP encapsulation) or enters the VM (After VTEP de-encapsulation) can be inspected with a firewall policy.
 
-The ruleset is created and managed via NSX Manager either API or UI. The ESXi host has two dFW specific modules vShield Statefull Firewall and VMware Internetworking Service Insertion Platform (vSIP). vShield Statefull Firewall performs the following roles.
+The ruleset is created and managed via NSX Manager either API or UI. The ESXi host has two dFW specific modules vShield Stateful Firewall and VMware Internetworking Service Insertion Platform (vSIP). vShield Stateful Firewall performs the following roles.
 
 * Interact with NSX Manager to retrieve DFW policy rules.
 * Gather DFW statistics information and send them to the NSX Manager.

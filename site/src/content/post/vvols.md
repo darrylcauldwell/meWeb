@@ -40,4 +40,4 @@ To consume VVOLs effectively and on a per object (per virtual machine) basis we 
 In this current release mentioned as 2015 SRM is not supported, although it was mentioned that that is on radar for 2016. The use of RDMs is also not supported within VVOLs, you can however present these as normal outside of the VVOL container.
 
 ## Try VVOLs At Home
-Up until recently you couldn't realistically configure a VVOLs solution unless you had a spare array running beta firmware which supported VASA2. That is until NetApp shipped [OnTap simulator 8.2.1](http://mysupport.netapp.com/NOW/download/tools/simulator/ontap/8.X/), the NetApp Simulator is run as a nested VM under Fusion, Workstaion or ESX and provides the interface for vSphere 6 to connect to.
+Up until recently you couldn't realistically configure a VVOLs solution unless you had a spare array running beta firmware which supported VASA2. That is until NetApp shipped [OnTap simulator 8.2.1](http://mysupport.netapp.com/NOW/download/tools/simulator/ontap/8.X/), the NetApp Simulator is run as a nested VM under Fusion, Workstation or ESX and provides the interface for vSphere 6 to connect to.

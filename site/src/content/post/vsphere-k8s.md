@@ -51,7 +51,7 @@ At the end of installation message to disconnect the CD/DVD and reboot VM.  I re
 
 ## Ensure unique System UUID and MAC address
 
-Once ESXi has a basic network configuration I power down the VM and move USB to the Intel NUC and power on. During installation of ESXi the System UUID and MAC address are formed from the MAC address of the NIC. When  using Fusion to create multiple ESXi VMs this scenario can lead to duplicatation of System UUID and MAC address. We can configure ESXi to move to physical NIC MAC address and form new ESXi System UUID by running commands like.
+Once ESXi has a basic network configuration I power down the VM and move USB to the Intel NUC and power on. During installation of ESXi the System UUID and MAC address are formed from the MAC address of the NIC. When  using Fusion to create multiple ESXi VMs this scenario can lead to duplication of System UUID and MAC address. We can configure ESXi to move to physical NIC MAC address and form new ESXi System UUID by running commands like.
 
 ```
 esxcli system settings advanced set -o /Net/FollowHardwareMac -i 1

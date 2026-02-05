@@ -20,7 +20,7 @@ Tanzu Mission Control hosts a TKG management cluster on AWS that you can use to 
 
 ![Tanzu Mission Control Provisioner](/images/tanzu-tmc-aws-prov.png)
 
-Deploying a TKG cluster to AWS creates and configures EC2 instances in a region of your choosing. In order that TMC can create these requires AWS IAM credentials. The process to create these is initiated from within TMC and first step is associate to provisoner and specify a name.
+Deploying a TKG cluster to AWS creates and configures EC2 instances in a region of your choosing. In order that TMC can create these requires AWS IAM credentials. The process to create these is initiated from within TMC and first step is associate to provisioner and specify a name.
 
 ![Tanzu Mission Control Credential](/images/tanzu-tmc-aws-cred-name.png)
 

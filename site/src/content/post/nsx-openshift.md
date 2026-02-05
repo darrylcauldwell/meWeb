@@ -67,7 +67,7 @@ The following resources are required
 
 ## NSX Management Plane
 
-Deploy a small NSX unifed appliance specifying the nsx-manager role. Once deployed link this to vCenter, to do this add vCenter in 'Fabric / Compute Manager'.
+Deploy a small NSX unified appliance specifying the nsx-manager role. Once deployed link this to vCenter, to do this add vCenter in 'Fabric / Compute Manager'.
 
 ![NSX-T Management Plane](/images/openshift-nsx-compute-manager.jpeg)
 
@@ -77,7 +77,7 @@ With the manager in place we now need to create the management plane, to do this
 
 ## Tunnel Endpoint IP Pool
 
-We create an IP pool one for the Transort Nodes to communicate for my scenario the three ESXi hosts and an edge will all participate so I create an IP Pool with four addresses. Navigate to Inventory > Groups > IP Pools and click add.
+We create an IP pool one for the Transport Nodes to communicate for my scenario the three ESXi hosts and an edge will all participate so I create an IP Pool with four addresses. Navigate to Inventory > Groups > IP Pools and click add.
 
 ![NSX-T IP Pool](/images/openshift-nsx-ip-pool.png)
 

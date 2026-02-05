@@ -171,7 +171,7 @@ In case the function does not behave in the expected way and you wish to iterate
 4) Start the new container image
 5) Test the functionality by making local POST using cURL
 
-## Software Dependancy Lifecycle
+## Software Dependency Lifecycle
 
 One of the benefits of using Buildpacks as a container builder over artisanal container images using Dockerfiles is lifecycle management. The base buildpack images are maintained to pickup updates you can simply re-run pack cli with no changes and this will recreate your image from the updated buildpack base. Similarly, when you want to update your Python packages you just need to update the requirements.txt and re-run.
 

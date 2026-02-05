@@ -55,36 +55,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Export static files for search indexing
-        if: github.ref == 'refs/heads/main'
-        run: |
-          docker create --name site-export ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          docker cp site-export:/usr/share/nginx/html ./site-public
-          docker rm site-export
-
-      - name: Upload artifact for search indexing
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
-        with:
-          name: site-public
-          path: site-public
-          retention-days: 1
-
   deploy:
     needs: build
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: site-public
-          path: site-public
-
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -92,42 +68,19 @@ jobs:
           username: ${{ secrets.BLOG_DROPLET_USER }}
           key: ${{ secrets.BLOG_DROPLET_SSH_KEY }}
           script: |
-            cd /opt/portfolio/infrastructure/blog-droplet
+            cd /opt/meWeb/site
 
             # Pull latest site image
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker pull ghcr.io/${{ github.repository_owner }}/site:latest
 
             # Restart site container with new image
-            docker compose up -d site
+            docker compose -f docker-compose.production.yml up -d site
 
             # Cleanup old images
             docker image prune -f
 
             echo "Site container deployed"
-
-      - name: Sync search index files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.BLOG_DROPLET_HOST }}
-          username: ${{ secrets.BLOG_DROPLET_USER }}
-          key: ${{ secrets.BLOG_DROPLET_SSH_KEY }}
-          source: "site-public/*"
-          target: "/opt/portfolio/infrastructure/blog-droplet/site-public"
-          strip_components: 1
-
-      - name: Index search content
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.BLOG_DROPLET_HOST }}
-          username: ${{ secrets.BLOG_DROPLET_USER }}
-          key: ${{ secrets.BLOG_DROPLET_SSH_KEY }}
-          script: |
-            cd /opt/portfolio
-            MEILISEARCH_HOST=http://localhost:7700 \
-            MEILISEARCH_MASTER_KEY=${{ secrets.MEILISEARCH_MASTER_KEY }} \
-            HUGO_PUBLIC_DIR=/opt/portfolio/infrastructure/blog-droplet/site-public \
-            ./scripts/index-search.sh
 
       - name: Notify success
         if: success()

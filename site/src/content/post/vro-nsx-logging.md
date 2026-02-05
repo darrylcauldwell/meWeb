@@ -43,4 +43,4 @@ Once the vRealize Orchestrator server services are restarted the logging level w
 /var/log/vco/app-server/integration-server.log
 ```
 
-Using a combination of these methods has enabled resolution of all issues experienced up to now. To note putting a vRealize Orchestrator server into debug mode will slow down the vRealize Orchetrator server considerably. It is recommended to use DEBUG mode temporarily.
+Using a combination of these methods has enabled resolution of all issues experienced up to now. To note putting a vRealize Orchestrator server into debug mode will slow down the vRealize Orchestrator server considerably. It is recommended to use DEBUG mode temporarily.

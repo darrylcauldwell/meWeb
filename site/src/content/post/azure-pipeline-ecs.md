@@ -16,7 +16,7 @@ kkk
 
 ## Edge AI Challenge
 
-AI applications at the edge offer significant advantages, including local data processing for real-time analysis, reduced latency, offline operation, and scalability without overwhelming central infrastructure. Regular retraining of models allows contiunal incremental accuracy improvements. Regular quantization, pruning, and knowledge distillation also helps reduce model size without loss and improve model performance. However the software lifecycle management of applications across a large estate of distributed edge compute environments presents several significant challenges:
+AI applications at the edge offer significant advantages, including local data processing for real-time analysis, reduced latency, offline operation, and scalability without overwhelming central infrastructure. Regular retraining of models allows continual incremental accuracy improvements. Regular quantization, pruning, and knowledge distillation also helps reduce model size without loss and improve model performance. However the software lifecycle management of applications across a large estate of distributed edge compute environments presents several significant challenges:
 
 * Ensuring compatibility across different operating systems and software environments is challenging.
 * Edge environments can have limited or unreliable network connectivity.
@@ -29,7 +29,7 @@ To address these challenges, organizations are turning to specialized edge platf
 * Edge-optimized runtimes for both virtualized and containerized applications.
 * Integrated telemetry for visibility into application and platform behaviors.
 
-It is a risk to deploy large-scale AI model updates to thousands of edge sites in an uncontrolled fashion. Potential widespread system failures or performance degradation if the updates contain bugs. Without proper testing, updates could introduce new biases or errors in AI decision-making. Without rollback capabilities in an uncontrolled process makes it difficult to quickly address problems. To address these challenges, organizations are looking to deploy continous delivery pipelines and employing testing stage gates.
+It is a risk to deploy large-scale AI model updates to thousands of edge sites in an uncontrolled fashion. Potential widespread system failures or performance degradation if the updates contain bugs. Without proper testing, updates could introduce new biases or errors in AI decision-making. Without rollback capabilities in an uncontrolled process makes it difficult to quickly address problems. To address these challenges, organizations are looking to deploy continuous delivery pipelines and employing testing stage gates.
 
 ## GitOps
 

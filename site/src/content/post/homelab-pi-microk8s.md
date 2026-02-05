@@ -8,11 +8,11 @@ tags:
   - "kubernetes"
   - "raspberry-pi"
 ---
-The Raspberry Pi is a useful platform for self-hosting applications. More often than not self-hosted applications are supplied as container images. I used to run one application on one Raspberry Pi. The Raspberry Pi 4 ships with a 1.5GHz Quad-core CPU, USB3 and upto 8GB RAM. Here I am looking at clustering four to host the various containers I run and use a scheduling engine. I am using 8GB Pi 4Bs configured to mass storage boot from 128GB USB3 flash drives built with Ubuntu 21.04 LTS.
+The Raspberry Pi is a useful platform for self-hosting applications. More often than not self-hosted applications are supplied as container images. I used to run one application on one Raspberry Pi. The Raspberry Pi 4 ships with a 1.5GHz Quad-core CPU, USB3 and up to 8GB RAM. Here I am looking at clustering four to host the various containers I run and use a scheduling engine. I am using 8GB Pi 4Bs configured to mass storage boot from 128GB USB3 flash drives built with Ubuntu 21.04 LTS.
 
 ## Rancher K3S OR Canonical Microk8s
 
-K3s and Microk8s are both lightweight implementation of Kubernetes they have various differences but a key one to understand is high availablity approach.
+K3s and Microk8s are both lightweight implementation of Kubernetes they have various differences but a key one to understand is high availability approach.
 
 | Function | MicroK8s | K3s |
 | --- | --- | --- |
@@ -23,7 +23,7 @@ K3s and Microk8s are both lightweight implementation of Kubernetes they have var
 
 I want my four node cluster to be highly available as easily as possible so for this deployment I chose Microk8s.
 
-## Microk8s Pre-requisit
+## Microk8s Pre-requisite
 
 Some Raspberry Pis have limited RAM so cgroup memory support is disabled by default. We can update all of the Pi's to enable cgroup memory during bootstrap.
 

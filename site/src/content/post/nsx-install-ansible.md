@@ -8,9 +8,9 @@ tags:
   - "nsx"
   - "python"
 ---
-Here I will describe the steps taken to deploy NSX Manager using the [Ansible NSX Module](https://github.com/vmware/nsxansible). The NSX Ansible module is written by VMware and is provided opensource on GitHub. To work properly this depends on the [NSX RAML Specification](https://github.com/vmware/nsxraml), [NSX RAML Python Client](https://github.com/vmware/nsxramlclient), [vSphere API Python Bindings](https://github.com/vmware/pyvmomi) and the [OVF Tool](https://www.vmware.com/support/developer/ovf/) all being installed on the Ansible server.
+Here I will describe the steps taken to deploy NSX Manager using the [Ansible NSX Module](https://github.com/vmware/nsxansible). The NSX Ansible module is written by VMware and is provided open source on GitHub. To work properly this depends on the [NSX RAML Specification](https://github.com/vmware/nsxraml), [NSX RAML Python Client](https://github.com/vmware/nsxramlclient), [vSphere API Python Bindings](https://github.com/vmware/pyvmomi) and the [OVF Tool](https://www.vmware.com/support/developer/ovf/) all being installed on the Ansible server.
 
-The following assumes you have a working Ansible installation already, and a vSphere environmentto install NSX to. If you don't yet have these you can see how I performed my [Ansible Installation]({{site.url}}/how-to-setup-an-ansible-test-lab-for-windows-managed-nodes-custom-windows-modules/) in this earlier blog post.
+The following assumes you have a working Ansible installation already, and a vSphere environment to install NSX to. If you don't yet have these you can see how I performed my [Ansible Installation]({{site.url}}/how-to-setup-an-ansible-test-lab-for-windows-managed-nodes-custom-windows-modules/) in this earlier blog post.
 
 ## NSX RAML Specification
 As the NSX REST API changes with each release the REST API Markup Language (RAML) specification for NSX is provided as a different branch of the GitHub repository.  In my environment I will be using NSX 6.2.2 so first I ensure the git client is installed to my Ansible server and then I use this to take a clone of the correct branch.

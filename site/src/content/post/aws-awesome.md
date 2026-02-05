@@ -12,7 +12,7 @@ tags:
 
 The 'AWSome Day' is a roadshow for people new to Amazon Web Services Cloud. I am about to change roles to work with customer solutions 
 leveraging Amazon Web Services Cloud rather than VMware private cloud. I've just passed the entry level 'AWS Business Professional' and 
-'AWS Technology Professional' partner accreditations. I am presently self studying towards the associate level 'Certified Solutions Archiect'. 
+'AWS Technology Professional' partner accreditations. I am presently self studying towards the associate level 'Certified Solutions Architect'. 
 Certification self study is good but can be a little dry so the offer of having some 'free' training and access to some expert solutions architects was 
 very welcome. Having been to various VMware roadshow type events they are also generally a great place to meet similar interested people in 
 the ecosystem.
@@ -35,7 +35,7 @@ training providers who I spoke to about the AWS certification path, most of whic
 hear of the training options available.
 
 In summary the AWSome Day was valuable to me to support my study for upcoming exam but also start exploring the current actual business use cases to AWS 
-service mappings and have dialog with vendors in and around the AWS space. I had a great day at the AWSome Day 2016 and would recomend to anyone starting 
+service mappings and have dialog with vendors in and around the AWS space. I had a great day at the AWSome Day 2016 and would recommend to anyone starting 
 or thinking about going on an AWS journey.
 
 ## Links to the days slides

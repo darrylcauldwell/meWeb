@@ -1,14 +1,14 @@
 ---
-title: "Programaticly configuring VMware Storage Profile API with Python"
+title: "Programmatically configuring VMware Storage Profile API with Python"
 date: "2020-08-12"
 category: "vmware"
-description: "Programaticly configuring VMware Storage Profile API with Python"
+description: "Programmatically configuring VMware Storage Profile API with Python"
 thumbnail: "clarity-icons/code-144.svg"
 tags:
   - "python"
   - "vsphere"
 ---
-I was looking to programaticly configuring VMware Storage Profile recently. My scripting language of choice is Python, VMware maintain [pyVmomi](https://github.com/vmware/pyvmomi) is which is the Python SDK for the VMware vSphere API. pyVmomi can be used to form binding and configure the [vSphere Web Services API](https://code.vmware.com/apis/968/vsphere) and the [VMware Storage Policy API](https://code.vmware.com/apis/971).
+I was looking to programmatically configuring VMware Storage Profile recently. My scripting language of choice is Python, VMware maintain [pyVmomi](https://github.com/vmware/pyvmomi) is which is the Python SDK for the VMware vSphere API. pyVmomi can be used to form binding and configure the [vSphere Web Services API](https://code.vmware.com/apis/968/vsphere) and the [VMware Storage Policy API](https://code.vmware.com/apis/971).
 
 The Storage Policy API is exposed as a Web service, running on VMware vCenter server systems.  When I approached the requirement it wasn't clear to me how to connect to the Storage Policy API Web service. I read the [VMware Storage Policy SDK Programming Guide](https://code.vmware.com/docs/11900/vmware-storage-policy-sdk-programming-guide) section on forming connection which describes using the session cookie from a vCenter Server session to establish the Storage Policy session.
 

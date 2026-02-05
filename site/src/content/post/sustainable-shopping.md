@@ -11,13 +11,13 @@ Our shopping affects people, animals and the environment. Every purchase we make
 
 I was raised in rural UK where my parents where shopkeepers. During this time I came to realize the power of community at the heart of which is typically small, independent businesses. When shopping locally you regularly share a communal space with other people in the community this naturally leads to communication and forming of relationships. Small, independent businesses are sources of employment and providers and consumers of goods and services that sustain the local economy. When you shop at chain retailers, most of the money will go back to the business elsewhere, whereas the money you spend at local businesses will directly go back into the local economy.
 
-My wife and I are lucky enough to live in a small market town which has a good collection of small, local businesses. Most people who are grew up in the town are cogizant to the importance of small, independent businesses and support them with their custom. However as more people move to the rural town from cities their culture of supermarkets and then low-cost supermarkets has spread outwards too. This has led to the collapse of many small, local businesses.
+My wife and I are lucky enough to live in a small market town which has a good collection of small, local businesses. Most people who are grew up in the town are cognizant to the importance of small, independent businesses and support them with their custom. However as more people move to the rural town from cities their culture of supermarkets and then low-cost supermarkets has spread outwards too. This has led to the collapse of many small, local businesses.
 
 To retain our unique communities and maintain a healthy local economy we should all look to shop and support small, local businesses.
 
 ## Shop Sustainably
 
-Shopping sustainably means shopping at ethical brands and retailers - and not just those that brand themselves as 'ethical' without actually being too kind to the environment. Standad shopping practices, especially the clothing industry is largely opaque, exploitative and environmentally damaging.
+Shopping sustainably means shopping at ethical brands and retailers - and not just those that brand themselves as 'ethical' without actually being too kind to the environment. Standard shopping practices, especially the clothing industry is largely opaque, exploitative and environmentally damaging.
 
 When buying clothes, it is important to always read the fine print to see what materials your clothing is actually made of. Synthetic materials like polyester, nylon, and acrylic take hundreds of years to decompose. Those materials account for a large chunk of the clothing that’s currently sitting in landfills. Plus, synthetics require plastic and chemicals to make, and these directly contaminate water supplies. Choosing all-natural fabrics is one way to work toward a more sustainable wardrobe but also a more economical wardrobe as these pieces will last far longer. Look for organic cotton, hemp, Tencel, ethically-raised wool, and other natural fibres!
 
@@ -39,7 +39,7 @@ When its not possible to shop locally rather than travel to a city I generally t
 
 [Velo Culture](http://www.veloculture.co.uk) offers belts and wallets made from recycled bicycle innertubes.
 
-[Cycle For Good](https://www.cycleofgood.com) operates the Elephant Bike initative where if you buy a recycled bike from them they give one to someone in Malawi via their social enterprise scheme.
+[Cycle For Good](https://www.cycleofgood.com) operates the Elephant Bike initiative where if you buy a recycled bike from them they give one to someone in Malawi via their social enterprise scheme.
 
 [Yoga Bloke](https://www.yogabloke.co.uk/) offers various sustainable yoga equipment.
 
@@ -49,7 +49,7 @@ When its not possible to shop locally rather than travel to a city I generally t
 
 [Rapanui](https://rapanuiclothing.com) offers sustainable clothing range.
 
-[SeaTowel](https://www.seatowel.eu) offers towels made from platic collected by fishermen from the sea during fishing.
+[SeaTowel](https://www.seatowel.eu) offers towels made from plastic collected by fishermen from the sea during fishing.
 
 [momoq](https://mamoq.com) offers sustainable clothing range.
 
@@ -61,14 +61,14 @@ When its not possible to shop locally rather than travel to a city I generally t
 
 [thought](https://www.wearethought.com) offers sustainable clothing range.
 
-[William Lennon](https://williamlennon.co.uk/) englands last working boot maker.
+[William Lennon](https://williamlennon.co.uk/) England's last working boot maker.
 
 [Vegan Outfitters](https://veganoutfitters.com/) general clothing.
 
 [LiveCoco](https://www.livecoco.com/) eco dental care products.
 
-[BBC Earth](https://bbcearth.teemill.com/circular-collection/) recycled tshirts.
+[BBC Earth](https://bbcearth.teemill.com/circular-collection/) recycled t-shirts.
 
 [Twisted Willow Creations](http://www.twisted-creations.co.uk/) garden willow sculptures.
 
-These are not endorsements, just a collection of online stores I have either bought or considered buying something from.  If you have any recomendations of good places to shop online for delivery to UK do let me know.
+These are not endorsements, just a collection of online stores I have either bought or considered buying something from.  If you have any recommendations of good places to shop online for delivery to UK do let me know.

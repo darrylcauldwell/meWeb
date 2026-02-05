@@ -13,7 +13,7 @@ AWS CloudFormation gives developers and systems administrators an easy way to cr
 
 ## Install Ansible For AWS Management
 
-In order that Ansible can manage AWS services create an IAM Role named Ansible and assign it to the AdmistratorAccess policy, then create a RHEL7 EC2 instance with this IAM role attached. The Ansible AWS modules manages AWS via the API by use of the [Python boto library](http://boto.cloudhackers.com/) and locally installed AWSCLI. Once the RHEL instance is running connect and run the following commands to install Ansible and the boto and AWS CLI python library.
+In order that Ansible can manage AWS services create an IAM Role named Ansible and assign it to the AdministratorAccess policy, then create a RHEL7 EC2 instance with this IAM role attached. The Ansible AWS modules manages AWS via the API by use of the [Python boto library](http://boto.cloudhackers.com/) and locally installed AWSCLI. Once the RHEL instance is running connect and run the following commands to install Ansible and the boto and AWS CLI python library.
 
 ```bash
 sudo yum install wget -y
@@ -129,4 +129,4 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0
 
 You will see that if we run this it creates the stack with parameters we defined as variables.  Notice at the end of the first task we register the output as an object. For the example we output this to the screen by using a debug task, and it includes the EC2 instance details. You could just as easily use this to continue configuration of the EC2 instance guest operating system.
 
-The Ansible playbook is idempotent so if you re-run the playbook whith state attribute as 'present' it checks it is in place and makes no changes. If you would like to remove the CloudFormation Stack then you can change the state attribute to 'absent' and when you re-run the playbook the CloudFormation Stack will be removed.
+The Ansible playbook is idempotent so if you re-run the playbook with state attribute as 'present' it checks it is in place and makes no changes. If you would like to remove the CloudFormation Stack then you can change the state attribute to 'absent' and when you re-run the playbook the CloudFormation Stack will be removed.

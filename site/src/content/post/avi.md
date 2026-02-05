@@ -28,7 +28,7 @@ The Service Engines represent the data-plane and provide full-featured, enterpri
 
 The Controllers need to continually exchange information securely with Service Engines. The Service Engines hold communications channel with controller over TCP port 22 (SSH), 8443 (HTTPS) and UDP port 123 (NTP).
 
-![Service Engine to Cntroller Communications](/images/avi-3.jpg)
+![Service Engine to Controller Communications](/images/avi-3.jpg)
 
 # Web Application Firewall
 

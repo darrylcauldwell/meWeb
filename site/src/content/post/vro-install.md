@@ -22,7 +22,7 @@ From the menu select 'Orchestrator Control Center' from the start menu and authe
 ![vRO Control Center](/images/vROcontrolCenter.jpg)
 
 ## Configure vCenter Connection
-The first thing to do once vRealize Orchestrator is deployed is to import the vCenter SSL certitificate. Select the Control Center 'Manage \ Certificates' menu item.  Within trusted certificates tab click 'Import \ Import from URL'. 
+The first thing to do once vRealize Orchestrator is deployed is to import the vCenter SSL certificate. Select the Control Center 'Manage \ Certificates' menu item.  Within trusted certificates tab click 'Import \ Import from URL'. 
 
 ![vRO Trust vCenter](/images/vROtrustVcenter.jpg)
 
