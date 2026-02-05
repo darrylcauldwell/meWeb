@@ -11,6 +11,8 @@
 include:
   - path: observability/docker-compose.yml
   - path: notifications/docker-compose.yml
+  - path: planespotter/docker-compose.yml
+  - path: evm/docker-compose.yml
 
 services:
   site:

@@ -70,6 +70,49 @@
     reverse_proxy ntfy:80
 }
 
+# Planespotter application
+{$PLANESPOTTER_ADDRESS:planespotter.localhost} {
+    # Health check
+    respond /healthz 200 {
+        body "healthy"
+        close
+    }
+
+    # API routes
+    handle /api/* {
+        reverse_proxy planespotter-api:8000
+    }
+
+    # Health endpoints passthrough
+    handle /health* {
+        reverse_proxy planespotter-api:8000
+    }
+
+    # Frontend (default)
+    handle {
+        reverse_proxy planespotter-frontend:8080
+    }
+}
+
+# Equestrian Venue Manager
+{$EVM_ADDRESS:evm.localhost} {
+    # Health check
+    respond /healthz 200 {
+        body "healthy"
+        close
+    }
+
+    # API routes
+    handle /api/* {
+        reverse_proxy evm-backend:8000
+    }
+
+    # Frontend (default)
+    handle {
+        reverse_proxy evm-frontend:80
+    }
+}
+
 # Metrics endpoint for Prometheus (internal only)
 :2019 {
     metrics

@@ -67,5 +67,12 @@ export const presentationLinks = [
 ];
 export const presentationsAccentColor = '#30D158'; // Green - growth, knowledge sharing
 
+// Apps section links (external hosted applications)
+export const appsLinks = [
+  { label: 'Planespotter', href: 'https://planespotter.dreamfold.dev', external: true },
+  { label: 'Equestrian Venue Manager', href: 'https://evm.dreamfold.dev', external: true },
+];
+export const appsAccentColor = '#5AC8FA'; // Teal - apps, infrastructure
+
 // Observability accent color
 export const observabilityAccentColor = '#F59E0B'; // Amber - matches automation/pipelines theme

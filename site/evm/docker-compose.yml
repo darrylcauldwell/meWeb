@@ -1,0 +1,54 @@
+# =============================================================================
+# EQUESTRIAN VENUE MANAGER SERVICES
+# =============================================================================
+# Equestrian facility management application using pre-built GHCR images.
+# Included by the main docker-compose files.
+# =============================================================================
+
+services:
+  evm-db:
+    image: postgres:15-alpine
+    container_name: evm-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${EVM_DB_USER:-evm}
+      - POSTGRES_PASSWORD=${EVM_DB_PASSWORD:-evm_password}
+      - POSTGRES_DB=${EVM_DB_NAME:-evm_db}
+    volumes:
+      - evm_postgres_data:/var/lib/postgresql/data
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${EVM_DB_USER:-evm}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  evm-backend:
+    image: ghcr.io/darrylcauldwell/equestrian-venue-manager/backend:latest
+    container_name: evm-backend
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://${EVM_DB_USER:-evm}:${EVM_DB_PASSWORD:-evm_password}@evm-db:5432/${EVM_DB_NAME:-evm_db}
+      - SECRET_KEY=${EVM_SECRET_KEY:-change-me-in-production}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${EVM_ACCESS_TOKEN_EXPIRE:-30}
+      - REFRESH_TOKEN_EXPIRE_DAYS=${EVM_REFRESH_TOKEN_EXPIRE:-7}
+      - STRIPE_SECRET_KEY=${EVM_STRIPE_SECRET_KEY:-}
+      - STRIPE_WEBHOOK_SECRET=${EVM_STRIPE_WEBHOOK_SECRET:-}
+    networks:
+      - web
+    depends_on:
+      evm-db:
+        condition: service_healthy
+
+  evm-frontend:
+    image: ghcr.io/darrylcauldwell/equestrian-venue-manager/frontend:latest
+    container_name: evm-frontend
+    restart: unless-stopped
+    networks:
+      - web
+    depends_on:
+      - evm-backend
+
+volumes:
+  evm_postgres_data:

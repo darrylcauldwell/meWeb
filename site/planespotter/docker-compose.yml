@@ -1,0 +1,86 @@
+# =============================================================================
+# PLANESPOTTER SERVICES
+# =============================================================================
+# Aircraft tracking application using pre-built GHCR images.
+# Included by the main docker-compose files.
+# =============================================================================
+
+services:
+  planespotter-db:
+    image: ghcr.io/darrylcauldwell/planespotter/db-install:1.1
+    container_name: planespotter-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=${PLANESPOTTER_DB_PASSWORD:-postgres}
+    volumes:
+      - planespotter_postgres_data:/var/lib/postgresql/data
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  planespotter-cache:
+    image: valkey/valkey:8-alpine
+    container_name: planespotter-cache
+    restart: unless-stopped
+    volumes:
+      - planespotter_valkey_data:/data
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  planespotter-api:
+    image: ghcr.io/darrylcauldwell/planespotter/api-server:1.1
+    container_name: planespotter-api
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=planespotter-db
+      - DATABASE_PASSWORD=${PLANESPOTTER_DB_PASSWORD:-postgres}
+      - REDIS_HOST=planespotter-cache
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    networks:
+      - web
+    depends_on:
+      planespotter-db:
+        condition: service_healthy
+      planespotter-cache:
+        condition: service_healthy
+
+  planespotter-frontend:
+    image: ghcr.io/darrylcauldwell/planespotter/frontend:1.1
+    container_name: planespotter-frontend
+    restart: unless-stopped
+    environment:
+      - API_SERVER_URL=${PLANESPOTTER_API_URL:-http://planespotter-api:8000}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    networks:
+      - web
+    depends_on:
+      - planespotter-api
+
+  planespotter-sync:
+    image: ghcr.io/darrylcauldwell/planespotter/adsb-sync:1.1
+    container_name: planespotter-sync
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=planespotter-cache
+      - REDIS_TTL=2100
+      - POLL_INTERVAL=1800
+      - MAX_BACKOFF=1800
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    networks:
+      - web
+    depends_on:
+      planespotter-cache:
+        condition: service_healthy
+
+volumes:
+  planespotter_postgres_data:
+  planespotter_valkey_data:
