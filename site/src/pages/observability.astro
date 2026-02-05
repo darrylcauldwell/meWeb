@@ -242,27 +242,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   checkService('/prometheus/-/healthy', 'prometheus-status', 'prometheus-icon');
   checkService('/grafana/api/health', 'grafana-status', 'grafana-icon');
 
-  // Check external apps via their health endpoints
-  async function checkExternalApp(url: string, statusId: string, iconId: string) {
+  // Check apps via Prometheus targets (avoids CORS issues)
+  async function checkAppViaPrometheus(jobName: string, statusId: string, iconId: string) {
     const statusEl = document.getElementById(statusId);
     const iconEl = document.getElementById(iconId);
     if (!statusEl || !iconEl) return;
 
     try {
-      const response = await fetch(url, { method: 'GET', mode: 'cors' });
-      if (response.ok) {
+      const response = await fetch('/prometheus/api/v1/targets');
+      const data = await response.json();
+      const target = data.data?.activeTargets?.find((t: any) => t.labels?.job === jobName);
+      if (target?.health === 'up') {
         setHealthy(statusEl, iconEl);
-      } else {
+      } else if (target) {
         setUnhealthy(statusEl, iconEl);
+      } else {
+        setUnknown(statusEl);
       }
     } catch {
-      // CORS might block, try assuming healthy if we can't check
       setUnknown(statusEl);
     }
   }
 
-  checkExternalApp('https://planespotter.dreamfold.dev/healthz', 'planespotter-status', 'planespotter-icon');
-  checkExternalApp('https://evm.dreamfold.dev/healthz', 'evm-status', 'evm-icon');
+  checkAppViaPrometheus('planespotter-api', 'planespotter-status', 'planespotter-icon');
+  checkAppViaPrometheus('evm-backend', 'evm-status', 'evm-icon');
   // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
   fetch('/prometheus/api/v1/targets')
     .then(r => r.json())
