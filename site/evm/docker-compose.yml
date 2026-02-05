@@ -30,6 +30,10 @@ services:
     restart: unless-stopped
     environment:
       - DATABASE_URL=postgresql://${EVM_DB_USER:-evm}:${EVM_DB_PASSWORD:-evm_password}@evm-db:5432/${EVM_DB_NAME:-evm_db}
+      - POSTGRES_USER=${EVM_DB_USER:-evm}
+      - POSTGRES_PASSWORD=${EVM_DB_PASSWORD:-evm_password}
+      - POSTGRES_DB=${EVM_DB_NAME:-evm_db}
+      - DATABASE_HOST=evm-db
       - SECRET_KEY=${EVM_SECRET_KEY:-change-me-in-production}
       - ACCESS_TOKEN_EXPIRE_MINUTES=${EVM_ACCESS_TOKEN_EXPIRE:-30}
       - REFRESH_TOKEN_EXPIRE_DAYS=${EVM_REFRESH_TOKEN_EXPIRE:-7}
@@ -56,6 +60,10 @@ services:
     restart: "no"
     environment:
       - DATABASE_URL=postgresql://${EVM_DB_USER:-evm}:${EVM_DB_PASSWORD:-evm_password}@evm-db:5432/${EVM_DB_NAME:-evm_db}
+      - POSTGRES_USER=${EVM_DB_USER:-evm}
+      - POSTGRES_PASSWORD=${EVM_DB_PASSWORD:-evm_password}
+      - POSTGRES_DB=${EVM_DB_NAME:-evm_db}
+      - DATABASE_HOST=evm-db
     command: python scripts/seed_database.py --no-validate
     networks:
       - web
