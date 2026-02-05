@@ -1,7 +1,7 @@
 ---
 title: "VSCode Remote SSH"
 date: "2021-05-13"
-category: "kubernetes"
+category: "automation"
 description: "VSCode Remote SSH"
 thumbnail: "clarity-icons/code-144.svg"
 ---
