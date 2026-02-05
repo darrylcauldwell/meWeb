@@ -1,7 +1,7 @@
 ---
 title: "Preparing for the 2V0-13.25 VMware Cloud Foundation 9.0 Architect Exam"
 date: "2026-02-05"
-category: "vmware"
+category: "career"
 tags: ["vcf", "certification", "architect"]
 description: "How I'm approaching the VCP-VCF Architect certification exam - breaking down the blueprint, mapping it to real VCF design work, and building study habits that stick."
 thumbnail: "clarity-icons/code-144.svg"
