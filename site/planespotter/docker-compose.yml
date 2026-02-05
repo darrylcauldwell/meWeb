@@ -42,8 +42,12 @@ services:
     restart: unless-stopped
     environment:
       - DATABASE_HOST=planespotter-db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=postgres
+      - DATABASE_USER=postgres
       - DATABASE_PASSWORD=${PLANESPOTTER_DB_PASSWORD:-postgres}
       - REDIS_HOST=planespotter-cache
+      - REDIS_PORT=6379
       - LOG_LEVEL=${LOG_LEVEL:-INFO}
     networks:
       - web
@@ -71,6 +75,7 @@ services:
     restart: unless-stopped
     environment:
       - REDIS_HOST=planespotter-cache
+      - REDIS_PORT=6379
       - REDIS_TTL=2100
       - POLL_INTERVAL=1800
       - MAX_BACKOFF=1800
