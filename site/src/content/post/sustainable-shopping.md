@@ -1,7 +1,7 @@
 ---
 title: "Sustainable Shopping"
 date: "2020-04-22"
-category: "vmware"
+category: "lifestyle"
 description: "Sustainable Shopping"
 thumbnail: "clarity-icons/code-144.svg"
 ---

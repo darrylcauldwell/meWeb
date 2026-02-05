@@ -1,7 +1,7 @@
 ---
 title: "Vegetarianuary 2020"
 date: "2019-12-31"
-category: "vmware"
+category: "lifestyle"
 description: "Vegetarianuary 2020"
 thumbnail: "clarity-icons/code-144.svg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Peloton bike on a budget"
 date: "2020-06-16"
-category: "vmware"
+category: "lifestyle"
 description: "Building a budget peloton bike"
 featured: "false"
 thumbnail: "clarity-icons/code-144.svg"
