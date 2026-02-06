@@ -16,9 +16,9 @@ include:
   - path: evm/docker-compose.yml
 
 services:
-  site:
-    build: .
-    container_name: site
+  meweb:
+    image: ghcr.io/darrylcauldwell/meweb:latest
+    container_name: meweb
     restart: unless-stopped
     ports:
       - "0.0.0.0:80:80"

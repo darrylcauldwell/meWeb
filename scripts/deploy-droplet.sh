@@ -206,7 +206,7 @@ Next steps:
   2. Once DNS propagates, Caddy will automatically obtain TLS certificates.
      Monitor certificate acquisition with:
 
-       docker logs site
+       docker logs meweb
 
   3. Verify the site is live:
 

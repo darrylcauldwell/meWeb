@@ -40,7 +40,7 @@ scrape_configs:
   # Caddy web server metrics
   - job_name: 'caddy'
     static_configs:
-      - targets: ['site:2019']
+      - targets: ['meweb:2019']
 
   # Planespotter metrics (FastAPI with prometheus-fastapi-instrumentator)
   - job_name: 'planespotter-api'

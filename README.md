@@ -83,7 +83,7 @@ Run the full Docker + Caddy stack locally:
 3. **Verify:**
    ```bash
    docker ps                              # check containers are running
-   docker logs site                       # check for cert acquisition
+   docker logs meweb                      # check for cert acquisition
    curl -I https://blog.dreamfold.dev     # confirm 200 with valid TLS
    curl -I https://ntfy.dreamfold.dev     # confirm ntfy is reachable
    ```

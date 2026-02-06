@@ -15,9 +15,9 @@ include:
   - path: evm/docker-compose.yml
 
 services:
-  site:
+  meweb:
     build: .
-    container_name: site
+    container_name: meweb
     restart: unless-stopped
     ports:
       - "127.0.0.1:80:80"
