@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
     environment:
       - API_SERVER_URL=${PLANESPOTTER_API_URL:-http://planespotter-api:8000}
-      - GRAFANA_URL=/grafana
+      - GRAFANA_URL=https://${SITE_ADDRESS:-blog.dreamfold.dev}/grafana
       - LOG_LEVEL=${LOG_LEVEL:-INFO}
     networks:
       - web
