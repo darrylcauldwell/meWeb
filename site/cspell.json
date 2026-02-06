@@ -343,7 +343,11 @@
     "CESG",
     "RMADS",
     "ITIL",
-    "royalmail"
+    "royalmail",
+    "tetratrack",
+    "tabletogether",
+    "trackride",
+    "SWOLF"
   ],
   "ignorePaths": [
     "node_modules",
