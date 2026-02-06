@@ -42,10 +42,20 @@ scrape_configs:
     static_configs:
       - targets: ['site:2019']
 
-  # Planespotter API metrics (FastAPI with prometheus-fastapi-instrumentator)
+  # Planespotter metrics (FastAPI with prometheus-fastapi-instrumentator)
   - job_name: 'planespotter-api'
     static_configs:
       - targets: ['planespotter-api:8000']
+    metrics_path: /metrics
+
+  - job_name: 'planespotter-frontend'
+    static_configs:
+      - targets: ['planespotter-frontend:8080']
+    metrics_path: /metrics
+
+  - job_name: 'planespotter-sync'
+    static_configs:
+      - targets: ['planespotter-sync:9090']
     metrics_path: /metrics
 
   # EVM API metrics (FastAPI with prometheus-fastapi-instrumentator)

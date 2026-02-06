@@ -117,6 +117,39 @@
     }
 }
 
+# App Support Site (TableTogether, etc.)
+{$SUPPORT_ADDRESS:support.localhost} {
+    root * /srv/support
+    file_server
+
+    # Compression
+    encode gzip zstd
+
+    # Security headers
+    header {
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    # Cache static assets
+    @static {
+        path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2
+    }
+    header @static Cache-Control "public, max-age=31536000, immutable"
+
+    # Handle pretty URLs
+    try_files {path} {path}/ {path}.html {path}/index.html
+
+    # Health check
+    respond /healthz 200 {
+        body "healthy"
+        close
+    }
+}
+
 # Metrics endpoint for Prometheus (internal only)
 :2019 {
     metrics

@@ -29,6 +29,7 @@ services:
       - NTFY_ADDRESS=${NTFY_ADDRESS}
       - PLANESPOTTER_ADDRESS=${PLANESPOTTER_ADDRESS}
       - EVM_ADDRESS=${EVM_ADDRESS}
+      - SUPPORT_ADDRESS=${SUPPORT_ADDRESS}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
