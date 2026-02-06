@@ -140,6 +140,7 @@ jobs:
         run: |
           docker run -d --name meweb -p 80:80 \
             -e SITE_ADDRESS=:80 \
+            -e ACME_EMAIL=ci@localhost \
             $(echo '${{ steps.meta.outputs.tags }}' | head -1)
           timeout 60 bash -c 'until curl -sf http://localhost/healthz; do sleep 1; done' \
             || (echo "=== container status ===" && docker ps -a --filter name=meweb \
