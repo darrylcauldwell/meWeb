@@ -141,7 +141,9 @@ jobs:
           docker run -d --name meweb -p 80:80 \
             -e SITE_ADDRESS=:80 \
             $(echo '${{ steps.meta.outputs.tags }}' | head -1)
-          timeout 30 bash -c 'until curl -sf http://localhost/healthz; do sleep 1; done'
+          timeout 60 bash -c 'until curl -sf http://localhost/healthz; do sleep 1; done' \
+            || (echo "=== container status ===" && docker ps -a --filter name=meweb \
+                && echo "=== container logs ===" && docker logs meweb && exit 1)
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
