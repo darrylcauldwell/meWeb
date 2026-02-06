@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="TableTogether" description="A meal planner for people who share a kitchen">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">TableTogether</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">A meal planner for people who share a kitchen</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          Plan your week. Cook with confidence. Track nutrition on your own terms. Everything syncs across your household via iCloud — but your personal data stays personal.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Currently in TestFlight beta. Coming soon to the App Store.
+        </p>
+
+        <h2>Plan Together</h2>
+        <p>
+          Drag recipes onto a visual week planner. Smart suggestions learn your household's favourites and gently surface new ideas. Copy last week's plan or start fresh.
+        </p>
+
+        <h2>Recipes — Three Ways In</h2>
+        <p>
+          Build recipes by hand. Import from any recipe website. Or describe what you have and let AI generate a recipe — choose your cuisine, cooking style, time, and dietary needs.
+        </p>
+
+        <h2>Cook Step by Step</h2>
+        <p>
+          Full-screen Cooking Mode with large text, a built-in timer, and an ingredient checklist. Designed for messy hands and busy kitchens.
+        </p>
+
+        <h2>Shop Smarter</h2>
+        <p>
+          Mark what's already in your pantry. Everything else flows into a shopping list organised by aisle — ready when you are.
+        </p>
+
+        <h2>Describe What You Ate</h2>
+        <p>
+          Type a meal in plain language. On-device AI parses the ingredients, then resolves nutrition from USDA FoodData Central and Open Food Facts. See exactly how each estimate was calculated. Tap any ingredient to refine the match.
+        </p>
+
+        <h2>Private Insights</h2>
+        <p>
+          Your meal logs, targets, and trends are personal — never shared with your household. Weekly patterns shown without judgment. No streaks. No scores. Just information.
+        </p>
+        <p>
+          Optionally connect Apple Health to sync body metrics and log dietary macros automatically.
+        </p>
+
+        <h2>Works Everywhere</h2>
+        <p>
+          iPhone, iPad, and Mac for planning, cooking, and logging. Apple TV as a calm ambient display showing today's meals — like a kitchen whiteboard in the living room.
+        </p>
+
+        <h2>Switching from Paprika?</h2>
+        <p>
+          Import your full recipe library from Paprika 3 in one step.
+        </p>
+
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Nutrition estimates are approximate, sourced from USDA FoodData Central and Open Food Facts. Not a substitute for professional dietary advice. Consult a healthcare provider before making dietary changes.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

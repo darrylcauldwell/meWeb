@@ -67,8 +67,10 @@ export const presentationLinks = [
 ];
 export const presentationsAccentColor = '#30D158'; // Green - growth, knowledge sharing
 
-// Apps section links (external hosted applications)
+// Apps section links (internal pages + external hosted applications)
 export const appsLinks = [
+  { label: 'TrackRide', href: '/apps/tetratrack/' },
+  { label: 'TableTogether', href: '/apps/tabletogether/' },
   { label: 'Planespotter', href: 'https://planespotter.dreamfold.dev', external: true },
   { label: 'Equestrian Venue Manager', href: 'https://evm.dreamfold.dev', external: true },
 ];
