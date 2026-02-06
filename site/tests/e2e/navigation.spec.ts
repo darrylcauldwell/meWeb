@@ -114,8 +114,13 @@ test.describe('Navigation', () => {
       await menuBtn.click();
 
       const mobileMenu = page.locator('#mobile-menu');
-      await expect(mobileMenu.locator('a[href="/"]')).toBeVisible();
+
+      // Click Blog accordion to reveal category links
+      await mobileMenu.locator('.mobile-accordion-btn', { hasText: 'Blog' }).click();
       await expect(mobileMenu.locator('a[href="/cloud/"]')).toBeVisible();
+
+      // Click Me accordion to reveal me links
+      await mobileMenu.locator('.mobile-accordion-btn', { hasText: 'Me' }).click();
       await expect(mobileMenu.locator('a[href="/bio/"]')).toBeVisible();
       await expect(mobileMenu.locator('a[href="/cv/"]')).toBeVisible();
     });

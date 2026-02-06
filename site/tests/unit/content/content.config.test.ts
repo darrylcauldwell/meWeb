@@ -10,10 +10,11 @@ describe('CATEGORIES', () => {
     expect(CATEGORIES).toContain('homelab');
     expect(CATEGORIES).toContain('career');
     expect(CATEGORIES).toContain('apps');
+    expect(CATEGORIES).toContain('lifestyle');
   });
 
   it('should have correct number of categories', () => {
-    expect(CATEGORIES.length).toBe(7);
+    expect(CATEGORIES.length).toBe(8);
   });
 
   it('should be all lowercase', () => {

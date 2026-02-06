@@ -107,7 +107,7 @@ test.describe('Observability Page', () => {
 
   test('should display service status cards', async ({ page }) => {
     // Services are displayed in status cards with h3 headings
-    const services = ['Site', 'Prometheus', 'Grafana', 'cAdvisor', 'Loki', 'Promtail'];
+    const services = ['Caddy', 'Prometheus', 'Grafana', 'cAdvisor', 'Loki', 'Promtail'];
 
     for (const service of services) {
       const serviceHeading = page.locator(`h3:has-text("${service}")`);
