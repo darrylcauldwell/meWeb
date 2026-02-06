@@ -85,12 +85,7 @@
         reverse_proxy planespotter-api:8000
     }
 
-    # Health endpoints passthrough to API
-    handle /health* {
-        reverse_proxy planespotter-api:8000
-    }
-
-    # Frontend (default)
+    # Frontend (default - includes /health observability page)
     handle {
         reverse_proxy planespotter-frontend:8080
     }
