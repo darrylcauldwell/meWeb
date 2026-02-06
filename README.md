@@ -93,15 +93,14 @@ Run the full Docker + Caddy stack locally:
 4. **Updating:**
    ```bash
    cd /opt/meWeb/site
-   git pull && docker compose -f docker-compose.production.yml up -d --build
+   git pull
+   docker compose -f docker-compose.production.yml pull
+   docker compose -f docker-compose.production.yml up -d
    ```
 
-### Deployment
+### CI/CD
 
-The system uses GitHub Actions for automated deployment:
-
-- **Site changes** trigger `site.yml` workflow
-- **CI checks** (lint, typecheck, tests) run via `ci.yml`
+- **CI** (`ci.yml`) runs on push to `site/**`: lint, spell check, image validation, unit tests, then builds the Docker image, runs E2E tests against the container, and pushes to GHCR
 - **Full browser matrix E2E** runs nightly via `e2e-full.yml`
 
 ## Components
