@@ -5,9 +5,13 @@ test.describe('Search', () => {
     await page.goto('/');
   });
 
+  // Helper: get the visible search button (there are two in the DOM — desktop and mobile)
+  function visibleSearchBtn(page: import('@playwright/test').Page) {
+    return page.locator('button[aria-label*="search" i], button:has-text("Search")').locator('visible=true').first();
+  }
+
   test('should have search button visible', async ({ page }) => {
-    const searchBtn = page.locator('button[aria-label*="search" i], button:has-text("Search")').first();
-    await expect(searchBtn).toBeVisible();
+    await expect(visibleSearchBtn(page)).toBeVisible();
   });
 
   test('should display keyboard shortcut hint', async ({ page }) => {
@@ -22,8 +26,7 @@ test.describe('Search', () => {
     await page.waitForTimeout(500);
 
     // Click search button
-    const searchBtn = page.locator('button[aria-label*="search" i], button:has-text("Search")').first();
-    await searchBtn.click();
+    await visibleSearchBtn(page).click();
 
     // Check for search modal or input
     const searchModal = page.locator('[role="dialog"], .pagefind-ui, #search-modal, input[type="search"]');
@@ -47,8 +50,7 @@ test.describe('Search', () => {
     await page.waitForTimeout(500);
 
     // Open search
-    const searchBtn = page.locator('button[aria-label*="search" i], button:has-text("Search")').first();
-    await searchBtn.click();
+    await visibleSearchBtn(page).click();
 
     // Verify open
     const searchModal = page.locator('[role="dialog"], .pagefind-ui, #search-modal, input[type="search"]');
@@ -65,8 +67,7 @@ test.describe('Search', () => {
     await page.waitForTimeout(500);
 
     // Open search
-    const searchBtn = page.locator('button[aria-label*="search" i], button:has-text("Search")').first();
-    await searchBtn.click();
+    await visibleSearchBtn(page).click();
 
     // Check for search input
     const searchInput = page.locator('input[type="search"], input[type="text"][placeholder*="search" i]');
@@ -77,8 +78,7 @@ test.describe('Search', () => {
     await page.waitForTimeout(500);
 
     // Open search
-    const searchBtn = page.locator('button[aria-label*="search" i], button:has-text("Search")').first();
-    await searchBtn.click();
+    await visibleSearchBtn(page).click();
 
     // Wait for modal
     await page.waitForTimeout(300);

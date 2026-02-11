@@ -84,6 +84,7 @@ jobs:
           pattern: playwright-report-*
 
       - name: Create summary
+        working-directory: .
         run: |
           echo "## E2E Test Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY

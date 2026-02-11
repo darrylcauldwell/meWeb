@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+const themeToggleSelector = 'button[aria-label*="theme" i], button[aria-label*="dark" i], button[aria-label*="light" i], button[id*="theme" i]';
+
 test.describe('Theme Toggle', () => {
   test.beforeEach(async ({ page }) => {
     // Clear localStorage before each test
@@ -8,18 +10,17 @@ test.describe('Theme Toggle', () => {
     await page.reload();
   });
 
+  // Helper: get the visible theme toggle (there are two in the DOM — desktop and mobile)
+  function visibleThemeToggle(page: import('@playwright/test').Page) {
+    return page.locator(themeToggleSelector).locator('visible=true').first();
+  }
+
   test('should have theme toggle button visible', async ({ page }) => {
-    // Look for a theme toggle button (usually has aria-label or specific class)
-    const themeToggle = page.locator(
-      'button[aria-label*="theme" i], button[aria-label*="dark" i], button[aria-label*="light" i], button[id*="theme" i]'
-    ).first();
-    await expect(themeToggle).toBeVisible();
+    await expect(visibleThemeToggle(page)).toBeVisible();
   });
 
   test('should toggle between light and dark themes', async ({ page }) => {
-    const themeToggle = page.locator(
-      'button[aria-label*="theme" i], button[aria-label*="dark" i], button[aria-label*="light" i], button[id*="theme" i]'
-    ).first();
+    const themeToggle = visibleThemeToggle(page);
 
     // Get initial state
     const initialClass = await page.locator('html').getAttribute('class');
@@ -38,9 +39,7 @@ test.describe('Theme Toggle', () => {
   });
 
   test('should persist theme preference in localStorage', async ({ page }) => {
-    const themeToggle = page.locator(
-      'button[aria-label*="theme" i], button[aria-label*="dark" i], button[aria-label*="light" i], button[id*="theme" i]'
-    ).first();
+    const themeToggle = visibleThemeToggle(page);
 
     // Toggle to light theme
     await themeToggle.click();
