@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="LiveRail" description="Live UK train tracking with offline caching and real-time updates">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">LiveRail</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">Live UK train tracking with offline caching and real-time updates</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          Built during a delayed train journey from London to Sheffield, LiveRail solves a simple problem: showing upcoming trains filtered by destination, tracking your journey with offline caching, and answering the only question that matters — when will I actually be home?
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Available on the App Store for iPhone and iPad.
+        </p>
+
+        <h2>Live Departures</h2>
+        <p>
+          Real-time departure boards filtered by your destination. See platform numbers, exact delays (not just "delayed"), and cancellations instantly. No more juggling five different apps to answer one question.
+        </p>
+
+        <h2>Track Your Journey</h2>
+        <p>
+          Select a service and watch it progress through every calling point. Live position on an interactive map. Estimated arrival times that update as the train moves. All visible on your Lock Screen and Dynamic Island without opening the app.
+        </p>
+
+        <h2>Offline Mode</h2>
+        <p>
+          The East Midlands line has patchy signal. LiveRail caches API responses locally with timestamps. When you lose connectivity, it shows the last known data with a "Last updated X minutes ago" indicator. When signal returns, polling resumes automatically.
+        </p>
+        <p>
+          This is the feature that made building the app worth it. No more refreshing a website in a tunnel hoping for signal.
+        </p>
+
+        <h2>CarPlay</h2>
+        <p>
+          Check your saved journey's next departures from your car display. Perfect for deciding whether to stop for coffee or head straight to the platform.
+        </p>
+
+        <h2>Home Screen Widget</h2>
+        <p>
+          Add a widget showing the next departure from your saved journeys. Updates automatically every 15 minutes. Glance at your home screen instead of opening the app.
+        </p>
+
+        <h2>Saved Journeys</h2>
+        <p>
+          Save frequent routes for instant access. Star your regular commute and it becomes a one-tap query. Recent journey history means you never have to search for the same route twice.
+        </p>
+
+        <h2>Find Alternatives</h2>
+        <p>
+          When your train is cancelled, instantly see alternative services on the same route. No manual searching, no guessing which train to catch instead.
+        </p>
+
+        <h2>Built with Claude Code</h2>
+        <p>
+          LiveRail was built in a weekend using Claude Code. Two hours on a delayed train for the core functionality (departures, tracking, offline caching), four hours on a Saturday for Live Activities, CarPlay, widgets, and multi-language support. Read the <a href="/post/liverail">full story</a>.
+        </p>
+
+        <h2>Privacy First</h2>
+        <p>
+          No tracking. No ads. No data collection. Your journey history stays on your device. Location permissions are optional and only used for showing directions to the station.
+        </p>
+
+        <h2>Multi-Language Support</h2>
+        <p>
+          Available in English, Welsh (Cymraeg), French (Français), German (Deutsch), and Spanish (Español). Language preference syncs across your devices via iCloud.
+        </p>
+
+        <h2>Requirements</h2>
+        <p>
+          Requires iOS 17.0 or later. Compatible with iPhone and iPad. CarPlay requires iOS 16.0+. Live Activities require iOS 16.1+.
+        </p>
+
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Live train data provided by National Rail Darwin OpenLDBWS via Huxley2. UK train services only.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
