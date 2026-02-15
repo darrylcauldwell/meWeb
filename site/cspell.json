@@ -356,6 +356,7 @@
     "timesheets",
     "Yegge",
     "Techmeme",
+    "pytest",
     "SWOLF"
   ],
   "ignorePaths": [
