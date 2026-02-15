@@ -2,14 +2,14 @@
 title: "The Pace of Possibility: AI Development is Amazing, and Here's What Keeping Up Actually Feels Like"
 date: "2026-02-14"
 category: "career"
-description: "AI-assisted development is genuinely transformative. Three production apps in three months proves it. Here's the practical reality of trying to keep pace with that possibility."
+description: "AI-assisted development is genuinely transformative. Four production apps in three months proves it. Here's the practical reality of trying to keep pace with that possibility."
 tags:
   - "ai"
 ---
 
 Let me be clear: AI-assisted development is **extraordinary**. Not hype extraordinary. Not "this will change everything someday" extraordinary. Actually, tangibly, right-now extraordinary.
 
-I built three production applications in three months. A train tracking app during a two-hour delayed journey. A full venue management system that now runs payroll for a local business. A horse gait analysis app that processes sensor data in real-time. All while working full-time. All shipped to real users.
+I built four production applications in three months. A train tracking app during a two-hour delayed journey. A full venue management system that now runs payroll for a local business. A horse gait analysis app that processes sensor data in real-time. A collaborative meal planning app that replaced two paid subscriptions. All while working full-time. All shipped to real users.
 
 This isn't theory. This is happening. The possibilities are genuinely enormous.
 
@@ -38,6 +38,8 @@ This is the enormous possibility everyone talks about. And it's real. It's not c
 **Equestrian Venue Manager**: Started as a simple booking system to replace an expired WordPress site. Within weeks: arena bookings, horse management, health tracking, turnout planning. By Christmas: full HR system with timesheets, leave management, payroll integration. Last month, real people got real paychecks calculated by this system. People depend on it.
 
 **TrackRide**: Horse gait detection using phone sensors. FFT analysis. Hidden Markov Models for state transitions. Biomechanical calculations. Live Activities showing gait transitions. This is **hard** stuff. It exists. It works. It processes real sensor data from real rides.
+
+**TableTogether**: Frustrated with juggling Paprika 3 and MyFitnessPal, I built a unified meal planning app in a month. Recipe catalogue, collaborative household planning, automated grocery lists, personal macro tracking with natural language calorie estimation. SwiftUI, SwiftData, iCloud sync. Our household uses it daily. Two paid apps replaced with one custom solution.
 
 These aren't demos. These aren't prototypes gathering dust. These are **production applications solving real problems for real users**. And I built them while working full-time, having a family, maintaining other commitments.
 
@@ -79,9 +81,9 @@ This is the vampire effect. Not that AI drains you while you use it. That it mak
 
 Yegge's other point hits hard: if AI makes you 10x more productive, you're producing nine additional engineers' worth of value. Your employer captures 100% of that value. You get... nothing. Or at least, not 9x your salary.
 
-I've built three production applications in three months *in my spare time*. These aren't weekend hacks. LiveRail is on the App Store. EVM processes real payroll. TrackRide analyzes actual horse gaits.
+I've built four production applications in three months *in my spare time*. These aren't weekend hacks. LiveRail is on the App Store. EVM processes real payroll. TrackRide analyzes actual horse gaits. TableTogether replaced two paid subscriptions.
 
-What's the economic value of this productivity? I genuinely don't know. The apps exist because I wanted them to exist, not because I'm trying to monetize them. But the question lingers: if I can build three production apps in three months part-time, what does that mean for my day job? For employment? For the industry?
+What's the economic value of this productivity? I genuinely don't know. The apps exist because I wanted them to exist, not because I'm trying to monetize them. But the question lingers: if I can build four production apps in three months part-time, what does that mean for my day job? For employment? For the industry?
 
 I don't have answers. Just questions I think about at 11pm when I should be asleep.
 
@@ -131,13 +133,13 @@ Three months of 10x productivity has taught me some things:
 
 **2. New productivity requires new boundaries.** "I'll stop when I hit a blocker" doesn't work when blockers are rare. You need different stopping points. Time-based? Feature-based? Energy-based? Still figuring it out.
 
-**3. The possibilities are worth the effort.** Yes, it's demanding. But I've built three production applications in three months. They work. People use them. That's **extraordinary**. The fatigue is real, but so is the accomplishment.
+**3. The possibilities are worth the effort.** Yes, it's demanding. But I've built four production applications in three months. They work. People use them. That's **extraordinary**. The fatigue is real, but so is the accomplishment.
 
 **4. We're all learning this together.** There's no playbook for sustainable 10x productivity. Yegge talks about 4-hour workdays. Maybe. Or maybe we find new rhythms that work. The point is: we're figuring it out as we go.
 
 ## The Honest Assessment
 
-AI-assisted development is **genuinely transformative**. Not hype. Not speculation. Actually, measurably, right-now transformative. I have three production applications to prove it.
+AI-assisted development is **genuinely transformative**. Not hype. Not speculation. Actually, measurably, right-now transformative. I have four production applications to prove it.
 
 The practical reality of keeping up with that transformation? It requires:
 - Sustained high-level thinking
