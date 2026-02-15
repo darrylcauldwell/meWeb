@@ -358,6 +358,7 @@
     "Techmeme",
     "pytest",
     "Pydantic",
+    "sparkline",
     "SWOLF"
   ],
   "ignorePaths": [
