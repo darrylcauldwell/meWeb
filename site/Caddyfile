@@ -112,6 +112,11 @@
     }
 }
 
+# EquiCalendar - Equestrian competition calendar
+{$EQUICALENDAR_ADDRESS:equicalendar.localhost} {
+    reverse_proxy equicalendar:8000
+}
+
 # App Support Site (TableTogether, etc.)
 {$SUPPORT_ADDRESS:support.localhost} {
     root * /srv/support

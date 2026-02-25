@@ -1,0 +1,29 @@
+services:
+  equicalendar:
+    image: ghcr.io/darrylcauldwell/compgather:latest
+    container_name: equicalendar
+    init: true
+    restart: unless-stopped
+    environment:
+      - HOME_POSTCODE=${EQUICALENDAR_HOME_POSTCODE}
+      - SCAN_SCHEDULE=06:00
+      - LOG_LEVEL=INFO
+      - API_KEY=${EQUICALENDAR_API_KEY:-}
+      - ANALYTICS_DOMAIN=${EQUICALENDAR_ANALYTICS_DOMAIN:-}
+    volumes:
+      - equicalendar_data:/app/data
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+
+volumes:
+  equicalendar_data:
+
+networks:
+  web:
+    driver: bridge

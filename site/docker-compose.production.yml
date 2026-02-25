@@ -14,11 +14,13 @@ include:
   - path: notifications/docker-compose.yml
   - path: planespotter/docker-compose.yml
   - path: evm/docker-compose.yml
+  - path: equicalendar/docker-compose.yml
 
 services:
   meweb:
     image: ghcr.io/darrylcauldwell/meweb:latest
     container_name: meweb
+    init: true
     restart: unless-stopped
     ports:
       - "0.0.0.0:80:80"
@@ -29,6 +31,7 @@ services:
       - NTFY_ADDRESS=${NTFY_ADDRESS}
       - PLANESPOTTER_ADDRESS=${PLANESPOTTER_ADDRESS}
       - EVM_ADDRESS=${EVM_ADDRESS}
+      - EQUICALENDAR_ADDRESS=${EQUICALENDAR_ADDRESS}
       - SUPPORT_ADDRESS=${SUPPORT_ADDRESS}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
