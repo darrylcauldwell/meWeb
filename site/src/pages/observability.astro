@@ -250,6 +250,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
+      <!-- Droplet Health Dashboard -->
+      <details class="bg-[var(--color-bg-elevated)] rounded-lg border border-[var(--color-translucent)] overflow-hidden mb-4 group" id="host-details">
+        <summary class="px-4 py-3 cursor-pointer flex items-center justify-between hover:bg-[var(--color-translucent)] transition-colors">
+          <h2 class="font-semibold text-[var(--color-heading)]">Droplet Health</h2>
+          <svg class="w-5 h-5 text-[var(--color-text-muted)] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="border-t border-[var(--color-translucent)]">
+          <iframe
+            class="w-full h-[500px] border-0"
+            id="host-dashboard-frame"
+            data-dashboard="host-metrics"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </details>
+
       <!-- HTTP Traffic Dashboard -->
       <details class="bg-[var(--color-bg-elevated)] rounded-lg border border-[var(--color-translucent)] overflow-hidden mb-4 group" id="caddy-details">
         <summary class="px-4 py-3 cursor-pointer flex items-center justify-between hover:bg-[var(--color-translucent)] transition-colors">
@@ -480,11 +498,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     });
 
   // Iframe references and configuration
+  const hostFrame = document.getElementById('host-dashboard-frame') as HTMLIFrameElement;
   const caddyFrame = document.getElementById('caddy-dashboard-frame') as HTMLIFrameElement;
   const containerFrame = document.getElementById('container-dashboard-frame') as HTMLIFrameElement;
   const logsFrame = document.getElementById('logs-dashboard-frame') as HTMLIFrameElement;
   const logLevelSelect = document.getElementById('log-level-select') as HTMLSelectElement;
 
+  const hostDetails = document.getElementById('host-details') as HTMLDetailsElement;
   const caddyDetails = document.getElementById('caddy-details') as HTMLDetailsElement;
   const containerDetails = document.getElementById('container-details') as HTMLDetailsElement;
   const logsDetails = document.getElementById('logs-details') as HTMLDetailsElement;
@@ -540,6 +560,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     });
   }
 
+  setupDetailsToggle(hostDetails, hostFrame);
   setupDetailsToggle(caddyDetails, caddyFrame);
   setupDetailsToggle(containerDetails, containerFrame);
   setupDetailsToggle(logsDetails, logsFrame);
@@ -555,11 +576,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       // Page is hidden - unload all iframes
+      unloadIframe(hostFrame);
       unloadIframe(caddyFrame);
       unloadIframe(containerFrame);
       unloadIframe(logsFrame);
     } else {
       // Page is visible - reload only open sections
+      if (hostDetails?.open) loadIframe(hostFrame);
       if (caddyDetails?.open) loadIframe(caddyFrame);
       if (containerDetails?.open) loadIframe(containerFrame);
       if (logsDetails?.open) loadIframe(logsFrame);
@@ -571,6 +594,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   function debouncedUpdateFrames() {
     if (themeUpdateTimeout) clearTimeout(themeUpdateTimeout);
     themeUpdateTimeout = setTimeout(() => {
+      if (hostDetails?.open) reloadIframe(hostFrame);
       if (caddyDetails?.open) reloadIframe(caddyFrame);
       if (containerDetails?.open) reloadIframe(containerFrame);
       if (logsDetails?.open) reloadIframe(logsFrame);
@@ -591,6 +615,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   // Cleanup when page is unloaded
   window.addEventListener('beforeunload', () => {
     observer.disconnect();
+    unloadIframe(hostFrame);
     unloadIframe(caddyFrame);
     unloadIframe(containerFrame);
     unloadIframe(logsFrame);
