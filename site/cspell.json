@@ -359,7 +359,9 @@
     "pytest",
     "Pydantic",
     "sparkline",
-    "SWOLF"
+    "SWOLF",
+    "equicalendar",
+    "EquiCalendar"
   ],
   "ignorePaths": [
     "node_modules",
