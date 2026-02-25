@@ -64,6 +64,12 @@ scrape_configs:
       - targets: ['evm-backend:8000']
     metrics_path: /metrics
 
+  # EquiCalendar metrics (FastAPI with prometheus-fastapi-instrumentator)
+  - job_name: 'equicalendar'
+    static_configs:
+      - targets: ['equicalendar:8000']
+    metrics_path: /metrics
+
   # Example: Node.js application with prom-client
   # - job_name: 'nodejs-app'
   #   static_configs:

@@ -152,6 +152,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
+      <!-- EquiCalendar -->
+      <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-3">EquiCalendar</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div class="bg-[var(--color-bg-elevated)] rounded-lg p-4 border border-[var(--color-translucent)]">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[var(--color-status-healthy-bg)] flex items-center justify-center" id="equicalendar-icon">
+              <svg class="w-4 h-4 text-[var(--color-status-healthy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--color-heading)] text-sm">App</h3>
+              <p class="text-xs text-[var(--color-text-muted)]" id="equicalendar-status">Checking...</p>
+            </div>
+          </div>
+          <div class="text-xs text-[var(--color-text-muted)] mt-2">FastAPI + SQLite</div>
+        </div>
+      </div>
+
       <!-- Observability Stack -->
       <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-3">Observability Stack</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -396,6 +415,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   checkContainerRunning('evm-db', 'evm-db-status', 'evm-db-icon');
   checkPrometheusTarget('evm-backend', 'evm-backend-status', 'evm-backend-icon');
   checkContainerRunning('evm-frontend', 'evm-frontend-status', 'evm-frontend-icon');
+
+  // EquiCalendar
+  checkPrometheusTarget('equicalendar', 'equicalendar-status', 'equicalendar-icon');
   // cAdvisor doesn't have a simple health endpoint accessible via browser, check via Prometheus target
   fetch('/prometheus/api/v1/targets')
     .then(r => r.json())
