@@ -18,6 +18,7 @@ services:
   meweb:
     build: .
     container_name: meweb
+    init: true
     restart: unless-stopped
     ports:
       - "127.0.0.1:80:80"
