@@ -78,6 +78,7 @@ services:
       - ./promtail/promtail-config.yml:/etc/promtail/promtail-config.yml:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/log:/var/log/host:ro
     networks:
       - web
     depends_on:

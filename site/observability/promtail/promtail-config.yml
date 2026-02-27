@@ -39,3 +39,29 @@ scrape_configs:
       - source_labels: ['__meta_docker_container_label_com_docker_compose_service']
         regex: ''
         action: drop
+
+  - job_name: host
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: host
+          __path__: /var/log/host/*.log
+      - targets:
+          - localhost
+        labels:
+          job: host
+          source: syslog
+          __path__: /var/log/host/syslog
+      - targets:
+          - localhost
+        labels:
+          job: host
+          source: auth
+          __path__: /var/log/host/auth.log
+      - targets:
+          - localhost
+        labels:
+          job: host
+          source: kern
+          __path__: /var/log/host/kern.log
