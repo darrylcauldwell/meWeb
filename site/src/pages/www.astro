@@ -4,12 +4,8 @@ import LandingCard from '../components/LandingCard.astro';
 import { landingSections } from '../config/landing';
 ---
 
-<BaseLayout title="Darryl Cauldwell" description="iOS apps, web apps, blog, and more">
+<BaseLayout title="dreamfold.dev" description="iOS apps, web apps, blog, and more">
   <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <header class="mb-10">
-      <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Darryl Cauldwell</h1>
-      <p class="text-[var(--color-text-muted)] mt-2">Software engineer — iOS, web, cloud & DevOps</p>
-    </header>
 
     {landingSections.map((section) => (
       <section class="mb-10">
@@ -24,6 +20,10 @@ import { landingSections } from '../config/landing';
               badge={card.badge}
               external={card.external}
               icon={card.icon}
+              appStoreUrl={card.appStoreUrl}
+              appSubdomain={card.appSubdomain}
+              blogPost={card.blogPost}
+              primarySubdomain={card.primarySubdomain}
             />
           ))}
         </div>
