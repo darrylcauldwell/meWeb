@@ -6,41 +6,41 @@
     }
 }
 
-{$SITE_ADDRESS::80} {
-    # Serve static files
+# Shared config for static site server blocks
+(static_site_common) {
     root * /srv
     file_server
-
-    # Compression
     encode gzip zstd
 
-    # Security headers
     header {
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
         X-XSS-Protection "1; mode=block"
         Referrer-Policy "strict-origin-when-cross-origin"
-        # Remove server header
         -Server
     }
 
-    # Cache static assets
     @static {
         path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2 *.ttf *.eot
     }
     header @static Cache-Control "public, max-age=31536000, immutable"
 
-    # Cache HTML for shorter period
     @html {
         path *.html
     }
     header @html Cache-Control "public, max-age=3600, must-revalidate"
 
-    # Health check endpoint
     respond /healthz 200 {
         body "healthy"
         close
     }
+
+    try_files {path} {path}/ {path}.html
+}
+
+# Main blog site
+{$SITE_ADDRESS::80} {
+    import static_site_common
 
     # Grafana reverse proxy
     handle /grafana/* {
@@ -52,9 +52,6 @@
         reverse_proxy prometheus:9090
     }
 
-    # Handle pretty URLs (try file, then directory, then .html extension)
-    try_files {path} {path}/ {path}.html
-
     # Custom 404 page
     handle_errors {
         @404 {
@@ -63,6 +60,49 @@
         rewrite @404 /404.html
         file_server
     }
+}
+
+# Landing page (www / bare domain)
+{$WWW_ADDRESS:www.localhost} {
+    import static_site_common
+    rewrite / /www/index.html
+}
+
+# CV page
+{$CV_ADDRESS:cv.localhost} {
+    import static_site_common
+    rewrite / /cv/index.html
+}
+
+# Bio page
+{$BIO_ADDRESS:bio.localhost} {
+    import static_site_common
+    rewrite / /bio/index.html
+}
+
+# Presentations
+{$PRESENTATIONS_ADDRESS:presentations.localhost} {
+    import static_site_common
+    rewrite / /presentations/index.html
+}
+
+# Observability (needs grafana/prometheus proxies for JS fetches)
+{$OBSERVABILITY_ADDRESS:observability.localhost} {
+    import static_site_common
+    rewrite / /observability/index.html
+
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+}
+
+# GreenScope - Software Carbon Intensity dashboard
+{$SCI_ADDRESS:sci.localhost} {
+    reverse_proxy greenscope:8000
 }
 
 # ntfy push notification service
@@ -121,11 +161,8 @@
 {$SUPPORT_ADDRESS:support.localhost} {
     root * /srv/support
     file_server
-
-    # Compression
     encode gzip zstd
 
-    # Security headers
     header {
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
@@ -134,16 +171,13 @@
         -Server
     }
 
-    # Cache static assets
     @static {
         path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2
     }
     header @static Cache-Control "public, max-age=31536000, immutable"
 
-    # Handle pretty URLs
     try_files {path} {path}/ {path}.html {path}/index.html
 
-    # Health check
     respond /healthz 200 {
         body "healthy"
         close

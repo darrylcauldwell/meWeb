@@ -15,6 +15,7 @@ include:
   - path: planespotter/docker-compose.yml
   - path: evm/docker-compose.yml
   - path: equicalendar/docker-compose.yml
+  - path: greenscope/docker-compose.yml
 
 services:
   meweb:
@@ -33,6 +34,12 @@ services:
       - EVM_ADDRESS=${EVM_ADDRESS}
       - EQUICALENDAR_ADDRESS=${EQUICALENDAR_ADDRESS}
       - SUPPORT_ADDRESS=${SUPPORT_ADDRESS}
+      - WWW_ADDRESS=${WWW_ADDRESS}
+      - CV_ADDRESS=${CV_ADDRESS}
+      - BIO_ADDRESS=${BIO_ADDRESS}
+      - PRESENTATIONS_ADDRESS=${PRESENTATIONS_ADDRESS}
+      - OBSERVABILITY_ADDRESS=${OBSERVABILITY_ADDRESS}
+      - SCI_ADDRESS=${SCI_ADDRESS}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data

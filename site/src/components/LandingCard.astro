@@ -1,0 +1,74 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  accentColor: string;
+  badge?: string;
+  external?: boolean;
+  icon: string;
+}
+
+const { title, description, href, accentColor, badge, external, icon } = Astro.props;
+---
+
+<a
+  href={href}
+  class="landing-card block group relative overflow-hidden rounded-lg bg-[var(--color-bg-elevated)] border border-[var(--color-translucent)] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+>
+  <!-- Accent bar -->
+  <div
+    class="absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 group-hover:w-1.5"
+    style={`background-color: ${accentColor};`}
+  ></div>
+
+  <div class="pl-5 pr-4 py-4">
+    <div class="flex items-start gap-3">
+      <!-- Icon -->
+      <div
+        class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+        style={`background-color: ${accentColor}20;`}
+      >
+        <svg
+          class="w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          style={`color: ${accentColor};`}
+        >
+          <path d={icon} />
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2">
+          <h3
+            class="text-base font-semibold text-[var(--color-heading)] transition-colors truncate"
+            style={`--hover-color: ${accentColor};`}
+          >
+            <span class="group-hover:text-[var(--hover-color)] transition-colors">
+              {title}
+            </span>
+          </h3>
+          {badge && (
+            <span
+              class="flex-shrink-0 px-1.5 py-0.5 text-[var(--color-dark)] rounded text-[10px] font-semibold uppercase tracking-wide"
+              style={`background-color: ${accentColor};`}
+            >
+              {badge}
+            </span>
+          )}
+          {external && (
+            <svg class="flex-shrink-0 w-3.5 h-3.5 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          )}
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)] mt-0.5 line-clamp-1">
+          {description}
+        </p>
+      </div>
+    </div>
+  </div>
+</a>

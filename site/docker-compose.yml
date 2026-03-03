@@ -14,6 +14,7 @@ include:
   - path: planespotter/docker-compose.yml
   - path: evm/docker-compose.yml
   - path: equicalendar/docker-compose.yml
+  - path: greenscope/docker-compose.yml
 
 services:
   meweb:
@@ -27,6 +28,12 @@ services:
       - SITE_ADDRESS=:80
       - ACME_EMAIL=dev@localhost
       - NTFY_ADDRESS=ntfy.localhost
+      - WWW_ADDRESS=www.localhost
+      - CV_ADDRESS=cv.localhost
+      - BIO_ADDRESS=bio.localhost
+      - PRESENTATIONS_ADDRESS=presentations.localhost
+      - OBSERVABILITY_ADDRESS=observability.localhost
+      - SCI_ADDRESS=sci.localhost
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     networks:
