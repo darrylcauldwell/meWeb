@@ -151,7 +151,11 @@ const hasActions = !!(appStoreUrl || appSubdomain || blogPost);
   // e.g. 'www.dreamfold.dev' → 'dreamfold.dev', 'www.localhost' → 'localhost'
   function getBaseDomain() {
     const host = window.location.hostname;
-    return host.replace(/^[^.]+\./, '') || host;
+    const parts = host.split('.');
+    // 'localhost' or 'dreamfold.dev' — already the base domain
+    if (parts.length <= 2) return host;
+    // 'www.dreamfold.dev' or 'blog.dreamfold.dev' — strip first part
+    return parts.slice(1).join('.');
   }
 
   const protocol = window.location.protocol;
