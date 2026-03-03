@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="Planespotter" description="Real-time aircraft tracking powered by ADS-B data from OpenSky Network">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Planespotter</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">Real-time aircraft tracking powered by ADS-B data</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          Planespotter tracks live aircraft positions using ADS-B data from the OpenSky Network. Search by registration, ICAO24 code, manufacturer, model, operator, or owner — and see real-time position data for airborne aircraft.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Live at <a href="https://planespotter.dreamfold.dev">planespotter.dreamfold.dev</a>.
+        </p>
+
+        <h2>Aircraft Search</h2>
+        <p>
+          Query the full OpenSky aircraft database by registration, ICAO24 hex code, manufacturer, model, operator, or owner. Paginated results for browsing large datasets.
+        </p>
+
+        <h2>Live Positions</h2>
+        <p>
+          Real-time position tracking for airborne aircraft. The ADSB-Sync service continuously polls OpenSky and caches positions in Valkey for fast retrieval.
+        </p>
+
+        <h2>Microservices Architecture</h2>
+        <p>
+          Built as a multi-service application: a frontend serving the web UI, an API server handling queries, an ADSB-Sync worker polling live data, PostgreSQL for aircraft metadata, and Valkey for position caching. Each service runs in its own container with health check endpoints.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <p>
+          FastAPI for both frontend and API server. PostgreSQL for the aircraft database. Valkey for real-time position caching. Docker Compose for local deployment, Kubernetes with Kustomize manifests available for cluster deployment.
+        </p>
+
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Aircraft data sourced from the OpenSky Network. Position data is real-time but subject to ADS-B coverage and OpenSky API availability.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="SeeFood" description="Hotdog or not hotdog — on-device AI food classification">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">SeeFood</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">Hotdog or not hotdog — on-device AI food classification</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          Point your camera at food. Get an answer. Is it a hotdog? Or is it not a hotdog? That's the entire app. You're welcome.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Available on the <a href="https://apps.apple.com/us/app/seefood-by-aviato/id6759822190">App Store</a> for iPhone and iPad.
+        </p>
+
+        <h2>How It Works</h2>
+        <p>
+          Snap a photo or pick one from your library. SeeFood runs a MobileNetV2 model through Core ML entirely on your device. No internet required. No waiting. Just an instant, definitive verdict: <strong>HOTDOG</strong> or <strong>NOT HOTDOG</strong>.
+        </p>
+
+        <h2>100% On-Device</h2>
+        <p>
+          Every classification happens locally on your iPhone or iPad. No images are uploaded. No data leaves your device. No server calls. The neural network runs right on your hardware.
+        </p>
+
+        <h2>Why?</h2>
+        <p>
+          Because sometimes you just need to know.
+        </p>
+
+        <h2>Requirements</h2>
+        <p>
+          Requires iOS 16.0 or later. Compatible with iPhone and iPad.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

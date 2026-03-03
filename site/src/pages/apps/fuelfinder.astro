@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="FuelRoute" description="Find the cheapest fuel near you or along your route across the UK">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">FuelRoute</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">Find the cheapest fuel near you or along your route across the UK</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          Fuel prices vary wildly between stations just miles apart. FuelRoute pulls real-time prices directly from 12 major UK retailers — no middleman, no stale data — and ranks stations by a blend of price and distance so the cheapest option is always the smartest one.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Available on the <a href="https://apps.apple.com/us/app/fuelroute/id6759122117">App Store</a>.
+        </p>
+
+        <h2>Nearby Stations</h2>
+        <p>
+          See fuel stations on an interactive map or as a sortable list. Filter by fuel type, adjust the search radius from 1 to 20 miles, and sort by price or distance. Each station shows live prices, the retailer, and how far away it is.
+        </p>
+
+        <h2>Route Planning</h2>
+        <p>
+          Planning a longer journey? Enter your destination and FuelRoute searches a corridor along your route for the cheapest stations. Adjust the corridor width from 1 to 5 miles. Stations are ranked by a scoring algorithm that balances price against detour time — so you're not driving 20 minutes off the motorway to save 2p.
+        </p>
+
+        <h2>CarPlay (Coming Soon)</h2>
+        <p>
+          Browse nearby stations, check your favourites, and view the map — all from your car display. CarPlay support is built and awaiting Apple entitlement approval.
+        </p>
+
+        <h2>Favourites</h2>
+        <p>
+          Save your preferred stations and they sync across all your devices via iCloud. Quick access to the places you already know and trust.
+        </p>
+
+        <h2>No Backend Required</h2>
+        <p>
+          FuelRoute calls the 12 UK retailer open data feeds directly from your device — part of the CMA fuel price transparency scheme. No server in between. No API key. No subscription. Prices refresh automatically every 12 hours.
+        </p>
+
+        <h2>Privacy First</h2>
+        <p>
+          No tracking. No ads. No data collection. Location is used only to find nearby stations and is never sent anywhere. Your favourites sync via iCloud and stay on your devices.
+        </p>
+
+        <h2>Requirements</h2>
+        <p>
+          Requires iOS 18.0 or later. CarPlay support requires a compatible vehicle.
+        </p>
+
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Fuel prices sourced from UK retailer open data feeds under the CMA transparency scheme. Prices may be up to 12 hours old. Covers Asda, BP, Esso, JET, Morrisons, Moto, Motor Fuel Group, Rontec, Sainsbury's, SGN, Shell, and Tesco.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

@@ -71,8 +71,13 @@ export const presentationsAccentColor = '#30D158'; // Green - growth, knowledge 
 export const appsLinks = [
   { label: 'TrackRide', href: '/apps/tetratrack/' },
   { label: 'TableTogether', href: '/apps/tabletogether/' },
-  { label: 'Planespotter', href: 'https://planespotter.dreamfold.dev', external: true },
-  { label: 'Equestrian Venue Manager', href: 'https://evm.dreamfold.dev', external: true },
+  { label: 'LiveRail', href: '/apps/liverail/' },
+  { label: 'FuelRoute', href: '/apps/fuelfinder/' },
+  { label: 'SeeFood', href: '/apps/seefood/' },
+  { label: 'Equestrian Venue Manager', href: '/apps/evm/' },
+  { label: 'EquiCalendar', href: '/apps/equicalendar/' },
+  { label: 'Planespotter', href: '/apps/planespotter/' },
+  { label: 'GreenScope', href: '/apps/greenscope/' },
 ];
 export const appsAccentColor = '#5AC8FA'; // Teal - apps, infrastructure
 
