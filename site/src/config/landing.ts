@@ -126,6 +126,26 @@ export const landingSections: LandingSection[] = [
     ],
   },
   {
+    title: 'Operations',
+    cards: [
+      {
+        title: 'GreenScope',
+        description: 'Software carbon intensity scoring',
+        href: '/apps/greenscope/',
+        accentColor: '#30D158',
+        icon: icons.leaf,
+        appSubdomain: 'sci',
+      },
+      {
+        title: 'Observability',
+        description: 'Grafana dashboards & metrics',
+        href: '/observability/',
+        accentColor: '#F59E0B',
+        icon: icons.dashboard,
+      },
+    ],
+  },
+  {
     title: 'Darryl',
     cards: [
       {
@@ -172,26 +192,6 @@ export const landingSections: LandingSection[] = [
         accentColor: '#0A66C2',
         external: true,
         icon: icons.linkedin,
-      },
-    ],
-  },
-  {
-    title: 'Operations',
-    cards: [
-      {
-        title: 'GreenScope',
-        description: 'Software carbon intensity scoring',
-        href: '/apps/greenscope/',
-        accentColor: '#30D158',
-        icon: icons.leaf,
-        appSubdomain: 'sci',
-      },
-      {
-        title: 'Observability',
-        description: 'Grafana dashboards & metrics',
-        href: '/observability/',
-        accentColor: '#F59E0B',
-        icon: icons.dashboard,
       },
     ],
   },
