@@ -6,8 +6,6 @@
 
 services:
   greenscope:
-    build:
-      context: /Users/darrylcauldwell/Library/Mobile Documents/com~apple~CloudDocs/Development/greenscope
     image: ghcr.io/darrylcauldwell/greenscope:latest
     container_name: greenscope
     restart: unless-stopped
