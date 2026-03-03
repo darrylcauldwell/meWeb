@@ -77,6 +77,12 @@ scrape_configs:
       - targets: ['equicalendar:8000']
     metrics_path: /metrics
 
+  # GreenScope metrics (FastAPI with prometheus-fastapi-instrumentator)
+  - job_name: 'greenscope'
+    static_configs:
+      - targets: ['greenscope:8000']
+    metrics_path: /metrics
+
   # Example: Node.js application with prom-client
   # - job_name: 'nodejs-app'
   #   static_configs:
