@@ -86,8 +86,8 @@ export const landingSections: LandingSection[] = [
         appStoreUrl: 'https://apps.apple.com/us/app/fuelroute/id6759122117',
       },
       {
-        title: 'SeeFood',
-        description: 'AI food identification & nutrition',
+        title: 'SeeFood by Aviato',
+        description: 'Hotdog or Not Hotdog — Silicon Valley parody',
         href: '/apps/seefood/',
         accentColor: '#BF5AF2',
         badge: 'iOS',
