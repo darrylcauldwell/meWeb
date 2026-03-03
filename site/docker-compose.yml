@@ -24,6 +24,7 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
     environment:
       - SITE_ADDRESS=:80
       - ACME_EMAIL=dev@localhost
@@ -32,6 +33,7 @@ services:
       - CV_ADDRESS=cv.localhost
       - BIO_ADDRESS=bio.localhost
       - PRESENTATIONS_ADDRESS=presentations.localhost
+      - BLOG_ADDRESS=blog.localhost
       - OBSERVABILITY_ADDRESS=observability.localhost
       - SCI_ADDRESS=sci.localhost
     volumes:

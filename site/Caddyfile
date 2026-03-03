@@ -38,16 +38,16 @@
     try_files {path} {path}/ {path}.html
 }
 
-# Main blog site
+# Landing page (bare domain / www — fallback for unmatched hosts locally)
 {$SITE_ADDRESS::80} {
     import static_site_common
+    rewrite / /www/index.html
 
-    # Grafana reverse proxy
+    # Proxies needed for observability page JS health checks
     handle /grafana/* {
         reverse_proxy grafana:3000
     }
 
-    # Prometheus reverse proxy
     handle /prometheus/* {
         reverse_proxy prometheus:9090
     }
@@ -62,10 +62,39 @@
     }
 }
 
-# Landing page (www / bare domain)
+# Landing page (www subdomain)
 {$WWW_ADDRESS:www.localhost} {
     import static_site_common
     rewrite / /www/index.html
+
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+}
+
+# Blog
+{$BLOG_ADDRESS:blog.localhost} {
+    import static_site_common
+
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+
+    handle_errors {
+        @404 {
+            expression {http.error.status_code} == 404
+        }
+        rewrite @404 /404.html
+        file_server
+    }
 }
 
 # CV page
