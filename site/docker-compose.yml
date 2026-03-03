@@ -28,14 +28,14 @@ services:
     environment:
       - SITE_ADDRESS=:80
       - ACME_EMAIL=dev@localhost
-      - NTFY_ADDRESS=ntfy.localhost
-      - WWW_ADDRESS=www.localhost
-      - CV_ADDRESS=cv.localhost
-      - BIO_ADDRESS=bio.localhost
-      - PRESENTATIONS_ADDRESS=presentations.localhost
-      - BLOG_ADDRESS=blog.localhost
-      - OBSERVABILITY_ADDRESS=observability.localhost
-      - SCI_ADDRESS=sci.localhost
+      - NTFY_ADDRESS=http://ntfy.localhost
+      - WWW_ADDRESS=http://www.localhost
+      - CV_ADDRESS=http://cv.localhost
+      - BIO_ADDRESS=http://bio.localhost
+      - PRESENTATIONS_ADDRESS=http://presentations.localhost
+      - BLOG_ADDRESS=http://blog.localhost
+      - OBSERVABILITY_ADDRESS=http://observability.localhost
+      - SCI_ADDRESS=http://sci.localhost
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     networks:

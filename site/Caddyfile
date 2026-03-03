@@ -63,7 +63,7 @@
 }
 
 # Landing page (www subdomain)
-{$WWW_ADDRESS:www.localhost} {
+{$WWW_ADDRESS:http://www.localhost} {
     import static_site_common
     rewrite / /www/index.html
 
@@ -77,7 +77,7 @@
 }
 
 # Blog
-{$BLOG_ADDRESS:blog.localhost} {
+{$BLOG_ADDRESS:http://blog.localhost} {
     import static_site_common
 
     handle /grafana/* {
@@ -98,25 +98,25 @@
 }
 
 # CV page
-{$CV_ADDRESS:cv.localhost} {
+{$CV_ADDRESS:http://cv.localhost} {
     import static_site_common
     rewrite / /cv/index.html
 }
 
 # Bio page
-{$BIO_ADDRESS:bio.localhost} {
+{$BIO_ADDRESS:http://bio.localhost} {
     import static_site_common
     rewrite / /bio/index.html
 }
 
 # Presentations
-{$PRESENTATIONS_ADDRESS:presentations.localhost} {
+{$PRESENTATIONS_ADDRESS:http://presentations.localhost} {
     import static_site_common
     rewrite / /presentations/index.html
 }
 
 # Observability (needs grafana/prometheus proxies for JS fetches)
-{$OBSERVABILITY_ADDRESS:observability.localhost} {
+{$OBSERVABILITY_ADDRESS:http://observability.localhost} {
     import static_site_common
     rewrite / /observability/index.html
 
@@ -130,17 +130,17 @@
 }
 
 # GreenScope - Software Carbon Intensity dashboard
-{$SCI_ADDRESS:sci.localhost} {
+{$SCI_ADDRESS:http://sci.localhost} {
     reverse_proxy greenscope:8000
 }
 
 # ntfy push notification service
-{$NTFY_ADDRESS:ntfy.localhost} {
+{$NTFY_ADDRESS:http://ntfy.localhost} {
     reverse_proxy ntfy:80
 }
 
 # Planespotter application
-{$PLANESPOTTER_ADDRESS:planespotter.localhost} {
+{$PLANESPOTTER_ADDRESS:http://planespotter.localhost} {
     # Health check (must be handle block for proper routing)
     handle /healthz {
         respond 200 {
@@ -161,7 +161,7 @@
 }
 
 # Equestrian Venue Manager
-{$EVM_ADDRESS:evm.localhost} {
+{$EVM_ADDRESS:http://evm.localhost} {
     # Health check (must be handle block for proper routing)
     handle /healthz {
         respond 200 {
@@ -182,12 +182,12 @@
 }
 
 # EquiCalendar - Equestrian competition calendar
-{$EQUICALENDAR_ADDRESS:equicalendar.localhost} {
+{$EQUICALENDAR_ADDRESS:http://equicalendar.localhost} {
     reverse_proxy equicalendar:8000
 }
 
 # App Support Site (TableTogether, etc.)
-{$SUPPORT_ADDRESS:support.localhost} {
+{$SUPPORT_ADDRESS:http://support.localhost} {
     root * /srv/support
     file_server
     encode gzip zstd
