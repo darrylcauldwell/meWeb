@@ -14,6 +14,7 @@ export interface LandingCard {
   appSubdomain?: string; // Web app subdomain (e.g. 'planespotter') — URL derived from current hostname
   blogPost?: string; // Blog post path (e.g. '/post/liverail/')
   primarySubdomain?: string; // Subdomain for the primary card link (e.g. 'blog') — resolved via JS
+  externalUrl?: string; // External URL rendered as a "Visit" action button
 }
 
 export interface LandingSection {
@@ -182,16 +183,16 @@ export const landingSections: LandingSection[] = [
         description: 'Open source projects & contributions',
         href: 'https://github.com/darrylcauldwell',
         accentColor: '#6e7681',
-        external: true,
         icon: icons.github,
+        externalUrl: 'https://github.com/darrylcauldwell',
       },
       {
         title: 'LinkedIn',
         description: 'Professional profile & network',
         href: 'https://www.linkedin.com/in/darryl-cauldwell-82156333/',
         accentColor: '#0A66C2',
-        external: true,
         icon: icons.linkedin,
+        externalUrl: 'https://www.linkedin.com/in/darryl-cauldwell-82156333/',
       },
     ],
   },
