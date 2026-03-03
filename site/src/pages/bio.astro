@@ -3,13 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { meAccentColor } from '../config/colors';
 ---
 
-<BaseLayout title="Bio" description="About Darryl Cauldwell">
+<BaseLayout title="Bio" description="About Darryl Cauldwell — career, projects, and life outside work">
   <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <article class="max-w-3xl mx-auto">
       <!-- Header with accent -->
       <header class="mb-8 pb-6 border-b-2" style={`border-color: ${meAccentColor};`}>
-        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Bio</h1>
-        <p class="text-[var(--color-text-muted)] mt-1">About Darryl Cauldwell</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Darryl Cauldwell</h1>
       </header>
 
       <div class="prose prose-lg max-w-none
@@ -21,45 +20,53 @@ import { meAccentColor } from '../config/colors';
       ">
 
       <p>
-        I started my career in 1994 soldering circuit boards and swapping components on NCR towers and analogue mobile phones at Royal Mail. I built my first database in Microsoft Access to track serial numbers and device movements. Thirty years later, I'm still solving the same fundamental problem — how do you get complex systems to work reliably at scale — just with considerably fewer soldering irons.
+        Enterprise architect with 30+ years in IT, from soldering circuit boards at Royal Mail in 1994 to designing multi-cloud architectures at VMware today. The thread through it all: figuring out how to make complex systems work reliably at scale, and then automating away the repetitive parts so you can focus on the interesting problems.
+      </p>
+      <p>
+        Along the way I've progressed through hands-on engineering, automation, DevOps, and product management across Royal Mail, CSC, Atos, DXC Technology, and VMware. Recognised as a VMware vExpert for 11 consecutive years, with 50+ certifications and 12 industry awards. For the full professional history, see my <a href="/cv/">CV</a>.
       </p>
 
-      <h2>The Journey</h2>
+      <h2>Personal Projects</h2>
       <p>
-        Those early years at Royal Mail took me from electronics repair through desktop support, nationwide deployments, and into the internet era — where I helped run the public-facing infrastructure for royalmail.com. Along the way I picked up a British Computer Society Medal and caught the Agile bug before most people had heard of it.
+        Outside of work I build things. Five iOS apps on the App Store and four self-hosted web applications, all designed, built, and shipped as side projects.
       </p>
       <p>
-        I spent eleven years at CSC, where I progressed from platform engineer to architect across healthcare, government, and defence. The work ranged from deploying nationally sensitive IT infrastructure at the UK Border Agency in Belgrade to building what was then Veritas's largest worldwide deployment of Cluster Services and Citrix's largest global solution. I led a team of 114 engineers in Chennai, designed multi-petabyte storage solutions with 99.99% availability, and started automating everything I could get my hands on — first with Altiris scripts, then Puppet, then Ansible. That automation work earned a CSC Global Award for Technical Excellence.
+        The iOS apps cover everything from <strong>tetrathlon and eventing training with gait detection</strong> (TetraTrack) to <strong>real-time UK train departures</strong> (LiveRail), <strong>family meal planning</strong> (TableTogether), <strong>cheapest fuel routing</strong> (FuelRoute), and <strong>a Silicon Valley parody hotdog classifier</strong> (SeeFood). All built with SwiftUI, Swift Testing, and published through automated CI/CD pipelines.
       </p>
       <p>
-        At Atos, I transitioned engineering teams from monolithic releases to iterative DevOps delivery, introduced Ansible as the standard across Global Cloud Engineering, and architected an AWS managed cloud offering. I then moved to DXC Technology where I led the design of standardised private cloud platforms with self-service catalogues for defence, government, financial, and healthcare customers. This was my first proper product management role, introducing me to Scaled Agile and stakeholder management at enterprise scale.
+        On the web side, <strong>Equestrian Venue Manager</strong> is a full production system handling arena bookings, livery services, staff scheduling, and horse health records with Stripe payments and DocuSign contracts. <strong>EquiCalendar</strong> aggregates competitions from 26 sources across UK equestrian sport into a single searchable calendar. <strong>Planespotter</strong> tracks live aircraft positions using ADS-B data. <strong>GreenScope</strong> calculates software carbon intensity scores for the hosting infrastructure.
       </p>
       <p>
-        Since 2019, I've been at VMware as a Customer Success Architect, helping customers design and deliver highly automated, secure, and resilient multi-cloud architectures spanning VCF, NSX, Tanzu, and Aria across hybrid and multi-cloud environments. I also serve as an Office of the CTO Ambassador, working at the intersection of edge computing, IT/OT convergence, and sustainability — connecting customers with R&D teams and turning emerging technology into real-world solutions.
+        Everything runs on a single Digital Ocean droplet orchestrated with Docker Compose, behind Caddy for automatic HTTPS across all subdomains. Full observability stack with Prometheus, Grafana, and Loki.
       </p>
 
-      <h2>What Drives Me</h2>
+      <h2>Open Source</h2>
       <p>
-        A recurring theme throughout my career has been designing solutions, proving them in production, and then scaling or replicating them across regions and organisations. I've done this with VMware platforms, cloud infrastructure, automation frameworks, and managed service offerings. The technology changes, but the pattern stays the same.
+        All projects are on <a href="https://github.com/darrylcauldwell">GitHub</a>. Early contributions include Ansible modules for VMware ESXi and vSAN management that were published during the CSC BizCloud work. More recently, the focus has been on the app projects above — each repo includes CI pipelines, automated testing, and containerised deployment.
       </p>
       <p>
-        I'm a committed advocate for sustainability in technology. As a VMware Sustainability Ambassador and active member of the UN Global Compact's UK network, I work on carbon footprint measurement, power-aware workload placement, and helping organisations understand the environmental impact of their infrastructure decisions. This isn't a side interest — it's woven into the architectural guidance I provide.
+        I've been writing a <a href="/">technical blog</a> since 2013, covering cloud infrastructure, Kubernetes, VMware, automation, and the development process behind these personal projects.
+      </p>
+
+      <h2>Community</h2>
+      <p>
+        Active member of the <strong>VMware Sustainability Ambassadors</strong> since 2019, focused on carbon footprint measurement and power-aware workload placement. Member of the <strong>UN Global Compact UK Network</strong> since 2017, collaborating on Sustainability and Development Goals.
       </p>
       <p>
-        I've held 50+ industry certifications, been recognised as a VMware vExpert for 11 consecutive years, and collected 12 awards along the way — from a NetApp EMEA Innovation Award to multiple VMware and CSC global recognitions. I write about what I learn on this <a href="/post">blog</a>, which has been running since 2013.
+        In 2014, I volunteered with <strong>Team4Tech in Tanzania</strong>, developing a digital literacy teacher training programme for five rural villages as part of World Vision International's 'Spark a Child's Digital Future' initiative.
+      </p>
+      <p>
+        In 2018, I contributed to a local history research project that produced two books and a ceramic sculpture commemorating the 100th anniversary of World War I, studying the effects of the war on daily life in our small farming community.
       </p>
 
       <h2>Beyond Work</h2>
       <p>
-        My family and I share a love of travel, particularly in Africa — my wife and I got married in Zanzibar. When I'm not at my desk, you'll find me walking the moors with our three Springer Spaniels or acting as groom and driver for my daughter's Irish Sports Horse, who competes at British Showjumping. In 2014, I volunteered with Team4Tech in Tanzania, developing a digital literacy teacher training programme for rural schools. I once spent a few months travelling independently through Peru and Bolivia, which remains one of the best decisions I've made.
+        My family and I share a love of travel, particularly in Africa — my wife and I got married in Zanzibar. I once spent a few months travelling independently through Peru and Bolivia, which remains one of the best decisions I've made.
+      </p>
+      <p>
+        When I'm not at my desk, you'll find me walking the moors with our three Springer Spaniels or acting as groom and driver for my daughter's Irish Sports Horse, who competes at British Showjumping.
       </p>
 
-        <h2>Connect</h2>
-        <p>
-          Find me on <a href="https://linkedin.com/in/darrylcauldwell">LinkedIn</a>,
-          check out my work on <a href="https://github.com/darrylcauldwell">GitHub</a>,
-          or take a look at my <a href="/cv">full CV</a>.
-        </p>
       </div>
     </article>
   </div>

@@ -37,6 +37,6 @@ Speaker notes are accessed by pressing **S** during a presentation. If notes don
 
 ## CI/CD
 
-- CI runs on push to main (spell check, image validation, E2E tests, build)
-- Containers are pushed to GHCR
+- CI runs on every push to any branch (spell check, image validation, unit tests, Docker build, E2E tests)
+- Docker image push to GHCR only happens on `main`
 - Deployment is manual (secrets not configured)

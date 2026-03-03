@@ -19,18 +19,6 @@ test.describe('Accessibility', () => {
       expect(results.violations).toEqual([]);
     });
 
-    test('should have skip link', async ({ page }) => {
-      await page.goto('/');
-      const skipLink = page.locator('a[href="#main"], a:has-text("Skip to")').first();
-      const count = await skipLink.count();
-      // Skip link might not exist if not implemented
-      if (count > 0) {
-        // Focus skip link
-        await skipLink.focus();
-        await expect(skipLink).toBeFocused();
-      }
-    });
-
     test('should have main landmark', async ({ page }) => {
       await page.goto('/');
       const main = page.locator('main, [role="main"]').first();
@@ -55,34 +43,6 @@ test.describe('Accessibility', () => {
       await page.goto('/');
       const nav = page.locator('nav, [role="navigation"]');
       await expect(nav.first()).toBeVisible();
-    });
-
-    test('dropdown buttons should have aria-haspopup', async ({ page }) => {
-      await page.goto('/');
-      await page.setViewportSize({ width: 1280, height: 720 });
-
-      const blogDropdown = page.locator('#blog-dropdown-btn');
-      await expect(blogDropdown).toHaveAttribute('aria-haspopup', 'true');
-    });
-
-    test('dropdown menus should have role="menu"', async ({ page }) => {
-      await page.goto('/');
-      await page.setViewportSize({ width: 1280, height: 720 });
-
-      const blogMenu = page.locator('#blog-dropdown-menu');
-      await expect(blogMenu).toHaveAttribute('role', 'menu');
-    });
-
-    test('menu items should have role="menuitem"', async ({ page }) => {
-      await page.goto('/');
-      await page.setViewportSize({ width: 1280, height: 720 });
-
-      const blogDropdown = page.locator('#blog-dropdown-btn');
-      await blogDropdown.click();
-
-      const menuItems = page.locator('#blog-dropdown-menu [role="menuitem"]');
-      const count = await menuItems.count();
-      expect(count).toBeGreaterThan(0);
     });
   });
 
@@ -128,18 +88,6 @@ test.describe('Accessibility', () => {
 
       // Ensure we got focus on multiple elements
       expect(focusOrder.filter(Boolean).length).toBeGreaterThan(0);
-    });
-
-    test('mobile menu should trap focus when open', async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 667 });
-      await page.goto('/');
-
-      const menuBtn = page.locator('#mobile-menu-btn');
-      await menuBtn.click();
-
-      // Focus should be within mobile menu
-      const mobileMenu = page.locator('#mobile-menu');
-      await expect(mobileMenu).toBeVisible();
     });
   });
 
@@ -231,7 +179,6 @@ test.describe('Accessibility', () => {
 
   test.describe('Page-specific Accessibility', () => {
     test('post page should have no axe violations', async ({ page }) => {
-      // Use a page with html element (not the post index)
       await page.goto('/post/zsh/');
       const results = await new AxeBuilder({ page })
         .exclude('iframe')

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LandingCard from '../components/LandingCard.astro';
+import { landingSections } from '../config/landing';
+---
+
+<BaseLayout title="dreamfold.dev" description="iOS apps, web apps, blog, and more">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    {landingSections.map((section) => (
+      <section class="mb-10">
+        <h2 class="text-lg font-semibold text-[var(--color-heading)] mb-4">{section.title}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {section.cards.map((card) => (
+            <LandingCard
+              title={card.title}
+              description={card.description}
+              href={card.href}
+              accentColor={card.accentColor}
+              badge={card.badge}
+              external={card.external}
+              icon={card.icon}
+              appStoreUrl={card.appStoreUrl}
+              appSubdomain={card.appSubdomain}
+              blogPost={card.blogPost}
+              primarySubdomain={card.primarySubdomain}
+            />
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

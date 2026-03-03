@@ -361,7 +361,19 @@
     "sparkline",
     "SWOLF",
     "equicalendar",
-    "EquiCalendar"
+    "EquiCalendar",
+    "fuelfinder",
+    "seefood",
+    "greenscope",
+    "Aviato",
+    "Sparx",
+    "SDLC",
+    "NSEA",
+    "BSPS",
+    "Equipe",
+    "Asda",
+    "Esso",
+    "Rontec"
   ],
   "ignorePaths": [
     "node_modules",

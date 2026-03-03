@@ -6,54 +6,51 @@
     }
 }
 
-{$SITE_ADDRESS::80} {
-    # Serve static files
+# Shared config for static site server blocks
+(static_site_common) {
     root * /srv
     file_server
-
-    # Compression
     encode gzip zstd
 
-    # Security headers
     header {
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
         X-XSS-Protection "1; mode=block"
         Referrer-Policy "strict-origin-when-cross-origin"
-        # Remove server header
         -Server
     }
 
-    # Cache static assets
     @static {
         path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2 *.ttf *.eot
     }
     header @static Cache-Control "public, max-age=31536000, immutable"
 
-    # Cache HTML for shorter period
     @html {
         path *.html
     }
     header @html Cache-Control "public, max-age=3600, must-revalidate"
 
-    # Health check endpoint
     respond /healthz 200 {
         body "healthy"
         close
     }
 
-    # Grafana reverse proxy
+    try_files {path} {path}/ {path}.html
+}
+
+# Landing page (bare domain / www — fallback for unmatched hosts locally)
+{$SITE_ADDRESS::80} {
+    import static_site_common
+    rewrite / /www/index.html
+
+    # Proxies needed for observability page JS health checks
     handle /grafana/* {
         reverse_proxy grafana:3000
     }
 
-    # Prometheus reverse proxy
     handle /prometheus/* {
         reverse_proxy prometheus:9090
     }
-
-    # Handle pretty URLs (try file, then directory, then .html extension)
-    try_files {path} {path}/ {path}.html
 
     # Custom 404 page
     handle_errors {
@@ -65,13 +62,85 @@
     }
 }
 
+# Landing page (www subdomain)
+{$WWW_ADDRESS:http://www.localhost} {
+    import static_site_common
+    rewrite / /www/index.html
+
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+}
+
+# Blog
+{$BLOG_ADDRESS:http://blog.localhost} {
+    import static_site_common
+
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+
+    handle_errors {
+        @404 {
+            expression {http.error.status_code} == 404
+        }
+        rewrite @404 /404.html
+        file_server
+    }
+}
+
+# CV page
+{$CV_ADDRESS:http://cv.localhost} {
+    import static_site_common
+    rewrite / /cv/index.html
+}
+
+# Bio page
+{$BIO_ADDRESS:http://bio.localhost} {
+    import static_site_common
+    rewrite / /bio/index.html
+}
+
+# Presentations
+{$PRESENTATIONS_ADDRESS:http://presentations.localhost} {
+    import static_site_common
+    rewrite / /presentations/index.html
+}
+
+# Observability (needs grafana/prometheus proxies for JS fetches)
+{$OBSERVABILITY_ADDRESS:http://observability.localhost} {
+    import static_site_common
+    rewrite / /observability/index.html
+
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle /prometheus/* {
+        reverse_proxy prometheus:9090
+    }
+}
+
+# GreenScope - Software Carbon Intensity dashboard
+{$SCI_ADDRESS:http://sci.localhost} {
+    reverse_proxy greenscope:8000
+}
+
 # ntfy push notification service
-{$NTFY_ADDRESS:ntfy.localhost} {
+{$NTFY_ADDRESS:http://ntfy.localhost} {
     reverse_proxy ntfy:80
 }
 
 # Planespotter application
-{$PLANESPOTTER_ADDRESS:planespotter.localhost} {
+{$PLANESPOTTER_ADDRESS:http://planespotter.localhost} {
     # Health check (must be handle block for proper routing)
     handle /healthz {
         respond 200 {
@@ -92,7 +161,7 @@
 }
 
 # Equestrian Venue Manager
-{$EVM_ADDRESS:evm.localhost} {
+{$EVM_ADDRESS:http://evm.localhost} {
     # Health check (must be handle block for proper routing)
     handle /healthz {
         respond 200 {
@@ -113,19 +182,16 @@
 }
 
 # EquiCalendar - Equestrian competition calendar
-{$EQUICALENDAR_ADDRESS:equicalendar.localhost} {
+{$EQUICALENDAR_ADDRESS:http://equicalendar.localhost} {
     reverse_proxy equicalendar:8000
 }
 
 # App Support Site (TableTogether, etc.)
-{$SUPPORT_ADDRESS:support.localhost} {
+{$SUPPORT_ADDRESS:http://support.localhost} {
     root * /srv/support
     file_server
-
-    # Compression
     encode gzip zstd
 
-    # Security headers
     header {
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
@@ -134,16 +200,13 @@
         -Server
     }
 
-    # Cache static assets
     @static {
         path *.css *.js *.jpg *.jpeg *.png *.gif *.ico *.svg *.woff *.woff2
     }
     header @static Cache-Control "public, max-age=31536000, immutable"
 
-    # Handle pretty URLs
     try_files {path} {path}/ {path}.html {path}/index.html
 
-    # Health check
     respond /healthz 200 {
         body "healthy"
         close

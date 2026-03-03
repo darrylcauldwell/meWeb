@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { title, description = 'Personal portfolio and technical articles', ogImage } = Astro.props;
-const siteTitle = 'Darryl Cauldwell';
+const siteTitle = 'dreamfold';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const twitterHandle = '@daaboroern';
@@ -22,18 +22,18 @@ const websiteSchema = {
   "@type": "WebSite",
   "name": siteTitle,
   "description": "Technical blog covering cloud infrastructure, Kubernetes, VMware, and DevOps automation",
-  "url": Astro.site?.toString() || "https://darrylcauldwell.github.io",
+  "url": Astro.site?.toString() || "https://dreamfold.dev",
   "author": {
     "@type": "Person",
     "name": "Darryl Cauldwell",
     "jobTitle": "Cloud Infrastructure & DevOps Professional",
-    "url": "https://darrylcauldwell.github.io/bio/"
+    "url": "https://dreamfold.dev/bio/"
   },
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://darrylcauldwell.github.io/?q={search_term_string}"
+      "urlTemplate": "https://blog.dreamfold.dev/?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }

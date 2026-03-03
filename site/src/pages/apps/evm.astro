@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="Equestrian Venue Manager" description="Digital yard management for equestrian venues — bookings, livery, health, and staff">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">Equestrian Venue Manager</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">Digital yard management — bookings, livery, health, and staff</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          EVM replaces the whiteboard, the spreadsheet, and the group chat. Arena bookings, livery services, horse health records, staff scheduling, contracts, and invoicing — all in one place, accessible from any device.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Live at <a href="https://evm.dreamfold.dev">evm.dreamfold.dev</a>. Built for real yards, used in production.
+        </p>
+
+        <h2>Arena Bookings</h2>
+        <p>
+          Calendar-based booking for arenas with support for recurring sessions and public or livery-only availability. Stripe payment integration handles the money. No more chasing bank transfers.
+        </p>
+
+        <h2>Horse Management</h2>
+        <p>
+          Full profiles for every horse on the yard — stable assignment, companion preferences, emergency contacts, and owner details. Track farrier visits, dentist appointments, vaccinations, worming schedules, weight, and body condition scores over time.
+        </p>
+
+        <h2>Rehabilitation</h2>
+        <p>
+          Create rehab programs from custom templates with daily task generation. Track physiotherapy sessions and wound care with photo documentation. Generate insurance statements for rehab costs.
+        </p>
+
+        <h2>Livery Services</h2>
+        <p>
+          Configurable service catalogue with per-horse assignments. Service requests from livery owners, pro-rata billing for mid-month starts, and holiday livery with public request forms that auto-create accounts.
+        </p>
+
+        <h2>Staff Operations</h2>
+        <p>
+          Shift scheduling, digital timesheets, and leave management with approval workflows. Staff appreciation via a Thanks feature with optional tipping. Everything needed to run payroll at month end.
+        </p>
+
+        <h2>Contracts</h2>
+        <p>
+          DocuSign integration for electronic signatures. Version-controlled contract templates with bulk re-signing when terms change. Full audit trail.
+        </p>
+
+        <h2>Training and Clinics</h2>
+        <p>
+          Manage individual and group lessons with coach assignment. Run training clinics with coach proposals, waiting lists, and integrated billing.
+        </p>
+
+        <h2>Smart Integrations</h2>
+        <p>
+          Weather forecasting with BHS-aligned rugging recommendations. Environment Agency flood warnings and river level monitoring. Because sometimes the arena's underwater and it's good to know before you drive there.
+        </p>
+
+        <h2>Community</h2>
+        <p>
+          Yard noticeboard for announcements and updates. Professional directory of farriers, vets, physios, and instructors.
+        </p>
+
+        <h2>Land Management</h2>
+        <p>
+          Track government grants, field features, and maintenance schedules. Health and safety risk assessments with version control and digital signatures.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <p>
+          React and TypeScript frontend. FastAPI and PostgreSQL backend. Stripe for payments. DocuSign for contracts. Playwright E2E tests. Fully containerised with Docker Compose.
+        </p>
+
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Designed to support yards seeking British Horse Society (BHS) Approval — contracts, staff qualifications, vaccination records, emergency preparedness, and welfare monitoring built in.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

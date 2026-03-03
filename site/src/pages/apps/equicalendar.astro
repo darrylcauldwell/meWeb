@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="EquiCalendar" description="All UK equestrian competitions in one searchable calendar">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">EquiCalendar</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">All UK equestrian competitions in one searchable calendar</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          Finding competitions shouldn't mean checking a dozen different websites. EquiCalendar aggregates events from 26 sources across UK equestrian sport — national federations, venue sites, and aggregators — into a single searchable, filterable calendar updated daily.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Live at <a href="https://equicalendar.dreamfold.dev">equicalendar.dreamfold.dev</a>.
+        </p>
+
+        <h2>26 Sources, One Calendar</h2>
+        <p>
+          British Showjumping, British Eventing, British Dressage, Pony Club, NSEA, BSPS, Equipe Online, Horse Monkey, and 18 more. Each source has its own parser handling different website formats. Data is scanned automatically every morning at 06:00.
+        </p>
+
+        <h2>Search and Filter</h2>
+        <p>
+          Filter by discipline, venue, pony classes, date range, or maximum distance from your home postcode. Sort by date, name, discipline, venue, or distance. Paginated results with 50 events per page.
+        </p>
+
+        <h2>Distance from Home</h2>
+        <p>
+          Set your home postcode and every competition shows how far away it is. No more googling venue addresses to figure out if it's a day trip or an overnight stay.
+        </p>
+
+        <h2>Map View</h2>
+        <p>
+          See all competitions on an interactive map with clustered markers. Dark and light map tiles to match your theme preference.
+        </p>
+
+        <h2>Calendar Export</h2>
+        <p>
+          Export any event — or multiple events at once — as an iCalendar file for Apple Calendar, Google Calendar, or Outlook. One tap to get competitions into the calendar you already use.
+        </p>
+
+        <h2>Smart Data</h2>
+        <p>
+          Venue names are normalised across all 26 sources — the same venue spelled three different ways on three different websites shows up as one consistent entry. Disciplines are mapped from 46 raw categories down to 15 canonical types so filtering actually works.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <p>
+          Python and FastAPI backend with SQLite. 26 custom parsers handling HTML scraping, JavaScript-rendered pages via Playwright, and API integrations. Venue normalisation with 170+ aliases. Fully containerised with Docker.
+        </p>
+
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Competition data is aggregated from publicly available sources. Event details may change — always confirm with the organiser before travelling.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
