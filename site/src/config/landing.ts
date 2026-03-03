@@ -47,8 +47,8 @@ export const landingSections: LandingSection[] = [
     title: 'Apps',
     cards: [
       {
-        title: 'TrackRide',
-        description: 'GPS tracking & gait detection for equestrians',
+        title: 'TetraTrack',
+        description: 'Tetrathlon & eventing training',
         href: '/apps/tetratrack/',
         accentColor: '#5AC8FA',
         badge: 'iOS',
