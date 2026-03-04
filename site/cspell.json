@@ -338,6 +338,7 @@
     "showback",
     "multipathing",
     "SRDF",
+    "datacentre",
     "datacentres",
     "baselining",
     "CESG",
@@ -364,6 +365,7 @@
     "EquiCalendar",
     "fuelfinder",
     "seefood",
+    "greenwashing",
     "greenscope",
     "Aviato",
     "Sparx",
@@ -373,7 +375,12 @@
     "Equipe",
     "Asda",
     "Esso",
-    "Rontec"
+    "Rontec",
+    "interconnectors",
+    "dashboardable",
+    "uvicorn",
+    "Flowgate",
+    "HVAC"
   ],
   "ignorePaths": [
     "node_modules",
