@@ -131,10 +131,11 @@ export const landingSections: LandingSection[] = [
       {
         title: 'GreenScope',
         description: 'Software carbon intensity scoring',
-        href: '/apps/greenscope/',
+        href: '/',
         accentColor: '#30D158',
         icon: icons.leaf,
-        appSubdomain: 'sci',
+        primarySubdomain: 'sci',
+        blogPost: '/post/greenscope/',
       },
       {
         title: 'Observability',
