@@ -16,6 +16,7 @@ include:
   - path: evm/docker-compose.yml
   - path: equicalendar/docker-compose.yml
   - path: greenscope/docker-compose.yml
+  - path: showback/docker-compose.yml
 
 services:
   meweb:
@@ -41,6 +42,7 @@ services:
       - BLOG_ADDRESS=${BLOG_ADDRESS}
       - OBSERVABILITY_ADDRESS=${OBSERVABILITY_ADDRESS}
       - SCI_ADDRESS=${SCI_ADDRESS}
+      - FINOPS_ADDRESS=${FINOPS_ADDRESS}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data

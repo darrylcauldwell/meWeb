@@ -134,6 +134,11 @@
     reverse_proxy greenscope:8000
 }
 
+# Showback - FinOps cost allocation dashboard
+{$FINOPS_ADDRESS:http://finops.localhost} {
+    reverse_proxy showback:8000
+}
+
 # ntfy push notification service
 {$NTFY_ADDRESS:http://ntfy.localhost} {
     reverse_proxy ntfy:80
