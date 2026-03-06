@@ -380,7 +380,8 @@
     "dashboardable",
     "uvicorn",
     "Flowgate",
-    "HVAC"
+    "HVAC",
+    "finops"
   ],
   "ignorePaths": [
     "node_modules",
