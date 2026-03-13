@@ -16,6 +16,7 @@ include:
   - path: equicalendar/docker-compose.yml
   - path: greenscope/docker-compose.yml
   - path: showback/docker-compose.yml
+  - path: vcf-green-insight/docker-compose.yml
 
 services:
   meweb:
@@ -38,6 +39,7 @@ services:
       - OBSERVABILITY_ADDRESS=http://observability.localhost
       - SCI_ADDRESS=http://sci.localhost
       - FINOPS_ADDRESS=http://finops.localhost
+      - VCF_GREEN_INSIGHT_ADDRESS=http://vcf-green-insight.localhost
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     networks:

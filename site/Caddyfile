@@ -186,6 +186,11 @@
     }
 }
 
+# VCF Green Insight - Embodied carbon calculator
+{$VCF_GREEN_INSIGHT_ADDRESS:http://vcf-green-insight.localhost} {
+    reverse_proxy vcf-green-insight:8002
+}
+
 # EquiCalendar - Equestrian competition calendar
 {$EQUICALENDAR_ADDRESS:http://equicalendar.localhost} {
     reverse_proxy equicalendar:8000

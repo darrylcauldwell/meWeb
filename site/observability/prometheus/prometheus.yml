@@ -83,6 +83,12 @@ scrape_configs:
       - targets: ['greenscope:8000']
     metrics_path: /metrics
 
+  # VCF Green Insight metrics (FastAPI with prometheus-fastapi-instrumentator)
+  - job_name: 'vcf-green-insight'
+    static_configs:
+      - targets: ['vcf-green-insight:8002']
+    metrics_path: /metrics
+
   # Example: Node.js application with prom-client
   # - job_name: 'nodejs-app'
   #   static_configs:
