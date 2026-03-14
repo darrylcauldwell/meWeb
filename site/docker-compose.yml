@@ -39,7 +39,7 @@ services:
       - OBSERVABILITY_ADDRESS=http://observability.localhost
       - SCI_ADDRESS=http://sci.localhost
       - FINOPS_ADDRESS=http://finops.localhost
-      - VCF_GREEN_INSIGHT_ADDRESS=http://vcf-green-insight.localhost
+      - VCF_GREEN_INSIGHT_ADDRESS=http://vcf-green.localhost
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     networks:

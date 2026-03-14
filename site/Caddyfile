@@ -187,7 +187,7 @@
 }
 
 # VCF Green Insight - Embodied carbon calculator
-{$VCF_GREEN_INSIGHT_ADDRESS:http://vcf-green-insight.localhost} {
+{$VCF_GREEN_INSIGHT_ADDRESS:http://vcf-green.localhost} {
     reverse_proxy vcf-green-insight:8002
 }
 
