@@ -383,7 +383,11 @@
     "HVAC",
     "finops",
     "Boavizta",
-    "ADEME"
+    "ADEME",
+    "Ollama",
+    "ollama",
+    "Qwen",
+    "pgvector"
   ],
   "ignorePaths": [
     "node_modules",

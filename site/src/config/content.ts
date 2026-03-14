@@ -13,6 +13,7 @@ export const CATEGORIES = [
   'career',
   'apps',
   'lifestyle',
+  'ai',
 ] as const;
 
 // Valid tags (fixed vocabulary)
@@ -30,6 +31,10 @@ export const TAGS = [
   'vsphere',
   'tanzu',
   'swift',
+  'ai',
+  'rag',
+  'ollama',
+  'mcp',
 ] as const;
 
 // Type for valid tags

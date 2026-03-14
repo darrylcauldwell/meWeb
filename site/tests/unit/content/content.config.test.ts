@@ -11,10 +11,11 @@ describe('CATEGORIES', () => {
     expect(CATEGORIES).toContain('career');
     expect(CATEGORIES).toContain('apps');
     expect(CATEGORIES).toContain('lifestyle');
+    expect(CATEGORIES).toContain('ai');
   });
 
   it('should have correct number of categories', () => {
-    expect(CATEGORIES.length).toBe(8);
+    expect(CATEGORIES.length).toBe(9);
   });
 
   it('should be all lowercase', () => {
@@ -44,10 +45,14 @@ describe('TAGS', () => {
     expect(TAGS).toContain('vsphere');
     expect(TAGS).toContain('tanzu');
     expect(TAGS).toContain('swift');
+    expect(TAGS).toContain('ai');
+    expect(TAGS).toContain('rag');
+    expect(TAGS).toContain('ollama');
+    expect(TAGS).toContain('mcp');
   });
 
   it('should have correct number of tags', () => {
-    expect(TAGS.length).toBe(13);
+    expect(TAGS.length).toBe(17);
   });
 
   it('should be all lowercase', () => {
