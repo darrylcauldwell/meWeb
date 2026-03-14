@@ -127,11 +127,11 @@ export const landingSections: LandingSection[] = [
       {
         title: 'VCF Green Insight',
         description: 'Embodied carbon of going software-defined',
-        href: '/apps/vcf-green-insight/',
+        href: '/',
         accentColor: '#30D158',
         badge: 'Web',
         icon: icons.leaf,
-        appSubdomain: 'vcf-green',
+        primarySubdomain: 'vcf-green',
       },
     ],
   },
