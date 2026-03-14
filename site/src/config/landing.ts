@@ -124,11 +124,6 @@ export const landingSections: LandingSection[] = [
         appSubdomain: 'planespotter',
         blogPost: '/post/planespotter-revival/',
       },
-    ],
-  },
-  {
-    title: 'Operations',
-    cards: [
       {
         title: 'VCF Green Insight',
         description: 'Embodied carbon of going software-defined',
@@ -138,6 +133,11 @@ export const landingSections: LandingSection[] = [
         icon: icons.leaf,
         appSubdomain: 'vcf-green-insight',
       },
+    ],
+  },
+  {
+    title: 'Operations',
+    cards: [
       {
         title: 'GreenScope',
         description: 'Software carbon intensity scoring',
