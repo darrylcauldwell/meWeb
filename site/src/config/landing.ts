@@ -131,7 +131,7 @@ export const landingSections: LandingSection[] = [
         accentColor: '#30D158',
         badge: 'Web',
         icon: icons.leaf,
-        appSubdomain: 'vcf-green-insight',
+        appSubdomain: 'vcf-green',
       },
     ],
   },
