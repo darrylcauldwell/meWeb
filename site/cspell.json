@@ -381,7 +381,9 @@
     "uvicorn",
     "Flowgate",
     "HVAC",
-    "finops"
+    "finops",
+    "Boavizta",
+    "ADEME"
   ],
   "ignorePaths": [
     "node_modules",
