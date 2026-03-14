@@ -13,6 +13,7 @@ export const CATEGORIES = [
   'career',
   'apps',
   'lifestyle',
+  'ai',
 ] as const;
 
 // Valid tags (fixed vocabulary)
