@@ -31,6 +31,10 @@ export const TAGS = [
   'vsphere',
   'tanzu',
   'swift',
+  'ai',
+  'rag',
+  'ollama',
+  'mcp',
 ] as const;
 
 // Type for valid tags
