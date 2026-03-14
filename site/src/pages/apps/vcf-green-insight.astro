@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { appsAccentColor } from '../../config/colors';
+---
+
+<BaseLayout title="VCF Green Insight" description="Measuring the embodied carbon impact of going software-defined with VMware Cloud Foundation">
+  <div class="max-w-[var(--max-width)] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header with accent -->
+      <header class="mb-8 pb-6 border-b-2" style={`border-color: ${appsAccentColor};`}>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-heading)]">VCF Green Insight</h1>
+        <p class="text-[var(--color-text-muted)] mt-1">Measuring the carbon impact of going software-defined</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:text-[var(--color-heading)]
+        prose-p:text-[var(--color-text)]
+        prose-a:text-[var(--color-accent)]
+        prose-strong:text-[var(--color-heading)]
+        prose-li:text-[var(--color-text)]
+      ">
+
+        <p>
+          VCF Green Insight calculates the embodied carbon (manufacturing, transport, and end-of-life) of on-premises hosting infrastructure and models the carbon savings from adopting VMware Cloud Foundation software-defined alternatives.
+        </p>
+
+        <p class="text-sm font-medium px-4 py-3 rounded-lg bg-[var(--color-translucent)]">
+          Live at <a href="https://vcf-green-insight.dreamfold.dev">vcf-green-insight.dreamfold.dev</a>.
+        </p>
+
+        <h2>Hardware Catalog</h2>
+        <p>
+          Browse a catalog of servers, switches, storage arrays, firewalls, IDS/IPS appliances, load balancers, sandboxing appliances, and NDR/NTA devices. Each item includes manufacturer PCF (Product Carbon Footprint) data sourced from vendor sustainability reports and the Boavizta dataset.
+        </p>
+
+        <h2>VCF Comparison</h2>
+        <p>
+          Model what happens when physical appliances are replaced by VMware Cloud Foundation software-defined equivalents: NSX for networking, vDefend for firewalling, Avi for load balancing, and vSAN for storage. The tool calculates both Scope 3 (embodied) and Scope 2 (operational) carbon savings.
+        </p>
+
+        <h2>Carbon Calculation</h2>
+        <p>
+          For catalog items, embodied carbon uses manufacturer-reported GWP manufacturing figures. For items where only weight is known, an ADEME-derived factor of 80.7 kgCO2e per kg is applied. Scope 2 operational emissions factor in power usage, PUE, grid carbon intensity, and equipment lifespan.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <p>
+          Python 3.12 with FastAPI, SQLAlchemy (async), and SQLite. Jinja2 templates with Tailwind CSS for the frontend. Alembic for database migrations. Docker Compose for deployment with full observability stack (Prometheus, Grafana, Loki).
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
